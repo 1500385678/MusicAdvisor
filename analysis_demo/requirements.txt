@@ -1,0 +1,30 @@
+# MusicAdvisor · 音频分析依赖锁(Phase 1 真实模式)
+# ============================================================
+# 项目:    MusicAdvisor · 19-音乐-Music
+# 模块:    analysis_demo · Phase 0 任务 5 配套依赖清单
+# 创建:    2026-08-31 · T5 03:00(8/29 巡检 P0 项落地)
+# 状态:    Phase 0 占位脚本无需本表;Phase 1 真实模式启用
+# 关联:    ../项目开发计划.md §5 任务 5
+#          analysis_demo/README.md §3.2 真实模式运行步骤
+#          analysis_demo/librosa_quicklook.py `_analyze_with_librosa()` 段
+# ============================================================
+# Python:3.9+(本机验证 3.9.6)· macOS arm64 / x86_64 / Linux x86_64
+# 安装:   pip install -r analysis_demo/requirements.txt
+# 验证:   python3 -c "import librosa, essentia, numpy; print(librosa.__version__, essentia.__version__, numpy.__version__)"
+# ============================================================
+
+# --- 核心数值栈(锁定到 librosa 0.10.x 兼容矩阵) ---
+numpy>=1.26.0,<1.27.0            # librosa 0.10.x 上限;Python 3.9 友好
+scipy>=1.11.0,<1.14.0            # librosa FFT / signal 依赖
+
+# --- 音频加载 + 特征提取 ---
+librosa>=0.10.1,<0.11.0          # BPM / chroma / duration 4 维输出主源
+soundfile>=0.12.1,<0.13.0        # librosa 推荐 MP3/WAV/FLAC 后端
+
+# --- 调性 / 和弦识别(essentia C++ 绑定) ---
+essentia>=2.1b6.dev,<2.2.0       # K-S 模板匹配调性 + chroma 变调统计
+
+# --- 可选:Phase 1 真实模式补充 ---
+# joblib>=1.3.0                    # librosa 并行 chroma 计算(可选加速)
+# audioread>=3.0.1                 # librosa fallback(MP3 解码,soundfile 不支持时启用)
+# matplotlib>=3.8.0                # 仅当需要可视化波形/色谱图(Phase 1 评审 demo 用)

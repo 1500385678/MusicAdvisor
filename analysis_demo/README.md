@@ -13,6 +13,8 @@
 | 文件 | 行数 | 状态 | 说明 |
 |---|---|---|---|
 | `librosa_quicklook.py` | ~120 | Phase 0 占位 | mock 数据演示 4 维输出契约 |
+| `requirements.txt` | ~30 | Phase 0 配套(2026-08-31 补) | 锁 librosa/essentia/numpy 版本,Phase 1 `pip install -r` 启用 |
+| `tonejs_vs_midiplayer.md` | - | Phase 0 选型报告(2026-08-29) | Web 端合成方案选型结论,见 `§7` 关联 |
 
 ---
 
@@ -53,7 +55,7 @@ python3 analysis_demo/librosa_quicklook.py
 ### 3.2 Phase 1 真实模式(待启用)
 
 1. 准备 1 首 ≥ 30s MP3 样例(用户自有 / CC 协议,见 `项目开发计划.md` §8 风险段)
-2. `pip install librosa numpy essentia`
+2. `pip install -r analysis_demo/requirements.txt`(版本已锁,见 `requirements.txt`)
 3. 取消 `librosa_quicklook.py` 内 `_analyze_with_librosa` 注释,补全 `_estimate_key_with_essentia` / `_count_chroma_transitions` 实现
 4. `python3 analysis_demo/librosa_quicklook.py path/to/sample.mp3`
 
@@ -81,3 +83,5 @@ python3 analysis_demo/librosa_quicklook.py
 ## 6. 变更记录
 
 - **2026-08-28** · T5 03:00 应急创建,Phase 0 占位脚本,3 段式契约 + mock 数据 · 张勇 P0 巡检建议落地
+- **2026-08-29** · T5 03:00 补 `tonejs_vs_midiplayer.md` 选型报告(见仓库 commit `6af1d6f`)
+- **2026-08-31** · T5 03:00 补 `requirements.txt` 锁版本(librosa 0.10.x / essentia 2.1b6 / numpy 1.26.x),响应 8/29 巡检 P0 建议,让 Phase 1 真实模式从"占位"升级到"`pip install -r` 一键跑通";`README.md` §3.2 同步改为引用 requirements.txt
