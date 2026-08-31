@@ -15,6 +15,7 @@
 | `librosa_quicklook.py` | ~120 | Phase 0 占位 | mock 数据演示 4 维输出契约 |
 | `requirements.txt` | ~30 | Phase 0 配套(2026-08-31 补) | 锁 librosa/essentia/numpy 版本,Phase 1 `pip install -r` 启用 |
 | `tonejs_vs_midiplayer.md` | - | Phase 0 选型报告(2026-08-29) | Web 端合成方案选型结论,见 `§7` 关联 |
+| `package.json` | ~30 | Phase 0/1 配套(2026-09-01 补) | 锁 Tone.js + @magenta/music + webcomponents 版本,Phase 1 `npm install` + `npm run dev` 启动静态 demo 服务器 |
 
 ---
 
@@ -59,6 +60,29 @@ python3 analysis_demo/librosa_quicklook.py
 3. 取消 `librosa_quicklook.py` 内 `_analyze_with_librosa` 注释,补全 `_estimate_key_with_essentia` / `_count_chroma_transitions` 实现
 4. `python3 analysis_demo/librosa_quicklook.py path/to/sample.mp3`
 
+### 3.3 Web 端合成 · NPM 启动模式(2026-09-01 补)
+
+> 适用:Phase 1 起步,跑通"Tone.js 实时合成 + html-midi-player 钢琴卷帘"两端的 demo 试听。
+
+```bash
+cd /Users/aaron/Mac/Consultant/19-音乐-Music/_MusicLib/MusicWeb
+npm install --prefix analysis_demo        # 装 Tone.js + @magenta/music + webcomponents
+cd analysis_demo
+npm run check:deps                         # 验证 3 个核心依赖锁在 dependencies
+npm run dev                                # 启动 http://localhost:5173 静态服务器
+```
+
+**锁版本**(见 `package.json`)
+
+| 依赖 | 范围 | 角色 |
+|---|---|---|
+| `tone` | `^14.7.77` | 主选 · Web 音频合成引擎(实时和声 / 试听) |
+| `@magenta/music` | `^1.23.0` | 辅选 · MIDI 转换 / NoteSequence 处理 |
+| `@magenta/music-webcomponents` | `^0.5.1` | 辅选 · `<midi-player>` + `<midi-visualizer>` 钢琴卷帘 |
+| `serve` (dev) | `^14.2.4` | `npm run dev` 静态服务器 |
+
+> **不引入真实 MP3 / MIDI 样例**(版权风险,见 `项目开发计划.md` §8);Phase 1 demo 阶段仅在浏览器内用 Tone.js 合成 1 段 ii-V-I 验证 30ms 出音(`tonejs_vs_midiplayer.md` §5 验收第 2 条),不上传音频文件。
+
 ---
 
 ## 4. 验收标准
@@ -85,3 +109,4 @@ python3 analysis_demo/librosa_quicklook.py
 - **2026-08-28** · T5 03:00 应急创建,Phase 0 占位脚本,3 段式契约 + mock 数据 · 张勇 P0 巡检建议落地
 - **2026-08-29** · T5 03:00 补 `tonejs_vs_midiplayer.md` 选型报告(见仓库 commit `6af1d6f`)
 - **2026-08-31** · T5 03:00 补 `requirements.txt` 锁版本(librosa 0.10.x / essentia 2.1b6 / numpy 1.26.x),响应 8/29 巡检 P0 建议,让 Phase 1 真实模式从"占位"升级到"`pip install -r` 一键跑通";`README.md` §3.2 同步改为引用 requirements.txt
+- **2026-09-01** · T5 03:00 补 `package.json` 锁 Tone.js(主)+ @magenta/music / webcomponents(辅)+ serve(dev),响应 9/1 巡检 P1 项(8/29 选型 + 9/1 起步准备),让 Phase 1 Web 端从"选型报告"升级到"`npm install` + `npm run dev` 一键试听"基础设施;`README.md` §1 文件清单 + §3.3 NPM 启动模式 + §1.4 锁版本表 同步落地

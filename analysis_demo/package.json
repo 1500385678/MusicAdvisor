@@ -1,0 +1,37 @@
+{
+  "name": "musicadvisor-analysis-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MusicAdvisor · Phase 0/1 音频分析与 Web 音频合成 demo · 锁 Tone.js + html-midi-player 版本",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "npx --yes serve@14 -l 5173 -L .",
+    "check:deps": "node -e \"const p=require('./package.json');for(const k of ['tone','@magenta/music','@magenta/music-webcomponents']){if(!p.dependencies[k]){console.error('missing dep:',k);process.exit(1);}}console.log('deps ok:',Object.keys(p.dependencies).join(', '));\""
+  },
+  "dependencies": {
+    "tone": "^14.7.77",
+    "@magenta/music": "^1.23.0",
+    "@magenta/music-webcomponents": "^0.5.1"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  },
+  "keywords": [
+    "musicadvisor",
+    "tone.js",
+    "magenta",
+    "midi-visualizer",
+    "phase-0",
+    "19-音乐"
+  ],
+  "license": "UNLICENSED",
+  "comments": {
+    "tone": "主选 Web 音频合成引擎,见 analysis_demo/tonejs_vs_midiplayer.md §4 选型结论(2026-08-29 锁定)",
+    "@magenta/music": "Google Magenta · MIDI 转换 / NoteSequence 处理,辅选",
+    "@magenta/music-webcomponents": "Google Magenta · <midi-player> + <midi-visualizer> web components,辅选",
+    "serve": "Phase 1 静态服务器 · 本地 npm run dev 启动 http://localhost:5173 试听 demo",
+    "_created": "2026-09-01 · T5 03:00 · 9/1 巡检 P1 项 · 8/29 选型 + 9/1 起步准备"
+  }
+}
