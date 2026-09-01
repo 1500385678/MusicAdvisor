@@ -4,3 +4,17 @@
 node_modules/
 .venv/
 __pycache__/
+# Python 编译产物 + Jupyter 检查点
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+# 仓库内本地数据 / 模型 / 构建产物(留 .gitkeep 占位)
+data/
+models/
+dist/
+.next/
+# 编辑器 / 工具临时
+.idea/
+.vscode/
+*.swp

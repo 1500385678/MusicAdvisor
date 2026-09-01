@@ -16,6 +16,7 @@
 | `requirements.txt` | ~30 | Phase 0 配套(2026-08-31 补) | 锁 librosa/essentia/numpy 版本,Phase 1 `pip install -r` 启用 |
 | `tonejs_vs_midiplayer.md` | - | Phase 0 选型报告(2026-08-29) | Web 端合成方案选型结论,见 `§7` 关联 |
 | `package.json` | ~30 | Phase 0/1 配套(2026-09-01 补) | 锁 Tone.js + @magenta/music + webcomponents 版本,Phase 1 `npm install` + `npm run dev` 启动静态 demo 服务器 |
+| `Dockerfile` | ~50 | Phase 0/1 配套(2026-09-02 补) | python:3.11-slim 容器化,Phase 1 `docker build` + `docker run` 跑通 librosa + essentia |
 
 ---
 
@@ -83,6 +84,23 @@ npm run dev                                # 启动 http://localhost:5173 静态
 
 > **不引入真实 MP3 / MIDI 样例**(版权风险,见 `项目开发计划.md` §8);Phase 1 demo 阶段仅在浏览器内用 Tone.js 合成 1 段 ii-V-I 验证 30ms 出音(`tonejs_vs_midiplayer.md` §5 验收第 2 条),不上传音频文件。
 
+### 3.4 Docker 容器模式(2026-09-02 补)
+
+> 适用:Phase 1 起步,需要 librosa + essentia 的可复现环境(Mac mini 无音频 / CI 跑全量验收)。
+
+```bash
+cd /Users/aaron/Mac/Consultant/19-音乐-Music/_MusicLib/MusicWeb/analysis_demo
+docker build -t musicadvisor-analysis .           # ~3-5 分钟(拉 slim + 装 essentia wheel)
+docker run --rm musicadvisor-analysis              # 跑占位模式,4 维输出
+docker run --rm -v "$PWD":/data musicadvisor-analysis /data/sample.mp3   # Phase 1 真实模式(待 lib 接入)
+```
+
+**镜像选型**
+- `python:3.11-slim`(非 alpine):避开 musl 编译坑,essentia wheel 在 glibc 段稳定
+- 系统依赖:`ffmpeg` + `libsndfile1`(librosa 读 WAV / essentia 解码 MP3 必需)
+- 分层缓存:先 `COPY requirements.txt` 再 `COPY *.py`,代码变更不触发 `pip install`
+- 入口暂用 CLI(`librosa_quicklook.py`),FastAPI 服务留 Phase 1 接入
+
 ---
 
 ## 4. 验收标准
@@ -110,3 +128,4 @@ npm run dev                                # 启动 http://localhost:5173 静态
 - **2026-08-29** · T5 03:00 补 `tonejs_vs_midiplayer.md` 选型报告(见仓库 commit `6af1d6f`)
 - **2026-08-31** · T5 03:00 补 `requirements.txt` 锁版本(librosa 0.10.x / essentia 2.1b6 / numpy 1.26.x),响应 8/29 巡检 P0 建议,让 Phase 1 真实模式从"占位"升级到"`pip install -r` 一键跑通";`README.md` §3.2 同步改为引用 requirements.txt
 - **2026-09-01** · T5 03:00 补 `package.json` 锁 Tone.js(主)+ @magenta/music / webcomponents(辅)+ serve(dev),响应 9/1 巡检 P1 项(8/29 选型 + 9/1 起步准备),让 Phase 1 Web 端从"选型报告"升级到"`npm install` + `npm run dev` 一键试听"基础设施;`README.md` §1 文件清单 + §3.3 NPM 启动模式 + §1.4 锁版本表 同步落地
+- **2026-09-02** · T5 03:00 补 `Dockerfile` + `.gitignore` 补 5 行,响应 9/1 巡检 P1 项(后端 FastAPI 起步 + 工程化补全):`Dockerfile` 选 `python:3.11-slim`(避 musl)+ ffmpeg / libsndfile1 + 分层 COPY requirements(代码变更不触发 pip 重装),入口暂用 CLI(FastAPI 服务留 Phase 1);`.gitignore` 补 `*.pyc` / `.ipynb_checkpoints/` / `data/` / `models/` / `dist/` / `.next/`(Phase 1 起步预备);`README.md` §1 文件清单 + §3.4 Docker 容器模式 同步落地
