@@ -1,0 +1,215 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "schema_intro": "MusicAdvisor · Phase 0 任务 7a 种子乐谱契约(10 首),字段 Phase 1 不变,只补真实 chord-by-chord 细粒度",
+    "created_at": "2026-09-04",
+    "created_by": "19-音乐-Music 顾问(T5 03:00 启动 Phase 0 任务 7)",
+    "source": "项目开发计划.md §5 任务 7 · 9/4 巡检 P0(连续 3 巡检 0 推进)",
+    "scope": "流行 4 + 爵士 3 + 古典 3 = 10 首(任务 7 总目标 50 首,本批次为前 1/5,任务 7b 续做 40 首)",
+    "usage": "score_seed.py 加载 / Phase 1 乐理问答 + 风格拆解 demo / InspirationIndex.md 补登记",
+    "phase": "Phase 0 占位(和声细粒度仅到级数,Phase 1 扩 chord-by-chord + beat 时间戳)",
+    "not_include": [
+      "真实 MP3 / MIDI 文件(版权风险,见 项目开发计划.md §8)",
+      "歌词全文(避免二次分发风险)",
+      "实时转调 / 移调数据(留 Phase 1 扩)"
+    ]
+  },
+  "songs": [
+    {
+      "id": "S-001",
+      "title": "Let It Be",
+      "artist": "The Beatles",
+      "year": 1970,
+      "style": "流行 · 摇滚民谣",
+      "key": "C major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 72,
+      "duration_sec": 240,
+      "form": "Intro-Verse-Chorus-Verse-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "C-G-Am-F", "degree": "I-V-vi-IV"},
+        {"section": "Chorus", "roman": "F-G-C-Am-F-G-C-C", "degree": "IV-V-I-vi-IV-V-I-I"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["4536251变体", "圣歌气质", "钢琴主奏", "降简化和声"]
+    },
+    {
+      "id": "S-002",
+      "title": "Someone Like You",
+      "artist": "Adele",
+      "year": 2011,
+      "style": "流行 · 灵魂抒情",
+      "key": "A major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 67,
+      "duration_sec": 285,
+      "form": "Intro-Verse-PreChorus-Chorus-Verse-PreChorus-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "A-C#m-F#m-D", "degree": "I-iii-vi-IV"},
+        {"section": "PreChorus", "roman": "F#m-D-A-E", "degree": "vi-IV-I-V"},
+        {"section": "Chorus", "roman": "A-C#m-F#m-D-A-C#m-F#m-D", "degree": "I-iii-vi-IV 反复"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["4536251", "Adele标志", "钢琴+弦乐", "下行旋律"]
+    },
+    {
+      "id": "S-003",
+      "title": "简单爱",
+      "artist": "周杰伦",
+      "year": 2001,
+      "style": "华语流行 · R&B",
+      "key": "A major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 88,
+      "duration_sec": 270,
+      "form": "Intro-Verse-Chorus-Verse-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "F#m-D-A-E", "degree": "vi-IV-I-V"},
+        {"section": "Chorus", "roman": "F#m-D-A-E-F#m-D-A-E", "degree": "vi-IV-I-V 反复"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["4536251", "华语流行典型", "周杰伦早期", "R&B律动"]
+    },
+    {
+      "id": "S-004",
+      "title": "十年",
+      "artist": "陈奕迅",
+      "year": 2003,
+      "style": "华语流行 · 抒情",
+      "key": "C major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 70,
+      "duration_sec": 220,
+      "form": "Intro-Verse-Chorus-Verse-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "Am-F-C-G", "degree": "vi-IV-I-V"},
+        {"section": "Chorus", "roman": "Am-F-C-G-Am-F-C-G", "degree": "vi-IV-I-V 反复"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["4536251", "港式抒情", "弦乐配器", "下行旋律"]
+    },
+    {
+      "id": "S-005",
+      "title": "Autumn Leaves",
+      "artist": "Joseph Kosma(原曲)/Bill Evans 经典改编",
+      "year": 1945,
+      "style": "爵士标准曲",
+      "key": "G minor",
+      "scale": "自然小调 + 和声小调交替",
+      "time_signature": "4/4",
+      "bpm": 120,
+      "duration_sec": 360,
+      "form": "AABA(32 小节 jazz standard 结构)",
+      "chord_progression": [
+        {"section": "A1", "roman": "Cm-G7-Am-Em7", "degree": "i-V-i-iv(降ii)"},
+        {"section": "A2", "roman": "F#m7b5-B7-Em-Em6", "degree": "ii°-V-i-VI(同名大调借用)"},
+        {"section": "B", "roman": "C-Cm7-F7-Bbm7-Eb7", "degree": "降VII借用+转调准备"},
+        {"section": "A3", "roman": "Am-D7-G-G6", "degree": "i-V-i-VI 收束"}
+      ],
+      "chord_count_est": 12,
+      "tags": ["ii-V-I", "jazz standard", "AABA", "同名大调互换", "Billy Evans/Bud Powell 常用"]
+    },
+    {
+      "id": "S-006",
+      "title": "Fly Me to the Moon",
+      "artist": "Bart Howard / Frank Sinatra 经典",
+      "year": 1954,
+      "style": "爵士标准曲 · 摇摆",
+      "key": "C major",
+      "scale": "自然大调 + 蓝音",
+      "time_signature": "4/4",
+      "bpm": 120,
+      "duration_sec": 180,
+      "form": "AABA(32 小节)",
+      "chord_progression": [
+        {"section": "A1", "roman": "Am-Dm7-G7-C-Cmaj7", "degree": "iii-vi-ii-V-I(加 Cmaj7 解决)"},
+        {"section": "A2", "roman": "Am-Dm7-G7-C-Cmaj7", "degree": "同上反复"},
+        {"section": "B", "roman": "Fmaj7-Bbm7-E7-Am-Ab7-G7", "degree": "IV借用-iii-V-iii-降VI-V(降VII介入)"},
+        {"section": "A3", "roman": "Am-Dm7-G7-C-Cmaj7", "degree": "iii-vi-ii-V-I 收束"}
+      ],
+      "chord_count_est": 9,
+      "tags": ["ii-V-I", "jazz standard", "AABA", "降VII借用", "Sinatra 招牌曲"]
+    },
+    {
+      "id": "S-007",
+      "title": "Take the A Train",
+      "artist": "Billy Strayhorn / Duke Ellington",
+      "year": 1941,
+      "style": "爵士标准曲 · Swing",
+      "key": "C major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 145,
+      "duration_sec": 200,
+      "form": "AABA(32 小节)",
+      "chord_progression": [
+        {"section": "A1", "roman": "C-Dm7-G7-C-C-Dm7-G7-C", "degree": "I-ii-V-I 反复"},
+        {"section": "A2", "roman": "C-Dm7-G7-C-C-Dm7-G7-C", "degree": "同上反复"},
+        {"section": "B", "roman": "F-Fm7-C-D7-Dm7-G7-C-G7", "degree": "IV-iv-I-V-ii-V-I-V 桥接"},
+        {"section": "A3", "roman": "C-Dm7-G7-C-C-Dm7-G7-C", "degree": "I-ii-V-I 收束"}
+      ],
+      "chord_count_est": 8,
+      "tags": ["ii-V-I", "swing", "AABA", "Billy Strayhorn", "Ellington 乐队招牌"]
+    },
+    {
+      "id": "S-008",
+      "title": "Canon in D",
+      "artist": "Pachelbel",
+      "year": 1680,
+      "style": "巴洛克 · 古典",
+      "key": "D major",
+      "scale": "自然大调 + 伊奥尼亚",
+      "time_signature": "4/4",
+      "bpm": 80,
+      "duration_sec": 270,
+      "form": "固定低音变奏(28 次反复 + 自由段落)",
+      "chord_progression": [
+        {"section": "Ground Bass", "roman": "D-A-Bm-F#m-G-D-G-A-D", "degree": "I-V-vi-iii-IV-I-IV-V-I"}
+      ],
+      "chord_count_est": 8,
+      "tags": ["卡农和声", "4536251前驱", "固定低音", "巴洛克", "婚礼常用"]
+    },
+    {
+      "id": "S-009",
+      "title": "Für Elise(致爱丽丝)",
+      "artist": "Beethoven",
+      "year": 1810,
+      "style": "古典 · 钢琴小品",
+      "key": "A minor",
+      "scale": "自然小调",
+      "time_signature": "3/8",
+      "bpm": 130,
+      "duration_sec": 180,
+      "form": "A-B-A-Coda",
+      "chord_progression": [
+        {"section": "A", "roman": "Am-Dm-E-Am", "degree": "i-iv-V-i"},
+        {"section": "B", "roman": "C-G-Am-Am", "degree": "降III-VII-i-i 借用大调"},
+        {"section": "A'", "roman": "Am-Dm-E-Am", "degree": "i-iv-V-i 回归"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["小品", "小调", "巴洛克回旋", "钢琴教学必学", "降III借用大调"]
+    },
+    {
+      "id": "S-010",
+      "title": "Prelude in E minor(Op. 28 No. 4)",
+      "artist": "Chopin",
+      "year": 1839,
+      "style": "古典 · 浪漫主义",
+      "key": "E minor",
+      "scale": "自然小调 + 和声小调",
+      "time_signature": "4/4(slow)",
+      "bpm": 70,
+      "duration_sec": 150,
+      "form": "自由单段(2-3 段开放式)",
+      "chord_progression": [
+        {"section": "Main", "roman": "Em-B7-Em-C-B7-E-B7-Em-B7", "degree": "i-V-i-降VII-V-i-V-i-V"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["肖邦", "葬礼进行感", "极简和声", "左手持续低音", "慢板"]
+    }
+  ]
+}

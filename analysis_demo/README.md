@@ -17,6 +17,7 @@
 | `tonejs_vs_midiplayer.md` | - | Phase 0 选型报告(2026-08-29) | Web 端合成方案选型结论,见 `§7` 关联 |
 | `package.json` | ~30 | Phase 0/1 配套(2026-09-01 补) | 锁 Tone.js + @magenta/music + webcomponents 版本,Phase 1 `npm install` + `npm run dev` 启动静态 demo 服务器 |
 | `Dockerfile` | ~50 | Phase 0/1 配套(2026-09-02 补) | python:3.11-slim 容器化,Phase 1 `docker build` + `docker run` 跑通 librosa + essentia |
+| `scores/seed_10.json` + `score_seed.py` | 10 首 / ~150 | Phase 0 任务 7a 起步(2026-09-04 补) | 流行 4 + 爵士 3 + 古典 3 种子乐谱契约 + 加载校验脚本,任务 7 总目标 50 首的 1/5,7b 续做 40 首 |
 
 ---
 
@@ -129,3 +130,4 @@ docker run --rm -v "$PWD":/data musicadvisor-analysis /data/sample.mp3   # Phase
 - **2026-08-31** · T5 03:00 补 `requirements.txt` 锁版本(librosa 0.10.x / essentia 2.1b6 / numpy 1.26.x),响应 8/29 巡检 P0 建议,让 Phase 1 真实模式从"占位"升级到"`pip install -r` 一键跑通";`README.md` §3.2 同步改为引用 requirements.txt
 - **2026-09-01** · T5 03:00 补 `package.json` 锁 Tone.js(主)+ @magenta/music / webcomponents(辅)+ serve(dev),响应 9/1 巡检 P1 项(8/29 选型 + 9/1 起步准备),让 Phase 1 Web 端从"选型报告"升级到"`npm install` + `npm run dev` 一键试听"基础设施;`README.md` §1 文件清单 + §3.3 NPM 启动模式 + §1.4 锁版本表 同步落地
 - **2026-09-02** · T5 03:00 补 `Dockerfile` + `.gitignore` 补 5 行,响应 9/1 巡检 P1 项(后端 FastAPI 起步 + 工程化补全):`Dockerfile` 选 `python:3.11-slim`(避 musl)+ ffmpeg / libsndfile1 + 分层 COPY requirements(代码变更不触发 pip 重装),入口暂用 CLI(FastAPI 服务留 Phase 1);`.gitignore` 补 `*.pyc` / `.ipynb_checkpoints/` / `data/` / `models/` / `dist/` / `.next/`(Phase 1 起步预备);`README.md` §1 文件清单 + §3.4 Docker 容器模式 同步落地
+- **2026-09-04** · T5 03:00 启动 Phase 0 任务 7a(10 首种子乐谱),响应 9/4 巡检 P0(连续 3 巡检 0 推进,距 Phase 0 收官 2 天窗口):建 `scores/seed_10.json`(流行 4 + 爵士 3 + 古典 3,字段契约:key/scale/time_signature/bpm/chord_progression/tags 等 14 项)+ `score_seed.py`(无依赖标准库加载 + 契约校验 + 4 维汇总);`项目开发计划.md` §5 任务 7 拆为 7a(本批 10/50,已勾)/ 7b(续做 40 首);`README.md` §1 文件清单 + §6 变更记录 同步落地
