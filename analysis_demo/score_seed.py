@@ -1,31 +1,35 @@
 """
-score_seed.py · MusicAdvisor Phase 0 任务 7a 种子乐谱加载器
+score_seed.py · MusicAdvisor Phase 0 任务 7 种子乐谱加载器(批次合并版)
 
 ==========================================================================
 项目:    MusicAdvisor
-模块:    Phase 0 / 任务 7a 起步(10 首种子 + 自动化脚本骨架)
+模块:    Phase 0 / 任务 7 起步(10 + 20 = 30/50 首种子 + 自动化脚本骨架)
 作者:    19-音乐-Music 顾问(T5 03:00 启动 Phase 0 任务 7)
-日期:    2026-09-04
-状态:    Phase 0 占位 — 10 首种子加载 + 契约校验,真实音频分析待 Phase 1
-关联:    项目开发计划.md §5 任务 7a
-         analysis_demo/scores/seed_10.json
+日期:    2026-09-04 起步 · 2026-09-06 扩到 batch 模式(7a 10 + 7b 第 2 批 20)
+状态:    Phase 0 占位 — 30 首种子加载 + 契约校验,真实音频分析待 Phase 1
+关联:    项目开发计划.md §5 任务 7a / 7b
+         analysis_demo/scores/seed_10.json(7a 10 首)
+         analysis_demo/scores/seed_20_b.json(7b 第 2 批 20 首,2026-09-06 新增)
          InspirationIndex.md(下次巡检登记)
-         .Log/巡检-音乐-20260904.md P0 建议
+         .Log/巡检-音乐-20260904.md P0 建议 · .Log/巡检-音乐-20260906.md P0 任务 7b 0 续做
 ==========================================================================
 
 设计意图
 --------
 1. Phase 0 不强求真实音频分析,先把"种子数据 + 加载 + 契约校验"骨架立住
-2. seed_10.json 是任务 7 总目标 50 首的 1/5,本脚本契约固定后,任务 7b(续做 40 首)只换数据源不换代码
-3. 输出结构化 summary,供 Phase 1 乐理问答 demo 检索 / 风格拆解匹配 / InspirationIndex 补登记
+2. seed_10.json 是任务 7 总目标 50 首的 1/5(7a),seed_20_b.json 是第 2 批(7b);两批同契约
+3. 加载器支持 --batch all 自动合并多批次,契约固定,7b 第 3/4 批续做只换数据源不换代码
+4. 输出结构化 summary,供 Phase 1 乐理问答 demo 检索 / 风格拆解匹配 / InspirationIndex 补登记
 
 运行方式
 --------
     # 无依赖模式(Python 3.7+ 标准库):
-    python3 analysis_demo/score_seed.py
+    python3 analysis_demo/score_seed.py                          # 单批 seed_10
+    python3 analysis_demo/score_seed.py --batch all              # 合并 seed_10 + seed_20_b
+    python3 analysis_demo/score_seed.py --batch seed_20_b         # 单批 seed_20_b
 
     # 输出 JSON 到文件供下游使用:
-    python3 analysis_demo/score_seed.py --output analysis_demo/scores/seed_10_summary.json
+    python3 analysis_demo/score_seed.py --batch all --output analysis_demo/scores/seed_30_summary.json
 """
 from __future__ import annotations
 
@@ -39,7 +43,13 @@ from typing import Any, Dict, List
 # ---------------------------------------------------------------------------
 # 1. 路径与契约定义
 # ---------------------------------------------------------------------------
-SEED_PATH = Path(__file__).parent / "scores" / "seed_10.json"
+SCORES_DIR = Path(__file__).parent / "scores"
+
+# 批次注册表 — 新增批次时只需往 BATCHES 追加一项,无需改加载/校验逻辑
+BATCHES: Dict[str, Path] = {
+    "seed_10":   SCORES_DIR / "seed_10.json",     # 任务 7a · 流行 4 + 爵士 3 + 古典 3
+    "seed_20_b": SCORES_DIR / "seed_20_b.json",   # 任务 7b 第 2 批 · 摇滚 5 + 民谣 5 + 电子 5 + 世界音乐 5
+}
 
 REQUIRED_SONG_FIELDS = [
     "id", "title", "artist", "year", "style",
@@ -48,43 +58,66 @@ REQUIRED_SONG_FIELDS = [
     "chord_count_est", "tags",
 ]
 
+PHASE_0_TARGET = 50  # 任务 7 总目标(7a 10 + 7b 40)
+
 
 # ---------------------------------------------------------------------------
 # 2. 加载与校验
 # ---------------------------------------------------------------------------
-def load_seed(path: Path = SEED_PATH) -> Dict[str, Any]:
-    """加载 seed JSON,失败时抛清晰错误(避免 Phase 1 静默吞错)。"""
+def load_batch(name: str) -> Dict[str, Any]:
+    """加载单个批次 JSON,失败时抛清晰错误(避免 Phase 1 静默吞错)。"""
+    if name not in BATCHES:
+        raise ValueError(f"未知批次: {name},当前注册: {list(BATCHES.keys())}")
+    path = BATCHES[name]
     if not path.exists():
         raise FileNotFoundError(
-            f"种子乐谱文件不存在: {path}。"
-            f"任务 7a 产物,请确认 .plan/20260904.md 已 commit seed_10.json。"
+            f"批次 {name} 文件不存在: {path}。"
+            f"任务 7 产物,请确认 {name}.json 已 commit。"
         )
     with path.open("r", encoding="utf-8") as f:
         data = json.load(f)
-    _validate(data)
+    _validate(data, batch_name=name)
     return data
 
 
-def _validate(data: Dict[str, Any]) -> None:
-    """契约校验:meta + 必备字段 + 数量。Phase 1 沿用同一校验,只扩字段白名单。"""
+def load_all(batches: List[str]) -> Dict[str, Any]:
+    """合并多个批次为单数据集(meta 取首批,_meta.merged_from 标注来源)。"""
+    if not batches:
+        raise ValueError("至少需要 1 个批次")
+    merged_songs: List[Dict[str, Any]] = []
+    first_meta: Dict[str, Any] = {}
+    sources: List[str] = []
+    for b in batches:
+        data = load_batch(b)
+        if not first_meta:
+            first_meta = data["_meta"]
+        merged_songs.extend(data["songs"])
+        sources.append(b)
+    first_meta["merged_from"] = sources
+    first_meta["merged_total_songs"] = len(merged_songs)
+    return {"_meta": first_meta, "songs": merged_songs}
+
+
+def _validate(data: Dict[str, Any], batch_name: str = "?") -> None:
+    """契约校验:meta + 必备字段 + 数量 + ID 唯一性。Phase 1 沿用同一校验,只扩字段白名单。"""
     if "_meta" not in data or "songs" not in data:
-        raise ValueError("seed JSON 缺少 _meta 或 songs 顶层字段")
+        raise ValueError(f"[{batch_name}] seed JSON 缺少 _meta 或 songs 顶层字段")
     songs: List[Dict[str, Any]] = data["songs"]
     for i, song in enumerate(songs):
         missing = [f for f in REQUIRED_SONG_FIELDS if f not in song]
         if missing:
             raise ValueError(
-                f"songs[{i}]({song.get('id', '?')}) 缺字段: {missing}"
+                f"[{batch_name}] songs[{i}]({song.get('id', '?')}) 缺字段: {missing}"
             )
         if not isinstance(song["chord_progression"], list) or len(song["chord_progression"]) == 0:
             raise ValueError(
-                f"songs[{i}]({song['id']}) chord_progression 必须为非空 list"
+                f"[{batch_name}] songs[{i}]({song['id']}) chord_progression 必须为非空 list"
             )
-    # ID 唯一性
+    # ID 唯一性(单批内)
     ids = [s["id"] for s in songs]
     if len(ids) != len(set(ids)):
         dup = [k for k, v in Counter(ids).items() if v > 1]
-        raise ValueError(f"重复的 song id: {dup}")
+        raise ValueError(f"[{batch_name}] 重复的 song id: {dup}")
 
 
 # ---------------------------------------------------------------------------
@@ -106,40 +139,64 @@ def summarize(data: Dict[str, Any]) -> Dict[str, Any]:
         key_counter[mode] += 1
         bpms.append(s["bpm"])
         years.append(s["year"])
+    meta = data["_meta"]
     return {
-        "meta": data["_meta"],
+        "meta": meta,
         "total_songs": len(songs),
         "by_style": dict(style_counter),
         "by_key_mode": dict(key_counter),
         "bpm_range": [min(bpms), max(bpms)] if bpms else [0, 0],
         "year_range": [min(years), max(years)] if years else [0, 0],
         "song_ids": [s["id"] for s in songs],
-        "phase_0_target": 50,
-        "phase_0_progress": f"{len(songs)}/50",
-        "task_7b_pending": 40,
+        "merged_from": meta.get("merged_from", [meta.get("batch", "single")]),
+        "phase_0_target": PHASE_0_TARGET,
+        "phase_0_progress": f"{len(songs)}/{PHASE_0_TARGET}",
+        "task_7b_pending": max(0, PHASE_0_TARGET - len(songs)),
     }
 
 
 # ---------------------------------------------------------------------------
-# 4. 入口
+# 4. CLI 入口
 # ---------------------------------------------------------------------------
+def _parse_args(argv: List[str]) -> Dict[str, Any]:
+    """极简 CLI:--batch <name|all> + --output <path>"""
+    out: Dict[str, Any] = {"batch": "seed_10", "output": None}
+    i = 1
+    while i < len(argv):
+        a = argv[i]
+        if a == "--batch" and i + 1 < len(argv):
+            out["batch"] = argv[i + 1]
+            i += 2
+        elif a == "--output" and i + 1 < len(argv):
+            out["output"] = argv[i + 1]
+            i += 2
+        else:
+            i += 1
+    return out
+
+
 def main() -> int:
-    out_arg = sys.argv[1] if len(sys.argv) > 1 else None
-    # 支持 --output 简写:python3 score_seed.py --output path.json
-    output_path: Path | None = None
-    if out_arg == "--output" and len(sys.argv) > 2:
-        output_path = Path(sys.argv[2])
+    args = _parse_args(sys.argv)
+    batch_arg = args["batch"]
+    output_path = args["output"]
     try:
-        data = load_seed()
+        if batch_arg == "all":
+            data = load_all(list(BATCHES.keys()))
+        elif batch_arg in BATCHES:
+            data = load_batch(batch_arg)
+        else:
+            print(f"[ERROR] 未知 batch: {batch_arg},可选: {list(BATCHES.keys()) + ['all']}", file=sys.stderr)
+            return 1
     except (FileNotFoundError, ValueError) as e:
         print(f"[ERROR] {e}", file=sys.stderr)
         return 1
     summary = summarize(data)
     summary_text = json.dumps(summary, ensure_ascii=False, indent=2)
     if output_path is not None:
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(summary_text + "\n", encoding="utf-8")
-        print(f"[OK] summary 已写入 {output_path}({len(summary_text)} 字节)")
+        p = Path(output_path)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(summary_text + "\n", encoding="utf-8")
+        print(f"[OK] summary 已写入 {p}({len(summary_text)} 字节 · {summary['total_songs']} 首)")
     else:
         print(summary_text)
     return 0

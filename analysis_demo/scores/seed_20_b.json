@@ -1,0 +1,407 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "schema_intro": "MusicAdvisor · Phase 0 任务 7b 第 2 批种子乐谱(20 首):摇滚 5 + 民谣 5 + 电子 5 + 世界音乐 5,字段沿用任务 7a seed_10.json 契约,Phase 1 不变,只补真实 chord-by-chord 细粒度",
+    "created_at": "2026-09-06",
+    "created_by": "19-音乐-Music 顾问(T5 03:00 启动任务 7b 第 2 批,9/6 巡检 P0 建议落地)",
+    "source": "项目开发计划.md §5 任务 7b · 9/4 起步 10 首后 9/5 ~ 9/6 已 48h 0 续做,9/13 收官前必启动",
+    "scope": "摇滚 5 + 民谣 5 + 电子 5 + 世界音乐 5 = 20 首(任务 7 总目标 50 首:7a 10 + 7b 第 2 批 20 + 7b 第 3 批 20 = 50,本批次 2/5 完成 60%)",
+    "usage": "score_seed.py --batch seed_10+seed_20b 加载 / Phase 1 乐理问答 + 风格拆解 demo / InspirationIndex.md 补登记",
+    "phase": "Phase 0 占位(和声细粒度仅到级数,Phase 1 扩 chord-by-chord + beat 时间戳)",
+    "batch_relationship": "S-011~S-030,接续 seed_10.json 的 S-001~S-010,ID 全局唯一",
+    "not_include": [
+      "真实 MP3 / MIDI 文件(版权风险,见 项目开发计划.md §8)",
+      "歌词全文(避免二次分发风险)",
+      "电子类 BGM 部分不在本批次(版权重灾区,留 7b 第 3 批评估)"
+    ]
+  },
+  "songs": [
+    {
+      "id": "S-011",
+      "title": "Bohemian Rhapsody",
+      "artist": "Queen",
+      "year": 1975,
+      "style": "摇滚 · 歌剧摇滚",
+      "key": "Bb major",
+      "scale": "自然大调 + 多调性拼接",
+      "time_signature": "4/4(ballad 段)→ 4/4(opera 段)→ 4/4(rock 段)",
+      "bpm": 72,
+      "duration_sec": 354,
+      "form": "Intro-Ballad-Opera-Rock-Coda(无主副歌传统结构)",
+      "chord_progression": [
+        {"section": "Ballad", "roman": "Bb-Gm-Eb-F", "degree": "I-vi-IV-V(经典 1564 变体)"},
+        {"section": "Opera", "roman": "Bb-F-G-Eb-F-Bb(多个离调和弦)", "degree": "I-V-vi-IV-V-I 调性碎片化拼接"},
+        {"section": "Rock", "roman": "Bb-F-G-Eb-Bb-F-G-Eb", "degree": "I-V-vi-IV 硬摇滚反复"}
+      ],
+      "chord_count_est": 14,
+      "tags": ["歌剧摇滚", "调性拼接", "无传统 AABA", "Queen 招牌", "1564 变体"]
+    },
+    {
+      "id": "S-012",
+      "title": "Stairway to Heaven",
+      "artist": "Led Zeppelin",
+      "year": 1971,
+      "style": "摇滚 · 民谣摇滚",
+      "key": "A minor",
+      "scale": "自然小调 + 多利亚 + 混合利迪亚叠加",
+      "time_signature": "4/4",
+      "bpm": 82,
+      "duration_sec": 482,
+      "form": "Intro-Verses(渐强 8 段)-Guitar Solo-Outro",
+      "chord_progression": [
+        {"section": "Intro", "roman": "Am(add9)-Am(add9)/G-Fmaj7-Fmaj7/G", "degree": "i(add9)-i/G-IV-IV/G"},
+        {"section": "Verse1", "roman": "Am-F#m(7)-Am-G(7)-Am(7)", "degree": "i-vii(add9)-i-bIII(混合利迪亚)"},
+        {"section": "Verse2-Build", "roman": "Am-C-D-F-Am-C-D-F", "degree": "i-bIII-IV-bVI 循环,逐步加入 4 级大调"},
+        {"section": "Climax", "roman": "Am-G-F-E-Am-G-F-E", "degree": "i-bVII-bVI-bV 和声小调降级 4 链"}
+      ],
+      "chord_count_est": 16,
+      "tags": ["民谣摇滚", "渐强结构", "bVII-bVI-bV 经典下行", "Plant 8 段长 verse", "Zeppelin 招牌"]
+    },
+    {
+      "id": "S-013",
+      "title": "Hotel California",
+      "artist": "Eagles",
+      "year": 1976,
+      "style": "摇滚 · 经典摇滚",
+      "key": "B minor",
+      "scale": "自然小调 + 和声小调",
+      "time_signature": "4/4",
+      "bpm": 75,
+      "duration_sec": 391,
+      "form": "Intro-Verse-Chorus-Verse-Chorus-Solo-Verse-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "Bm-F#-A-E-G-D-Em-F#", "degree": "i-VI-bIII-bVII-bVI-bIII-iv-V(12 小节长 verse)"},
+        {"section": "Chorus", "roman": "B-F#-A-E-G-D-Em-F#", "degree": "I-VI-bIII-bVII 借用大调 bIII"}
+      ],
+      "chord_count_est": 18,
+      "tags": ["12 小节 verse", "bIII-bVII 经典摇滚", "双吉他 solo", "Eagles 招牌", "降 VI 借用大调"]
+    },
+    {
+      "id": "S-014",
+      "title": "怒放的生命",
+      "artist": "汪峰",
+      "year": 2005,
+      "style": "华语摇滚 · 流行摇滚",
+      "key": "A major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 138,
+      "duration_sec": 240,
+      "form": "Intro-Verse-PreChorus-Chorus-Verse-PreChorus-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "F#m-D-A-E", "degree": "vi-IV-I-V(4536251 衍生)"},
+        {"section": "PreChorus", "roman": "Bm-F#m-D-A-E", "degree": "ii-vi-IV-I-V 升压"},
+        {"section": "Chorus", "roman": "F#m-D-A-E-F#m-D-A-E", "degree": "vi-IV-I-V 反复高潮"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["4536251 衍生", "华语摇滚代表", "汪峰招牌", "升压结构", "副歌反复"]
+    },
+    {
+      "id": "S-015",
+      "title": "真的爱你",
+      "artist": "Beyond",
+      "year": 1989,
+      "style": "粤语摇滚 · 流行摇滚",
+      "key": "C major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 110,
+      "duration_sec": 260,
+      "form": "Intro-Verse-Chorus-Verse-Chorus-Solo-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "C-G-Am-F-C-G-Am-F", "degree": "I-V-vi-IV 经典卡农进行"},
+        {"section": "Chorus", "roman": "C-G-Am-F-C-G-Am-F", "degree": "I-V-vi-IV 同上反复"},
+        {"section": "Bridge", "roman": "F-G-C-Am-F-G-C-C", "degree": "IV-V-I-vi-IV-V-I 收束"}
+      ],
+      "chord_count_est": 5,
+      "tags": ["卡农进行", "粤语摇滚代表", "Beyond 招牌", "黄家驹", "母爱主题"]
+    },
+    {
+      "id": "S-016",
+      "title": "平凡之路",
+      "artist": "朴树",
+      "year": 2014,
+      "style": "华语民谣 · 电影原声",
+      "key": "G major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 78,
+      "duration_sec": 300,
+      "form": "Intro-Verse-Chorus-Verse-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "G-D-Em-C-G-D-Em-C", "degree": "I-V-vi-IV(4536251)"},
+        {"section": "Chorus", "roman": "G-D-Em-C-G-D-C-C", "degree": "I-V-vi-IV-I-V-IV-IV 收束"},
+        {"section": "Bridge", "roman": "Am-C-G-D-Am-C-G-D", "degree": "ii-IV-I-V 离调(降 vi 借用)"}
+      ],
+      "chord_count_est": 5,
+      "tags": ["4536251", "民谣电影主题曲", "朴树回归", "降 vi 离调", "韩寒电影《后会无期》"]
+    },
+    {
+      "id": "S-017",
+      "title": "成都",
+      "artist": "赵雷",
+      "year": 2014,
+      "style": "华语民谣 · 城市民谣",
+      "key": "D major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 86,
+      "duration_sec": 329,
+      "form": "Intro-Verse-Chorus-Verse-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "D-A-Bm-F#m-G-D-G-A", "degree": "I-V-vi-iii-IV-I-IV-V(卡农变体)"},
+        {"section": "Chorus", "roman": "D-A-Bm-F#m-G-D-A-D", "degree": "I-V-vi-iii-IV-I-V-I 收束"},
+        {"section": "Bridge", "roman": "Em-F#m-G-A-D", "degree": "ii-iii-IV-V-I 半音上行"}
+      ],
+      "chord_count_est": 8,
+      "tags": ["卡农变体", "城市民谣代表", "赵雷招牌", "半音上行桥接", "民谣吉他"]
+    },
+    {
+      "id": "S-018",
+      "title": "那些花儿",
+      "artist": "朴树",
+      "year": 2003,
+      "style": "华语民谣 · 校园民谣",
+      "key": "A major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 92,
+      "duration_sec": 310,
+      "form": "Intro-Verse-Chorus-Verse-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "A-E-F#m-D-A-E-F#m-D", "degree": "I-V-vi-IV(4536251)"},
+        {"section": "Chorus", "roman": "A-E-F#m-D-A-E-D-D", "degree": "I-V-vi-IV-I-V-IV 收束"},
+        {"section": "Bridge", "roman": "Bm-D-A-E", "degree": "ii-IV-I-V 离调"}
+      ],
+      "chord_count_est": 5,
+      "tags": ["4536251", "校园民谣", "朴树 2003 经典", "吉他指弹", "民谣怀旧"]
+    },
+    {
+      "id": "S-019",
+      "title": "Blowin' in the Wind",
+      "artist": "Bob Dylan",
+      "year": 1962,
+      "style": "民谣 · 抗议民谣",
+      "key": "D major",
+      "scale": "自然大调",
+      "time_signature": "4/4",
+      "bpm": 80,
+      "duration_sec": 165,
+      "form": "Verse-Chorus-Verse-Chorus-Bridge-Chorus(类似 AABA)",
+      "chord_progression": [
+        {"section": "Verse", "roman": "D-A-Bm-F#m-G-D-G-A", "degree": "I-V-vi-iii-IV-I-IV-V(卡农变体)"},
+        {"section": "Chorus", "roman": "D-A-Bm-F#m-G-D-A-D", "degree": "I-V-vi-iii-IV-I-V-I 收束"}
+      ],
+      "chord_count_est": 8,
+      "tags": ["卡农变体", "抗议民谣", "Bob Dylan 招牌", "民权运动", "口琴 + 吉他"]
+    },
+    {
+      "id": "S-020",
+      "title": "Scarborough Fair",
+      "artist": "传统英国民谣 / Simon & Garfunkel",
+      "year": 1966,
+      "style": "民谣 · 传统民谣",
+      "key": "D minor(同名大调借用)",
+      "scale": "多利亚 + 混合利迪亚",
+      "time_signature": "3/4",
+      "bpm": 65,
+      "duration_sec": 192,
+      "form": "Strophic(诗节体,多段同曲不同词)",
+      "chord_progression": [
+        {"section": "Main", "roman": "Em-G-D-Am-Em-G-D-D", "degree": "i-bVII-bVI-iv(同名大调借用 bVII)"},
+        {"section": "Refrain", "roman": "C-Cm-Em-Em", "degree": "降III-i 收束"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["3/4 拍", "同名大调借用 bVII", "诗节体", "Simon & Garfunkel 改编", "中世纪民谣"]
+    },
+    {
+      "id": "S-021",
+      "title": "Around the World",
+      "artist": "Daft Punk",
+      "year": 1997,
+      "style": "电子 · French House",
+      "key": "A minor",
+      "scale": "自然小调",
+      "time_signature": "4/4",
+      "bpm": 121,
+      "duration_sec": 428,
+      "form": "Loop(单一和声循环,渐进叠加)",
+      "chord_progression": [
+        {"section": "Loop", "roman": "Am-F-C-G(4 和弦循环)", "degree": "i-bVI-bIII-bVII(自然小调 4 和声)循环"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["French House", "单一循环", "自然小调 4 和声", "Daft Punk 招牌", "机器人声效"]
+    },
+    {
+      "id": "S-022",
+      "title": "One More Time",
+      "artist": "Daft Punk",
+      "year": 2000,
+      "style": "电子 · French Disco House",
+      "key": "G major",
+      "scale": "自然大调 + 9 音 / 11 音扩展",
+      "time_signature": "4/4",
+      "bpm": 123,
+      "duration_sec": 320,
+      "form": "Intro-Loop-Vocal Hook-Loop-Build-Drop-Outro",
+      "chord_progression": [
+        {"section": "Loop", "roman": "Gmaj7-F#9(add11)", "degree": "I(add9,11) 二和弦循环,色感和声"},
+        {"section": "Vocal Hook", "roman": "Gmaj7-F#9(add11)(同)", "degree": "持续循环,纯人声变化"}
+      ],
+      "chord_count_est": 2,
+      "tags": ["French House", "二和弦循环", "色感和声", "9/11 音扩展", "Romanthony vocal"]
+    },
+    {
+      "id": "S-023",
+      "title": "Sandstorm",
+      "artist": "Darude",
+      "year": 1999,
+      "style": "电子 · Trance",
+      "key": "F# minor",
+      "scale": "自然小调 + 和声小调",
+      "time_signature": "4/4",
+      "bpm": 136,
+      "duration_sec": 225,
+      "form": "Intro-Break-Drop-Break-Drop-Outro",
+      "chord_progression": [
+        {"section": "Drop", "roman": "F#m-A-Bm-C#(add9)", "degree": "i-bIII-iv-bV(降 V 借用)循环"},
+        {"section": "Break", "roman": "F#m-Dmaj7-A-E", "degree": "i-bVI-bIII-bVII 调性扩展"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["Trance", "自然小调 4 和声", "降 V 借用", "BPM 136 高速", "Darude 招牌"]
+    },
+    {
+      "id": "S-024",
+      "title": "Levels",
+      "artist": "Avicii",
+      "year": 2011,
+      "style": "电子 · Progressive House",
+      "key": "B minor",
+      "scale": "自然小调 + 和声小调",
+      "time_signature": "4/4",
+      "bpm": 126,
+      "duration_sec": 198,
+      "form": "Intro-Break-Drop-Break-Drop-Outro",
+      "chord_progression": [
+        {"section": "Drop", "roman": "Bm-F#m-G-Em", "degree": "i-vi-bVII-iv(自然小调 4 和声)循环"},
+        {"section": "Break", "roman": "Bm-A-G-F#", "degree": "i-bVI-bV-bIV 4 链下行"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["Progressive House", "自然小调 4 和声", "Etta James sample", "Avicii 招牌", "BPM 126"]
+    },
+    {
+      "id": "S-025",
+      "title": "Faded",
+      "artist": "Alan Walker",
+      "year": 2015,
+      "style": "电子 · Electronic Pop",
+      "key": "F# minor",
+      "scale": "自然小调",
+      "time_signature": "4/4",
+      "bpm": 90,
+      "duration_sec": 212,
+      "form": "Intro-Verse-Chorus-Drop-Verse-Chorus-Drop-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "F#m-Dmaj7-A-E", "degree": "i-bVI-bIII-bVII 循环"},
+        {"section": "Chorus/Drop", "roman": "F#m-D-A-E", "degree": "i-bVI-bIII-bVII 同上循环"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["Electronic Pop", "自然小调 4 和声", "Alan Walker 招牌", "Iselin Solheim vocal", "BPM 90"]
+    },
+    {
+      "id": "S-026",
+      "title": "茉莉花",
+      "artist": "中国传统民歌 / 何仿整理",
+      "year": 1942,
+      "style": "中国民歌 · 江南小调",
+      "key": "C major(羽调式记谱)",
+      "scale": "五声调式(宫商角徵羽)",
+      "time_signature": "2/4",
+      "bpm": 70,
+      "duration_sec": 150,
+      "form": "A-B-A(起承转合)",
+      "chord_progression": [
+        {"section": "Main", "roman": "C-G-Am-Em-F-C-F-G(五声调式加和声)", "degree": "I-V-vi-iii-IV-I-IV-V 西方和声套五声"},
+        {"section": "Bridge", "roman": "F-G-C-C", "degree": "IV-V-I-I 收束"}
+      ],
+      "chord_count_est": 8,
+      "tags": ["五声调式", "江南小调", "起承转合", "何仿 1942 整理", "国际场合国歌级"]
+    },
+    {
+      "id": "S-027",
+      "title": "樱花(さくらさくら)",
+      "artist": "日本传统民歌 / 筝曲",
+      "year": 1888,
+      "style": "日本民歌 · 筝曲",
+      "key": "D minor(民谣都节调式)",
+      "scale": "都节调式(类似五声 + 蓝音)",
+      "time_signature": "4/4",
+      "bpm": 60,
+      "duration_sec": 180,
+      "form": "Strophic(诗节体)",
+      "chord_progression": [
+        {"section": "Main", "roman": "Dm-Gm-A7-Dm(都节调式和声)", "degree": "i-iv-V7-i 西方和声套都节调式"},
+        {"section": "End", "roman": "A7-Dm-Dm", "degree": "V7-i 终止式"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["都节调式", "五声+蓝音", "筝曲", "日本民歌代表", "1888 年整理"]
+    },
+    {
+      "id": "S-028",
+      "title": "Hava Nagila",
+      "artist": "犹太传统民歌 / 哈西迪派",
+      "year": 1918,
+      "style": "犹太民歌 · 哈西迪舞曲",
+      "key": "D major(美索不达米亚调式)",
+      "scale": "弗里几亚 + 米索利迪亚混合",
+      "time_signature": "4/4",
+      "bpm": 100,
+      "duration_sec": 240,
+      "form": "Strophic(诗节体,8 小节 × N 反复 + 反复渐强)",
+      "chord_progression": [
+        {"section": "Main", "roman": "D-A-Bm-F#m-G-D-A-D", "degree": "I-V-vi-iii-IV-I-V-I(卡农变体)循环"},
+        {"section": "Bridge", "roman": "Em-F#m-G-A-D", "degree": "ii-iii-IV-V-I 半音上行"}
+      ],
+      "chord_count_est": 8,
+      "tags": ["卡农变体", "犹太婚礼舞", "反复渐强", "1918 整理", "哈西迪派传统"]
+    },
+    {
+      "id": "S-029",
+      "title": "Csárdás(匈牙利舞曲第 5 号)",
+      "artist": "Vittorio Monti",
+      "year": 1904,
+      "style": "东欧舞曲 · 匈牙利恰尔达什",
+      "key": "A minor",
+      "scale": "吉普赛小调(自然小调 + 降 II + 增 II)",
+      "time_signature": "2/4",
+      "bpm": 110,
+      "duration_sec": 240,
+      "form": "Lassan(慢)-Friss(快)",
+      "chord_progression": [
+        {"section": "Lassan(慢)", "roman": "Am-E7-Am-E7", "degree": "i-V7-i-V7 反复"},
+        {"section": "Friss(快)", "roman": "Am-Dm-E7-Am-Am-Dm-E7-Am", "degree": "i-iv-V7-i 反复"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["吉普赛小调", "2/4 恰尔达什", "Lassan-Friss 速度对比", "小提琴独奏", "Monti 1904 经典"]
+    },
+    {
+      "id": "S-030",
+      "title": "La Bamba",
+      "artist": "墨西哥传统 / Ritchie Valens",
+      "year": 1958,
+      "style": "拉美民歌 · 墨西哥 Son",
+      "key": "C major(伊奥尼亚 + 混合利迪亚)",
+      "scale": "五声 + 大调混合",
+      "time_signature": "4/4",
+      "bpm": 152,
+      "duration_sec": 138,
+      "form": "Intro-Verse(西班牙语)-Verse(英语)-Verse(西班牙)-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "C-F-G-C-F-G-C-C(伊比利亚 I-IV-V)", "degree": "I-IV-V-I 三和弦循环"},
+        {"section": "Outro", "roman": "C-F-G-C7(混合利迪亚 bVII)", "degree": "I-IV-V-bVII 借用 Mixolydian 收束"}
+      ],
+      "chord_count_est": 3,
+      "tags": ["Son 节奏", "三和弦 I-IV-V", "西班牙语双语", "Ritchie Valens", "摇滚版前驱"]
+    }
+  ]
+}
