@@ -3,13 +3,15 @@ score_seed.py · MusicAdvisor Phase 0 任务 7 种子乐谱加载器(批次合�
 
 ==========================================================================
 项目:    MusicAdvisor
-模块:    Phase 0 / 任务 7 起步(10 + 20 = 30/50 首种子 + 自动化脚本骨架)
-作者:    19-音乐-Music 顾问(T5 03:00 启动 Phase 0 任务 7)
+模块:    Phase 0 / 任务 7 起步(10 + 20 + 10 = 40/50 首种子 + 自动化脚本骨架)
+作者:    19-音乐-Music 顾问(T5 03:00 启动 Phase 0 任务 7 · T1 03:00 续做第 3 批前 10)
 日期:    2026-09-04 起步 · 2026-09-06 扩到 batch 模式(7a 10 + 7b 第 2 批 20)
-状态:    Phase 0 占位 — 30 首种子加载 + 契约校验,真实音频分析待 Phase 1
+                  2026-09-08 续做 7b 第 3 批前 10(40/50 = 80% 完成)
+状态:    Phase 0 占位 — 40 首种子加载 + 契约校验,真实音频分析待 Phase 1
 关联:    项目开发计划.md §5 任务 7a / 7b
          analysis_demo/scores/seed_10.json(7a 10 首)
          analysis_demo/scores/seed_20_b.json(7b 第 2 批 20 首,2026-09-06 新增)
+         analysis_demo/scores/seed_20_c.json(7b 第 3 批前 10 首,2026-09-08 T1 新增)
          InspirationIndex.md(下次巡检登记)
          .Log/巡检-音乐-20260904.md P0 建议 · .Log/巡检-音乐-20260906.md P0 任务 7b 0 续做
 ==========================================================================
@@ -49,6 +51,7 @@ SCORES_DIR = Path(__file__).parent / "scores"
 BATCHES: Dict[str, Path] = {
     "seed_10":   SCORES_DIR / "seed_10.json",     # 任务 7a · 流行 4 + 爵士 3 + 古典 3
     "seed_20_b": SCORES_DIR / "seed_20_b.json",   # 任务 7b 第 2 批 · 摇滚 5 + 民谣 5 + 电子 5 + 世界音乐 5
+    "seed_20_c": SCORES_DIR / "seed_20_c.json",   # 任务 7b 第 3 批前 10 首 · 流行新 4 + 爵士新 3 + 电子新 3(2026-09-08 T1)
 }
 
 REQUIRED_SONG_FIELDS = [

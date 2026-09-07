@@ -1,0 +1,225 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "schema_intro": "MusicAdvisor · Phase 0 任务 7b 第 3 批种子乐谱前 10 首(总 20 首拆 10+10,9/8 落前 10 / 9/9~9/12 续后 10):流行新 4 + 爵士新 3 + 电子新 3,字段沿用任务 7a seed_10.json 契约,Phase 1 不变,只补真实 chord-by-chord 细粒度",
+    "created_at": "2026-09-08",
+    "created_by": "19-音乐-Music 顾问(T1 03:00 启动任务 7b 第 3 批前 10 首,9/7 巡检 P0 #1 启动项承接)",
+    "source": "项目开发计划.md §5 任务 7b 第 3 批 20 首(9/8~9/12)· 9/7 T5 自建计划拆 10+10 避免 9/13 收官前 2 批 30 首挤 5 天失败模式",
+    "scope": "流行新 4 + 爵士新 3 + 电子新 3 = 10 首(任务 7 总目标 50 首:7a 10 + 7b 第 2 批 20 + 7b 第 3 批 20(本次 10/20) + 7b 第 4 批 10 = 50,本批次 40/50 = 80% 完成)",
+    "usage": "score_seed.py --batch seed_10+seed_20b+seed_20c 加载 / Phase 1 乐理问答 + 风格拆解 demo / InspirationIndex.md 补登记",
+    "phase": "Phase 0 占位(和声细粒度仅到级数,Phase 1 扩 chord-by-chord + beat 时间戳)",
+    "batch_relationship": "S-031~S-040,接续 seed_20_b.json 的 S-011~S-030,ID 全局唯一",
+    "split_strategy": {
+      "day_1": "2026-09-08 T1(本份):流行新 4 + 爵士新 3 + 电子新 3 = 10 首",
+      "day_2_to_5": "2026-09-09~2026-09-12 T1 续做后 10 首(本次不做)"
+    },
+    "not_include": [
+      "真实 MP3 / MIDI 文件(版权风险,见 项目开发计划.md §8)",
+      "歌词全文(避免二次分发风险)",
+      "Bohemian Rhapsody / Hotel California 等已入库 1970s 经典(避免重复,S-011/S-013 已落)"
+    ]
+  },
+  "songs": [
+    {
+      "id": "S-031",
+      "title": "光年之外",
+      "artist": "G.E.M. 邓紫棋",
+      "year": 2016,
+      "style": "流行 · 抒情流行",
+      "key": "C# minor",
+      "scale": "自然小调 + 多利亚变体",
+      "time_signature": "4/4",
+      "bpm": 76,
+      "duration_sec": 235,
+      "form": "Intro-Verse1-PreChorus-Chorus-Verse2-PreChorus-Chorus-Bridge-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "C#m-A#m-F#-G#", "degree": "i-vi-III-IV(小调 1564)"},
+        {"section": "PreChorus", "roman": "C#m-B/F#-A#m-G#", "degree": "i-VII/III-vi-IV 半音上行"},
+        {"section": "Chorus", "roman": "C#m-G#-A#m-F#", "degree": "i-bVI-vi-III 偏离小调六级"},
+        {"section": "Bridge", "roman": "A#m-G#-C#m-F#-G#", "degree": "vi-IV-i-III-bV 下行回 i"}
+      ],
+      "chord_count_est": 12,
+      "tags": ["华语流行", "电影主题曲", "Passengers", "G.E.M. 招牌", "小调 1564"]
+    },
+    {
+      "id": "S-032",
+      "title": "孤勇者",
+      "artist": "陈奕迅",
+      "year": 2021,
+      "style": "流行 · 励志流行",
+      "key": "D minor",
+      "scale": "自然小调 + 和声小调",
+      "time_signature": "4/4",
+      "bpm": 95,
+      "duration_sec": 224,
+      "form": "Intro-Verse1-PreChorus-Chorus-Verse2-PreChorus-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "Dm-Bb-C-F", "degree": "i-bVI-bVII-bIII(英雄下行)"},
+        {"section": "PreChorus", "roman": "Dm-C-Bb-F-A", "degree": "i-bVII-bVI-bIII-V 半音起势"},
+        {"section": "Chorus", "roman": "Dm-Bb-F-C-Dm", "degree": "i-bVI-bIII-bVII-i 战歌循环"}
+      ],
+      "chord_count_est": 10,
+      "tags": ["华语流行", "游戏主题曲", "英雄联盟", "陈奕迅 招牌", "英雄下行"]
+    },
+    {
+      "id": "S-033",
+      "title": "飞鸟和蝉",
+      "artist": "任然",
+      "year": 2020,
+      "style": "流行 · 国风流行",
+      "key": "A minor",
+      "scale": "自然小调 + 五声音阶混用",
+      "time_signature": "4/4",
+      "bpm": 78,
+      "duration_sec": 268,
+      "form": "Intro-Verse1-Verse2-Chorus-Verse3-Chorus-Bridge-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "Am-F-C-G", "degree": "i-bVI-bIII-bVII 抒情下行"},
+        {"section": "Chorus", "roman": "F-G-Am-Em-F-C-G", "degree": "bVI-bVII-i-v-bVI-bIII-bVII 国风回旋"},
+        {"section": "Bridge", "roman": "Am-Dm-F-G-Am", "degree": "i-iv-bVI-bVII-i 离调加厚"}
+      ],
+      "chord_count_est": 14,
+      "tags": ["国风流行", "五声音阶", "任然 招牌", "抖音爆款", "抒情下行"]
+    },
+    {
+      "id": "S-034",
+      "title": "Flowers",
+      "artist": "Miley Cyrus",
+      "year": 2023,
+      "style": "流行 · 独立流行",
+      "key": "G major",
+      "scale": "自然大调 + 教会终止变体",
+      "time_signature": "4/4",
+      "bpm": 118,
+      "duration_sec": 200,
+      "form": "Intro-Verse1-Chorus-Verse2-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "Em-C-G-D", "degree": "vi-IV-I-V(最常见 1564 大调)"},
+        {"section": "Chorus", "roman": "Em-C-G-D-Em-C-G-D", "degree": "vi-IV-I-V 反复,副歌不换和声"},
+        {"section": "Bridge", "roman": "C-D-Em-Bm-C-D-G", "degree": "IV-V-vi-iii-IV-V-I 教会终止上行"}
+      ],
+      "chord_count_est": 8,
+      "tags": ["欧美流行", "1564 极简", "女性独立", "Miley 转型", "2023 爆款"]
+    },
+    {
+      "id": "S-035",
+      "title": "Don't Know Why",
+      "artist": "Norah Jones",
+      "year": 2002,
+      "style": "爵士 · 当代爵士人声",
+      "key": "F major",
+      "scale": "自然大调 + 蓝音混用",
+      "time_signature": "4/4",
+      "bpm": 88,
+      "duration_sec": 188,
+      "form": "Intro-Verse1-Chorus-Verse2-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "F#m7b5-B7-Em7-A7-Dm7-G7-Cmaj7", "degree": "ii-V-iii-VI-ii-V-I 完整 ii-V-I 长链"},
+        {"section": "Chorus", "roman": "Am7-D7-Gm7-C7-Fmaj7-Bbm7-Eb7", "degree": "iii-VI-ii-V-I-iv-bVII 模进下行"},
+        {"section": "Bridge", "roman": "Fmaj7-Ebmaj7-Dm7-G7-Cmaj7", "degree": "I-bVII-vi-V-I 蓝音过渡"}
+      ],
+      "chord_count_est": 18,
+      "tags": ["当代爵士", "ii-V-I 长链", "Norah Jones 招牌", "Come Away with Me", "蓝音过渡"]
+    },
+    {
+      "id": "S-036",
+      "title": "Take Five",
+      "artist": "Dave Brubeck Quartet",
+      "year": 1959,
+      "style": "爵士 · 冷爵士 / West Coast Jazz",
+      "key": "Eb minor",
+      "scale": "自然小调 + 混合利迪亚",
+      "time_signature": "5/4(罕见的爵士拍号)",
+      "bpm": 174,
+      "duration_sec": 324,
+      "form": "Intro-Solo(Vibes)-Solo(Piano)-Solo(Sax)-Drums-Outro",
+      "chord_progression": [
+        {"section": "A", "roman": "Ebm7-Ab7-Dbmaj7-Gb13", "degree": "i-bVI-bIII(降五属)和声 5/4 切分"},
+        {"section": "B", "roman": "Bbm7-Eb7-Abmaj7-Dmaj7", "degree": "iv-bVII-bIII-bVI 模进上行"},
+        {"section": "A'", "roman": "Ebm7-Ab7-Dbmaj7-Gb13", "degree": "同 A 段重复,5/4 摇摆节奏"}
+      ],
+      "chord_count_est": 16,
+      "tags": ["5/4 拍号", "冷爵士", "Brubeck 招牌", "Paul Desmond 中音萨克斯", "不规则拍号"]
+    },
+    {
+      "id": "S-037",
+      "title": "慢慢喜欢你",
+      "artist": "莫文蔚",
+      "year": 2018,
+      "style": "爵士 · 华语爵士改编",
+      "key": "Bb major",
+      "scale": "自然大调 + 属七混用",
+      "time_signature": "4/4(Swing 8th)",
+      "bpm": 92,
+      "duration_sec": 258,
+      "form": "Intro-Verse1-Chorus-Verse2-Chorus-Bridge-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse", "roman": "Cm7-F7-Bbmaj7-Eb7", "degree": "ii-V-I-IV 经典 ii-V-I 推进"},
+        {"section": "Chorus", "roman": "Am7-D7-Gm7-C7-Fmaj7-Bb7", "degree": "iii-VI-ii-V-I-IV 模进下行"},
+        {"section": "Bridge", "roman": "Ebmaj7-Dm7-Cm7-F7", "degree": "bIII-ii-i-V 离调下探"}
+      ],
+      "chord_count_est": 14,
+      "tags": ["华语爵士", "Swing 8th", "莫文蔚 翻唱", "李荣浩 原曲", "ii-V-I 链"]
+    },
+    {
+      "id": "S-038",
+      "title": "Sandstorm",
+      "artist": "Darude",
+      "year": 1999,
+      "style": "电子 · Trance",
+      "key": "F# minor",
+      "scale": "自然小调 + 属七链",
+      "time_signature": "4/4",
+      "bpm": 136,
+      "duration_sec": 225,
+      "form": "Intro-Build-Drop1-Break-Build-Drop2-Outro",
+      "chord_progression": [
+        {"section": "Intro", "roman": "F#m-Dmaj7-C#m-E", "degree": "i-bVI-v-bVII 4 和弦循环"},
+        {"section": "Build", "roman": "F#m-Dmaj7-C#m-E-F#m", "degree": "同上加增升白噪声/filter"},
+        {"section": "Drop", "roman": "F#m-Dmaj7-C#m-E-F#m-Dmaj7", "degree": "i-bVI-v-bVII 反复,4-on-floor 节奏"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["Trance", "4 和弦循环", "4-on-floor", "Darude 招牌", "千禧年电子经典"]
+    },
+    {
+      "id": "S-039",
+      "title": "Levels",
+      "artist": "Avicii",
+      "year": 2011,
+      "style": "电子 · Progressive House",
+      "key": "C# minor",
+      "scale": "自然小调 + 大调属",
+      "time_signature": "4/4",
+      "bpm": 126,
+      "duration_sec": 197,
+      "form": "Intro-Vox Sample-Build-Drop-Break-Build-Drop2-Outro",
+      "chord_progression": [
+        {"section": "Drop", "roman": "F#m-A#m-C#m-D#", "degree": "vi-i-iv-bV 模进上推(progressive 招牌)"},
+        {"section": "Break", "roman": "F#m-C#m-D#-A#m", "degree": "vi-iv-bV-i 4 拍渐进"},
+        {"section": "Drop2", "roman": "F#m-A#m-C#m-D#-F#m", "degree": "同 Drop,合成器叠加"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["Progressive House", "4 和弦模进", "Etta James 采样", "Avicii 招牌", "EDC 经典"]
+    },
+    {
+      "id": "S-040",
+      "title": "Faded",
+      "artist": "Alan Walker",
+      "year": 2015,
+      "style": "电子 · Melodic House",
+      "key": "F# minor",
+      "scale": "自然小调",
+      "time_signature": "4/4",
+      "bpm": 90,
+      "duration_sec": 212,
+      "form": "Intro-Build-Drop-Break-Build-Drop2-Outro",
+      "chord_progression": [
+        {"section": "Build", "roman": "F#m-Dmaj7-A#m-E", "degree": "i-bVI-iv-bVII 4 和弦渐进"},
+        {"section": "Drop", "roman": "F#m-Dmaj7-A#m-E", "degree": "i-bVI-iv-bVII 反复,女性 vocal chop"},
+        {"section": "Break", "roman": "F#m-A#m-Dmaj7-E", "degree": "i-iv-bVI-bVII 钢琴变奏"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["Melodic House", "4 和弦渐进", "Iselin Solheim vocal", "Alan Walker 招牌", "2015 现象级"]
+    }
+  ]
+}
