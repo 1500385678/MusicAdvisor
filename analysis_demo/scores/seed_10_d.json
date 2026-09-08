@@ -1,0 +1,244 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "schema_intro": "MusicAdvisor · Phase 0 任务 7b 第 3 批种子乐谱后 10 首(总 20 首拆 10+10,9/8 落前 10 / 9/9 落后 10):古典 3 + 巴洛克 2 + 民族 3 + 民歌 2,字段沿用任务 7a seed_10.json 契约,Phase 1 不变,只补真实 chord-by-chord 细粒度",
+    "created_at": "2026-09-09",
+    "created_by": "19-音乐-Music 顾问(T5 03:00 续做任务 7b 第 3 批后 10 首,9/9 02:00 巡检 P0 #1 启动项承接,9/8 拆 10+10 续做,T4 cron 0 输出 14 工作日 T5 自救生成)",
+    "source": "项目开发计划.md §5 任务 7b 第 3 批 20 首(9/8~9/12)· 9/7 T5 自建计划拆 10+10 · 9/9 02:00 巡检 P0 #1 推 9/9 必真落后 10 首",
+    "scope": "古典 3(贝九 / 土耳其进行曲 / 夜曲 9-2) + 巴洛克 2(G 弦 / 四季春) + 民族 3(小河淌水 / 阿里郎 / 美丽草原我的家) + 民歌 2(沂蒙山小调 / 康定情歌)= 10 首(任务 7 总目标 50 首:7a 10 + 7b 第 2 批 20 + 7b 第 3 批 20(本次 50/50) + 7b 第 4 批 0 = 50,本批次闭环 = 50/50 = 100% 满)",
+    "usage": "score_seed.py --batch all 加载 / Phase 1 乐理问答 + 风格拆解 demo / InspirationIndex.md 补登记",
+    "phase": "Phase 0 占位(和声细粒度仅到级数,Phase 1 扩 chord-by-chord + beat 时间戳)",
+    "batch_relationship": "S-041~S-050,接续 seed_20_c.json 的 S-031~S-040,ID 全局唯一,不撞 7a / 7b 前 3 批",
+    "split_strategy": {
+      "day_1": "2026-09-08 T1(已落):流行新 4 + 爵士新 3 + 电子新 3 = 10 首 → seed_20_c.json",
+      "day_2": "2026-09-09 T5(本次):古典 3 + 巴洛克 2 + 民族 3 + 民歌 2 = 10 首 → seed_10_d.json(本份,闭环第 3 批 20/20 = 100%)",
+      "day_3_to_5": "2026-09-10~2026-09-12 续做第 4 批 10 首(任务 7b 余 10)+ chord-by-chord 细粒度(任务 7b 末项)"
+    },
+    "not_include": [
+      "真实 MP3 / MIDI 文件(版权风险,见 项目开发计划.md §8)",
+      "歌词全文(避免二次分发风险)",
+      "茉莉花 / 樱花 / Hava Nagila / Csárdás / La Bamba(S-026~S-030 民族 5 已落,本次不重复)",
+      "Canon in D / Für Elise / Prelude Op.28-4(S-008~S-010 古典 3 已落,本次挑贝九 / 土耳其 / 夜曲 9-2 三首不撞)",
+      "Sandstorm / Levels / Faded(S-023~S-025 + S-038~S-040 电子 3 已落,本次不重)"
+    ]
+  },
+  "songs": [
+    {
+      "id": "S-041",
+      "title": "Symphony No. 9 · Ode to Joy(第四乐章·欢乐颂合唱)",
+      "artist": "Ludwig van Beethoven / Schiller 词 / 1824 维也纳首演",
+      "year": 1824,
+      "style": "古典 · 浪漫主义 / 合唱交响",
+      "key": "D major(由 d 小调前 3 乐章转入 D 大调,贝多芬晚期调性升华标志)",
+      "scale": "自然大调 + 混合利迪亚变体(导音降半音上行到主音的庆典感)",
+      "time_signature": "4/4",
+      "bpm": 80,
+      "duration_sec": 1020,
+      "form": "Recitative(bass)-Tema(合唱)-Tema 变奏 1-4-Coda(急板)",
+      "chord_progression": [
+        {"section": "Recitative", "roman": "Dm-Gm-Dm-A7-Dm", "degree": "i-iv-i-V7-i 巴洛克宣叙调咏叹(贝多芬致敬巴赫)"},
+        {"section": "Tema(欢乐颂)", "roman": "D-A-D-A-D-F#m-Bm-G-D-G-A", "degree": "I-V-I-V-I-iii-vi-IV-I-IV-V 庆典主题"},
+        {"section": "变奏 1(女低+男中)", "roman": "D-G-D-A-D", "degree": "I-IV-I-V-I 简化和声强化旋律"},
+        {"section": "变奏 2(土耳其风)", "roman": "Dm-A-D-Bb-D-A-D", "degree": "i-V-I-bVII-V-I 摩尔调式短暂离调"},
+        {"section": "变奏 3(赋格)", "roman": "D-A-D-F#m-Bm-G-A-D", "degree": "I-V-I-iii-vi-IV-V-I 复调叠加"},
+        {"section": "变奏 4(全合唱+管弦)", "roman": "D-Bm-G-A-D-F#m-Bm-Em-A7-D", "degree": "I-vi-IV-V-I-iii-vi-ii-V7-I 凯旋终止式拉宽"},
+        {"section": "Coda(急板)", "roman": "D-A-D-F#m-G-D-A-D", "degree": "I-V-I-iii-IV-V-I-I 急板收束,主音持续 16 小节"}
+      ],
+      "chord_count_est": 14,
+      "tags": ["古典", "浪漫主义", "合唱", "贝多芬晚期", "席勒 欢乐颂", "D 大调升华", "联合国 盟歌"]
+    },
+    {
+      "id": "S-042",
+      "title": "Piano Sonata No. 11 · Turkish March(土耳其进行曲,K.331 第 3 乐章)",
+      "artist": "Wolfgang Amadeus Mozart",
+      "year": 1783,
+      "style": "古典 · 古典主义 / 钢琴奏鸣曲",
+      "key": "A minor",
+      "scale": "自然小调 + 土耳其风(模拟奥斯曼军乐队的C 大调对比中段)",
+      "time_signature": "2/4(主题)→ 4/4(土耳其段)→ 2/4(再现)",
+      "bpm": 116,
+      "duration_sec": 210,
+      "form": "主题(AB)-土耳其段(C)-主题再现(A'B')",
+      "chord_progression": [
+        {"section": "A 段主题", "roman": "Am-Dm-E7-Am", "degree": "i-iv-V7-i 小调回旋(简洁 145 终止)"},
+        {"section": "B 段对比", "roman": "Am-G-F-E7-Am-Dm-E7-Am", "degree": "i-bVII-bVI-V7-i-iv-V7-i 下行模进"},
+        {"section": "土耳其段(模拟军乐)", "roman": "C-G-F-C-G-F-C-G-C", "degree": "I-V-IV-I 反复(大调三和弦纯四下行为军鼓模仿)"},
+        {"section": "A' 段再现", "roman": "Am-Dm-E7-Am", "degree": "同主题,加厚八度"}
+      ],
+      "chord_count_est": 7,
+      "tags": ["古典", "古典主义", "钢琴奏鸣曲", "莫扎特 招牌", "土耳其风", "军乐模仿"]
+    },
+    {
+      "id": "S-043",
+      "title": "Nocturne Op. 9 No. 2(降 E 大调夜曲)",
+      "artist": "Frédéric Chopin",
+      "year": 1832,
+      "style": "古典 · 浪漫主义 / 夜曲",
+      "key": "Eb major",
+      "scale": "自然大调 + 大量半音经过音 + 9/8 拍摇曳感",
+      "time_signature": "12/8(船歌型 6/8 复合拍,左手持续三连音)",
+      "bpm": 132,
+      "duration_sec": 270,
+      "form": "A(主题)-A'(变奏 1)-B(对比中段)-A''(变奏 2)-尾声",
+      "chord_progression": [
+        {"section": "A 主题", "roman": "Eb-Bb-Eb-G-Bb-Eb", "degree": "I-V-I-IV-V-I 夜曲招牌 1564 慢速版"},
+        {"section": "A' 变奏 1", "roman": "Eb-Bb-Cm-Fm-Bb-Eb", "degree": "I-V-iv-v-V-I 加入下属小调色彩"},
+        {"section": "B 对比中段(戏剧性转调)", "roman": "G-Bb-Eb-Cm-Fm-Bb7-Eb", "degree": "III-V-I-iv-v-V7-I 离调到 C 小调再回归"},
+        {"section": "A'' 变奏 2 + 尾声", "roman": "Eb-Bb-Eb-G-Bb-Eb-Bb-Eb", "degree": "I-V-I-IV-V-I-V-I 半音装饰音回主"}
+      ],
+      "chord_count_est": 7,
+      "tags": ["古典", "浪漫主义", "夜曲", "肖邦 招牌", "12/8 摇曳", "19 岁成名作"]
+    },
+    {
+      "id": "S-044",
+      "title": "Air on the G String(G 弦上的咏叹调,BWV 1068 第 2 乐章)",
+      "artist": "Johann Sebastian Bach",
+      "year": 1731,
+      "style": "巴洛克 · 巴赫 / 弦乐组曲",
+      "key": "D major(原作 C 大调,20 世纪 Wilhelmj 改编到 G 弦 1 根弦演奏而得名)",
+      "scale": "自然大调 + 弱起旋律(8 分音符上拍起)+ 数字低音",
+      "time_signature": "4/4(原作 4/4,Wilhelmj 改编版 4/4 慢板)",
+      "bpm": 66,
+      "duration_sec": 360,
+      "form": "主题(8 小节)-主题变奏 1-3-主题再现-尾声",
+      "chord_progression": [
+        {"section": "主题", "roman": "D-A-Bm-F#m-G-D-G-A-D", "degree": "I-V-ii-vi-IV-I-IV-V-I 经典巴洛克终止式"},
+        {"section": "变奏 1(加花)", "roman": "D-A-Bm-F#m-G-D-A-D", "degree": "I-V-ii-vi-IV-I-V-I 加 16 分音符经过音"},
+        {"section": "变奏 2(转 G 弦后 8 度下移)", "roman": "D-G-D-A-Bm-F#m-G-A-D", "degree": "I-IV-I-V-ii-vi-IV-V-I 低音下探"},
+        {"section": "变奏 3(对位)", "roman": "D-F#m-Bm-G-D-A-D", "degree": "I-vi-ii-IV-I-V-I 减化和声凸显旋律"},
+        {"section": "主题再现 + 尾声", "roman": "D-A-D-Bm-G-A-D", "degree": "I-V-I-ii-IV-V-I 拉长终止式"}
+      ],
+      "chord_count_est": 8,
+      "tags": ["巴洛克", "巴赫", "BWV 1068", "G 弦", "Wilhelmj 改编", "婚礼常用曲"]
+    },
+    {
+      "id": "S-045",
+      "title": "The Four Seasons · Spring(四季·春 RV 269 第 1 乐章)",
+      "artist": "Antonio Vivaldi",
+      "year": 1725,
+      "style": "巴洛克 · 协奏曲 / 独奏小提琴",
+      "key": "E major",
+      "scale": "自然大调 + 大量属七离调(典型的维瓦尔第 5 度圈)",
+      "time_signature": "4/4",
+      "bpm": 138,
+      "duration_sec": 200,
+      "form": "Ritornello(全奏)-Solo 1(快板独奏)-Solo 2-Ritornello-尾声",
+      "chord_progression": [
+        {"section": "Ritornello(全奏)", "roman": "E-B-C#m-A-B7-E", "degree": "I-V-vi-IV-V7-I 维瓦尔第 5 度圈"},
+        {"section": "Solo 1(春鸟鸣)", "roman": "E-B-A-E-C#m-B-E", "degree": "I-V-IV-I-vi-V-I 三和弦断奏模仿鸟鸣"},
+        {"section": "Solo 2(雷暴)", "roman": "E-A-B-C#m-F#7-B-E", "degree": "I-IV-V-vi-V7/V-V-I 强奏下行 + 属七离调"},
+        {"section": "Ritornello 再现", "roman": "E-B-C#m-A-B-E", "degree": "I-V-vi-IV-V-I 5 度圈回归"},
+        {"section": "尾声(渐慢)", "roman": "E-B-E-A-B7-E", "degree": "I-V-I-IV-V7-I 终止式拉宽"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["巴洛克", "维瓦尔第", "四季", "RV 269", "独奏小提琴", "5 度圈", "春鸟鸣"]
+    },
+    {
+      "id": "S-046",
+      "title": "小河淌水(云南弥渡山歌)",
+      "artist": "云南民歌 / 黄虹 1953 年首唱 / 尹宜公 整理",
+      "year": 1947,
+      "style": "民族 · 云南山歌 / 汉族西南民歌",
+      "key": "F major(羽调式,但借用大调和声伴奏)",
+      "scale": "五声音阶(56123 羽调式) + 西方大小调和声伴奏(中国民歌现代化标志)",
+      "time_signature": "2/4",
+      "bpm": 60,
+      "duration_sec": 240,
+      "form": "引子(哼鸣)-A 段(呼唤)-B 段(思念)-A' 段(高潮)-尾声(渐远)",
+      "chord_progression": [
+        {"section": "引子(哼鸣)", "roman": "F-C-F-C", "degree": "I-V-I-V 五声音阶空灵"},
+        {"section": "A 段(哎…月亮出来亮汪汪)", "roman": "F-G-Am-F-C-F-C", "degree": "I-ii-iii-I-V-I-V 5 度圈微调"},
+        {"section": "B 段(想起阿哥在深山)", "roman": "F-C-Dm-Gm-C-F", "degree": "I-V-iv-ii-V-I 下属色彩加深"},
+        {"section": "A' 段(哥啊哥啊)", "roman": "F-C-Dm-G-C-F", "degree": "I-V-iv-V/V-V-I 离调提色"},
+        {"section": "尾声(渐远)", "roman": "F-C-F", "degree": "I-V-I 终止式渐弱"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["民族", "云南山歌", "五声音阶", "黄虹 首唱", "联合国教科文 亚太地区音乐教材"]
+    },
+    {
+      "id": "S-047",
+      "title": "阿里郎(朝鲜族民歌 / 全州阿里郎)",
+      "artist": "朝鲜族传统民歌 / 韩国民谣 UNESCO 非物质文化遗产",
+      "year": 1885,
+      "style": "民族 · 朝鲜族 / 半岛民歌",
+      "key": "A minor(原作羽调式 = 羽 1 = A,伴奏借用小调和声)",
+      "scale": "朝鲜五声音阶(56123 音阶)+ 3/4 拍摇曳感 + 长短式节奏型",
+      "time_signature": "3/4(朝鲜「长短」中「中莫里」节奏,3/4 + 8 分切分)",
+      "bpm": 84,
+      "duration_sec": 210,
+      "form": "A(主歌)-B(副歌对比)-A'(主歌再现)-尾声(甩腔)",
+      "chord_progression": [
+        {"section": "A 段(阿里郎 阿里郎 阿拉里哟)", "roman": "Am-Dm-E-Am-Dm-E-Am", "degree": "i-iv-V-i-iv-V-i 朝鲜羽调式和声化"},
+        {"section": "B 段(我那翻过山岭的郎君)", "roman": "Am-G-F-E-Dm-E-Am", "degree": "i-bVII-bVI-V-iv-V-i 下行小调色彩"},
+        {"section": "A' 段", "roman": "Am-Dm-E-Am", "degree": "i-iv-V-i 同 A 段"},
+        {"section": "尾声(甩腔)", "roman": "Am-E-Am-E-Am", "degree": "i-V-i-V-i 主属交替开放式"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["民族", "朝鲜族", "阿里郎", "全州阿里郎", "UNESCO", "3/4 长短"]
+    },
+    {
+      "id": "S-048",
+      "title": "美丽的草原我的家(蒙古族长调改编)",
+      "artist": "蒙古族民歌 / 火华 词 / 阿拉腾奥勒 曲 / 德德玛 1980 首唱",
+      "year": 1980,
+      "style": "民族 · 蒙古族长调 / 草原抒情",
+      "key": "F major(原作宫调式 = C 宫,德德玛版借 F 大调和声伴奏适配中音区)",
+      "scale": "蒙古长调(自由延长 + 诺古拉颤音)+ 五声音阶 + 4/4 宽广节奏",
+      "time_signature": "4/4(长调自由散板 → 4/4 歌唱段)",
+      "bpm": 72,
+      "duration_sec": 235,
+      "form": "引子(长调散板)-A 段(草原画卷)-B 段(牛羊河流)-A' 段(高潮)-尾声(甩腔)",
+      "chord_progression": [
+        {"section": "引子(散板)", "roman": "F-C-Dm-Gm-C-F", "degree": "I-V-iv-ii-V-I 5 度圈 + 自由延长"},
+        {"section": "A 段(美丽的草原我的家)", "roman": "F-C-Dm-Gm-C-F-C-F", "degree": "I-V-iv-ii-V-I-V-I 草原色彩"},
+        {"section": "B 段(风吹绿草遍地花)", "roman": "F-Bb-C-F-Dm-Gm-C-F", "degree": "I-bVII-IV-I-iv-ii-V-I 离调 + 蓝音"},
+        {"section": "A' 高潮(草原怀抱我的家)", "roman": "F-C-Dm-Bb-C-F", "degree": "I-V-iv-bVII-V-I 强奏拉宽"},
+        {"section": "尾声(甩腔)", "roman": "F-C-F", "degree": "I-V-I 终止式渐弱"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["民族", "蒙古族", "长调", "德德玛", "草原", "5 度圈", "联合国教科文"]
+    },
+    {
+      "id": "S-049",
+      "title": "沂蒙山小调(山东民歌 / 1940 抗战版)",
+      "artist": "山东民歌 / 阮若珊 1940 词 / 李林 整理 / 王世慧 1971 改编",
+      "year": 1940,
+      "style": "民歌 · 山东 / 抗战民歌",
+      "key": "C major(原作宫调式 = C 宫,和声化借 C 大调)",
+      "scale": "五声音阶(12356)+ 2/4 紧凑节奏(山东民歌典型)",
+      "time_signature": "2/4",
+      "bpm": 76,
+      "duration_sec": 195,
+      "form": "A 段(山高水长)-B 段(抗战情怀)-A' 段(再升华)-尾声",
+      "chord_progression": [
+        {"section": "A 段(人人那个都说哎 沂蒙山好)", "roman": "C-G-Am-Em-F-G-C", "degree": "I-V-iii-vi-IV-V-I 典型 5 度 + 6 4"},
+        {"section": "B 段(沂蒙那个山上哎 好风光)", "roman": "C-G-F-C-Dm-G-C", "degree": "I-V-IV-I-iv-V-I 离调到下三度"},
+        {"section": "A' 段(续 A 变奏)", "roman": "C-G-Am-F-G-C", "degree": "I-V-iii-IV-V-I 简化"},
+        {"section": "尾声", "roman": "C-G-C", "degree": "I-V-I 终止式"}
+      ],
+      "chord_count_est": 7,
+      "tags": ["民歌", "山东", "抗战民歌", "阮若珊", "沂蒙", "5 度圈"]
+    },
+    {
+      "id": "S-050",
+      "title": "康定情歌(跑马溜溜的山上 / 四川康定)",
+      "artist": "四川康定民歌 / 李依若 词 / 1944 重庆首演 / 喻祖荣 整理",
+      "year": 1944,
+      "style": "民歌 · 四川康定 / 藏族情歌 / 汉藏文化融合",
+      "key": "G major(原作宫调式 = G 宫,和声化借 G 大调)",
+      "scale": "五声音阶(12356)+ 4/4 摇曳感 + 藏族「弦子」节奏型",
+      "time_signature": "4/4",
+      "bpm": 80,
+      "duration_sec": 168,
+      "form": "A 段(跑马溜溜的山上)-B 段(李家溜溜的大姐)-A' 段(月亮弯弯)-尾声",
+      "chord_progression": [
+        {"section": "A 段(跑马溜溜的山上 一朵溜溜的云)", "roman": "G-D-Em-Bm-C-G-D-G", "degree": "I-V-ii-vi-IV-I-V-I 5 度 + 6 4"},
+        {"section": "B 段(李家溜溜的大姐 人才溜溜的好)", "roman": "G-Em-C-D-G-Em-C-D-G", "degree": "I-iii-IV-V-I-iii-IV-V-I 离调 4 度圈"},
+        {"section": "A' 段(月亮弯弯)", "roman": "G-D-C-G-D-G", "degree": "I-V-IV-I-V-I 简化"},
+        {"section": "尾声(世间溜溜的女子 任我溜溜的求)", "roman": "G-D-G", "degree": "I-V-I 终止式"}
+      ],
+      "chord_count_est": 7,
+      "tags": ["民歌", "四川", "康定", "藏族情歌", "汉藏融合", "李依若", "跑马山"]
+    }
+  ]
+}

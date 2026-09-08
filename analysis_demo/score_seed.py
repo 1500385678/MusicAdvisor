@@ -3,35 +3,42 @@ score_seed.py · MusicAdvisor Phase 0 任务 7 种子乐谱加载器(批次合�
 
 ==========================================================================
 项目:    MusicAdvisor
-模块:    Phase 0 / 任务 7 起步(10 + 20 + 10 = 40/50 首种子 + 自动化脚本骨架)
-作者:    19-音乐-Music 顾问(T5 03:00 启动 Phase 0 任务 7 · T1 03:00 续做第 3 批前 10)
+模块:    Phase 0 / 任务 7(7a 10 + 7b 第 2 批 20 + 7b 第 3 批 20 = 50/50 = 100% 满)
+作者:    19-音乐-Music 顾问(T5 03:00 启动 Phase 0 任务 7 · T1 03:00 续做第 3 批前 10
+                  T5 03:00 续做第 3 批后 10,T4 14 工作日 0 输出 T5 自救闭环第 3 批 20/20)
 日期:    2026-09-04 起步 · 2026-09-06 扩到 batch 模式(7a 10 + 7b 第 2 批 20)
                   2026-09-08 续做 7b 第 3 批前 10(40/50 = 80% 完成)
-状态:    Phase 0 占位 — 40 首种子加载 + 契约校验,真实音频分析待 Phase 1
+                  2026-09-09 续做 7b 第 3 批后 10(50/50 = 100% 满 · 第 3 批 20/20 闭环)
+状态:    Phase 0 占位 — 50 首种子加载 + 契约校验,真实音频分析待 Phase 1
 关联:    项目开发计划.md §5 任务 7a / 7b
          analysis_demo/scores/seed_10.json(7a 10 首)
          analysis_demo/scores/seed_20_b.json(7b 第 2 批 20 首,2026-09-06 新增)
          analysis_demo/scores/seed_20_c.json(7b 第 3 批前 10 首,2026-09-08 T1 新增)
+         analysis_demo/scores/seed_10_d.json(7b 第 3 批后 10 首,2026-09-09 T5 新增,本份)
          InspirationIndex.md(下次巡检登记)
          .Log/巡检-音乐-20260904.md P0 建议 · .Log/巡检-音乐-20260906.md P0 任务 7b 0 续做
+         .Log/巡检-音乐-20260909.md P0 #1 任务 7b 第 3 批后 10 首启动 · .plan/20260909.md 自救
 ==========================================================================
 
 设计意图
 --------
 1. Phase 0 不强求真实音频分析,先把"种子数据 + 加载 + 契约校验"骨架立住
-2. seed_10.json 是任务 7 总目标 50 首的 1/5(7a),seed_20_b.json 是第 2 批(7b);两批同契约
-3. 加载器支持 --batch all 自动合并多批次,契约固定,7b 第 3/4 批续做只换数据源不换代码
+2. seed_10.json 是任务 7 总目标 50 首的 1/5(7a),seed_20_b.json 是第 2 批(7b);
+   seed_20_c.json + seed_10_d.json 是 7b 第 3 批 20 首拆 10+10,4 批同契约
+3. 加载器支持 --batch all 自动合并多批次,契约固定,7b 第 4 批续做只换数据源不换代码
 4. 输出结构化 summary,供 Phase 1 乐理问答 demo 检索 / 风格拆解匹配 / InspirationIndex 补登记
 
 运行方式
 --------
     # 无依赖模式(Python 3.7+ 标准库):
     python3 analysis_demo/score_seed.py                          # 单批 seed_10
-    python3 analysis_demo/score_seed.py --batch all              # 合并 seed_10 + seed_20_b
+    python3 analysis_demo/score_seed.py --batch all              # 合并 4 批 50 首
     python3 analysis_demo/score_seed.py --batch seed_20_b         # 单批 seed_20_b
+    python3 analysis_demo/score_seed.py --batch seed_20_c         # 单批 seed_20_c
+    python3 analysis_demo/score_seed.py --batch seed_10_d         # 单批 seed_10_d(本份 9/9 新增)
 
     # 输出 JSON 到文件供下游使用:
-    python3 analysis_demo/score_seed.py --batch all --output analysis_demo/scores/seed_30_summary.json
+    python3 analysis_demo/score_seed.py --batch all --output analysis_demo/scores/seed_50_summary.json
 """
 from __future__ import annotations
 
@@ -52,6 +59,7 @@ BATCHES: Dict[str, Path] = {
     "seed_10":   SCORES_DIR / "seed_10.json",     # 任务 7a · 流行 4 + 爵士 3 + 古典 3
     "seed_20_b": SCORES_DIR / "seed_20_b.json",   # 任务 7b 第 2 批 · 摇滚 5 + 民谣 5 + 电子 5 + 世界音乐 5
     "seed_20_c": SCORES_DIR / "seed_20_c.json",   # 任务 7b 第 3 批前 10 首 · 流行新 4 + 爵士新 3 + 电子新 3(2026-09-08 T1)
+    "seed_10_d": SCORES_DIR / "seed_10_d.json",   # 任务 7b 第 3 批后 10 首 · 古典 3 + 巴洛克 2 + 民族 3 + 民歌 2(2026-09-09 T5)
 }
 
 REQUIRED_SONG_FIELDS = [
