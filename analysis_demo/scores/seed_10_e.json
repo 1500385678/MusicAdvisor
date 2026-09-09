@@ -1,0 +1,294 @@
+{
+  "_meta": {
+    "schema_version": "1.1",
+    "schema_intro": "MusicAdvisor · Phase 0 任务 7b 第 4 批种子乐谱末 10 首(任务 7 总目标 50 + 末批 10 = 60/60,任务 7b 末项),字段沿用 1.0 契约,本批示范 1.1 扩展:3 首(S-051 Blinding Lights / S-052 Superstition / S-054 あの夏へ)加 chord-by-chord 细粒度(bar + beat + chord_name 三元组)作为 Phase 1 真实模式起点",
+    "created_at": "2026-09-10",
+    "created_by": "19-音乐-Music 顾问(T5 03:00 续做任务 7b 第 4 批末 10 首,9/10 02:00 巡检 P0 启动项承接,9/9 任务 7b 第 3 批闭环 = 50/50,本批 = 60/60 任务 7b 末项,9/10 ~ 9/12 完成阶段)",
+    "source": "项目开发计划.md §5 任务 7b 第 4 批 10 首 + chord-by-chord 细粒度 · 9/9 任务 7b 末项 · InspirationIndex.md §一 / §二 / §四 缺口(缺 R&B/嘻哈/影视游戏/印度/非洲/拉美/民乐细类) · README.md 双计划关系",
+    "scope": "R&B 2(Blinding Lights · Superstition) + 嘻哈 1(Lose Yourself) + 影视 2(千与千寻 · Star Wars) + 游戏 1(Super Mario) + 印度 1(Jai Ho) + 非洲 1(Water No Get Enemy) + 拉美 1(Garota de Ipanema) + 民乐 1(彝族舞曲 琵琶) = 10 首(S-051 ~ S-060,任务 7b 第 4 批 = 10/10 闭环,任务 7b 总 60/60 = 100% 满,本批次后任务 7b 末项 = 100%)",
+    "usage": "score_seed.py --batch seed_10_e 加载 + --batch all 合并 5 批 60 首 / Phase 1 乐理问答 + 风格拆解 demo / InspirationIndex.md §一/§二/§四 补登记 8 行 / .plan/20260910.md 自建计划落地",
+    "phase": "Phase 0 末批 + Phase 1 起步(3 首示范 chord-by-chord 细粒度,余 7 首仍用 1.0 契约,Phase 1 续做 7 首扩展)",
+    "batch_relationship": "S-051~S-060,接续 seed_10_d.json 的 S-041~S-050,ID 全局唯一不撞前 4 批;任务 7b 末项 = 50 + 10 = 60 首 = 100% 满",
+    "split_strategy": {
+      "day_1": "2026-09-10 T5(本次):R&B 2 + 嘻哈 1 + 影视 2 + 游戏 1 + 印度 1 + 非洲 1 + 拉美 1 + 民乐 1 = 10 首 → seed_10_e.json(本份,任务 7b 第 4 批 10/10 闭环)",
+      "day_2_to_4": "2026-09-11~2026-09-12 余 7 首 chord-by-chord 细粒度扩展(Phase 1 真实模式接力)"
+    },
+    "chord_by_chord_demo": {
+      "schema_v1_1": "新增 chord_progression_detail 字段(并行 chord_progression),bar(小节号,1-indexed) + beat(拍位,1-indexed,4/4 取 1-4) + chord_name(具体和弦名,如 F#m7 / Ebmaj7 / Am9 / G7sus4) + roman(级数,与 chord_progression 一致) + duration_beats(持续拍数,默认 4) + function(功能:T/S/D/SubV/Modulation)",
+      "demo_songs": ["S-051 Blinding Lights(示范 8 小节 32 拍细粒度)", "S-052 Superstition(示范 4 小节 16 拍细粒度)", "S-054 あの夏へ(示范 8 小节 32 拍细粒度)"],
+      "phase_1_extension_plan": "余 7 首(S-053 / S-055 / S-056 / S-057 / S-058 / S-059 / S-060)Phase 1 续做,保持 1.0 契约,1.1 字段为可选项"
+    },
+    "not_include": [
+      "真实 MP3 / MIDI 文件(版权风险,见 项目开发计划.md §8)",
+      "歌词全文(避免二次分发风险)",
+      "完整时间戳(Phase 1 用 librosa/essentia 真实分析,本批仅给 1-2 首示范 8 小节)",
+      "Star Wars Imperial March / Hedwig's Theme(S-055 选 Main Theme 不撞流行认知)",
+      "Scarborough Fair / Hava Nagila / La Bamba / 茉莉花 / 樱花(S-020 / S-026~S-030 民族 5 已落,本次挑 Bossa Nova + Afrobeat + Bollywood + 彝族不重)",
+      "Beat It / Billie Jean / Smooth Criminal(S-053 选 Lose Yourself 不撞 MJ 招牌)"
+    ]
+  },
+  "songs": [
+    {
+      "id": "S-051",
+      "title": "Blinding Lights",
+      "artist": "The Weeknd",
+      "year": 2019,
+      "style": "R&B · Synthwave / 80s Revival",
+      "key": "F minor(借 C 大调对比段提升 6 度变 Eb major,带半音下行 doomsmode)",
+      "scale": "自然小调 + Dorian 借 + 大量合成器琶音",
+      "time_signature": "4/4(80s 招牌 4-on-the-floor 底鼓)",
+      "bpm": 171,
+      "duration_sec": 200,
+      "form": "Intro(合成器琶音)-Verse 1-PreChorus-Chorus-Verse 2-PreChorus-Chorus-Bridge(转 Eb 大调)-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse 1", "roman": "Fm-Cm-Ab-Eb", "degree": "i-vi-bIII-bVII Synthwave 招牌 6451 下行变体"},
+        {"section": "PreChorus", "roman": "Bb-Fm-Ab-Eb", "degree": "bVI-i-bIII-bVII 半音下行"},
+        {"section": "Chorus", "roman": "Fm-Cm-Ab-Eb-Bb-Fm", "degree": "i-vi-bIII-bVII-bVI-i 6 度圈下行"},
+        {"section": "Bridge(转 Eb 大调)", "roman": "Eb-Bb-Cm-Ab-Eb", "degree": "I-V-vi-bIII-I 借大调释放"},
+        {"section": "Outro", "roman": "Fm-Cm-Ab-Eb-Fm", "degree": "i-vi-bIII-bVII-i 终止式回归小调"}
+      ],
+      "chord_progression_detail": [
+        {"bar": 1, "beat": 1, "chord_name": "Fm(add9)", "roman": "i", "duration_beats": 4, "function": "T", "note": "合成器琶音起手 8 分音符 doomsmode 起点"},
+        {"bar": 1, "beat": 3, "chord_name": "Fm(add9)/C", "roman": "i6", "duration_beats": 2, "function": "T", "note": "低 3 度琶音根音过门"},
+        {"bar": 2, "beat": 1, "chord_name": "Cm7", "roman": "vi", "duration_beats": 4, "function": "S", "note": "Fm 的 vi = Cm 天然下行"},
+        {"bar": 2, "beat": 3, "chord_name": "Cm7/G", "roman": "vi6", "duration_beats": 2, "function": "S", "note": "低音下行到 G 引导 Ab"},
+        {"bar": 3, "beat": 1, "chord_name": "Abmaj7", "roman": "bIII", "duration_beats": 4, "function": "SubT", "note": "下属大三度 = 小调的 3 个降号,Synthwave 招牌"},
+        {"bar": 3, "beat": 3, "chord_name": "Abmaj7/Eb", "roman": "bIII6", "duration_beats": 2, "function": "SubT", "note": "低 5 度过门到 Eb"},
+        {"bar": 4, "beat": 1, "chord_name": "Eb(add9)", "roman": "bVII", "duration_beats": 4, "function": "SubS", "note": "属功能借用大调平行主,合唱起手"},
+        {"bar": 4, "beat": 3, "chord_name": "Eb(add9)/Bb", "roman": "bVII6", "duration_beats": 2, "function": "SubS", "note": "低 6 度过门回 Fm"},
+        {"bar": 5, "beat": 1, "chord_name": "Fm(add9)", "roman": "i", "duration_beats": 4, "function": "T", "note": "主和弦回归,循环 8 小节"},
+        {"bar": 5, "beat": 3, "chord_name": "Fm(add9)/C", "roman": "i6", "duration_beats": 2, "function": "T", "note": "同 bar1-2 形式"},
+        {"bar": 6, "beat": 1, "chord_name": "Cm7", "roman": "vi", "duration_beats": 4, "function": "S", "note": "同 Cm7"},
+        {"bar": 6, "beat": 3, "chord_name": "Cm7/G", "roman": "vi6", "duration_beats": 2, "function": "S", "note": "低音 G"},
+        {"bar": 7, "beat": 1, "chord_name": "Abmaj7", "roman": "bIII", "duration_beats": 4, "function": "SubT", "note": "7 大 9 和弦,合成器叠加 pad"},
+        {"bar": 7, "beat": 3, "chord_name": "Abmaj9/Eb", "roman": "bIII9", "duration_beats": 2, "function": "SubT", "note": "9 音下行解决到 Eb"},
+        {"bar": 8, "beat": 1, "chord_name": "Eb(add9)", "roman": "bVII", "duration_beats": 4, "function": "SubS", "note": "B 段转入合成器扫弦"},
+        {"bar": 8, "beat": 3, "chord_name": "Eb(add9)/Bb", "roman": "bVII6", "duration_beats": 2, "function": "SubS", "note": "尾音 Bb 引导回 Fm"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["R&B", "Synthwave", "80s 复兴", "The Weeknd", "Fm 招牌", "bIII-bVII 借用大调", "复古鼓机"]
+    },
+    {
+      "id": "S-052",
+      "title": "Superstition",
+      "artist": "Stevie Wonder",
+      "year": 1972,
+      "style": "R&B · Funk / 灵魂放克",
+      "key": "Eb minor(招牌 Eb-Db 复合调性 funk 调式)",
+      "scale": "Dorian Eb(自然大 Eb 调的 2 度平行小调)+ 大量 16 分 funk 节奏",
+      "time_signature": "4/4(16 分 funk 律动 + 切分 clavinet)",
+      "bpm": 100,
+      "duration_sec": 245,
+      "form": "Intro(clavinet 切分 16 分)-Verse 1-Chorus-Verse 2-Chorus-Bridge(转 Eb 大调)-Chorus-Outro",
+      "chord_progression": [
+        {"section": "Verse 1", "roman": "Em7-A7-Em7-A7-Em7-A7-Em7-Bm7", "degree": "i7-V7-i7-V7-i7-V7-i7-ii7 经典 funk i-V 持续"},
+        {"section": "Chorus", "roman": "Em7-A7-Em7-A7-D7-G7-C7-B7", "degree": "i7-V7-i7-V7-IV7-V7-VI7-VII7 5 度圈下行扩展"},
+        {"section": "Bridge(转 Eb 大调)", "roman": "Eb-Bb-Fm-Bb-Eb", "degree": "I-V-ii-V-I 借大调释放"},
+        {"section": "Outro", "roman": "Em7-A7-Em7", "degree": "i7-V7-i 终止式回归"}
+      ],
+      "chord_progression_detail": [
+        {"bar": 1, "beat": 1, "chord_name": "Em9", "roman": "i9", "duration_beats": 2, "function": "T", "note": "Clavinet 招牌切分起手 16 分"},
+        {"bar": 1, "beat": 3, "chord_name": "A13", "roman": "V13", "duration_beats": 2, "function": "D", "note": "13 和弦含 b9 + #9,funk 调式核心"},
+        {"bar": 2, "beat": 1, "chord_name": "Em9", "roman": "i9", "duration_beats": 2, "function": "T", "note": "回到主,反复 i-V 形成 funk 律动"},
+        {"bar": 2, "beat": 3, "chord_name": "A13", "roman": "V13", "duration_beats": 2, "function": "D", "note": "13 和弦再起"},
+        {"bar": 3, "beat": 1, "chord_name": "Em9", "roman": "i9", "duration_beats": 2, "function": "T", "note": "i-V 持续 4 小节"},
+        {"bar": 3, "beat": 3, "chord_name": "A13", "roman": "V13", "duration_beats": 2, "function": "D", "note": "13 和弦切分"},
+        {"bar": 4, "beat": 1, "chord_name": "Em9", "roman": "i9", "duration_beats": 2, "function": "T", "note": "i-V 持续"},
+        {"bar": 4, "beat": 3, "chord_name": "A13", "roman": "V13", "duration_beats": 2, "function": "D", "note": "13 和弦转入合唱"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["R&B", "Funk", "灵魂放克", "Stevie Wonder", "Clavinet 招牌", "i-V 持续", "16 分切分"]
+    },
+    {
+      "id": "S-053",
+      "title": "Lose Yourself",
+      "artist": "Eminem(8 Mile 原声带)",
+      "year": 2002,
+      "style": "嘻哈 · 电影原声 / 励志说唱",
+      "key": "D minor(主歌-副歌不变调,鼓点驱动型嘻哈)",
+      "scale": "自然小调 + 大量说唱节奏 + 弦乐采样紧张氛围",
+      "time_signature": "4/4(85 BPM 偏慢,典型 8 Mile 招牌鼓点)",
+      "bpm": 85,
+      "duration_sec": 326,
+      "form": "Intro(弦乐+鼓)-Verse 1(主说唱)-Verse 2(主说唱)-Chorus(合唱副歌)-Verse 3(快说唱)-Chorus-Outro(慢速采样回放)",
+      "chord_progression": [
+        {"section": "Verse 1", "roman": "Dm-Bb-F-Gm", "degree": "i-bVI-bIII-iv 紧张下行"},
+        {"section": "Verse 2", "roman": "Dm-Bb-F-C", "degree": "i-bVI-bIII-bVII 持续紧张"},
+        {"section": "Chorus", "roman": "Bb-F-Dm-Gm", "degree": "bVI-bIII-i-iv 借大调低音 + 小调和声"},
+        {"section": "Verse 3(快说唱)", "roman": "Dm-C-Bb-F-Gm-Dm", "degree": "i-bVII-bVI-bIII-iv-i 半音下行 + 5 度圈"},
+        {"section": "Outro", "roman": "Dm-Bb-F", "degree": "i-bVI-bIII 终止式"}
+      ],
+      "chord_count_est": 4,
+      "tags": ["嘻哈", "Eminem", "8 Mile 原声", "电影配乐", "Dm 招牌", "奥斯卡最佳原创", "鼓点驱动"]
+    },
+    {
+      "id": "S-054",
+      "title": "千と千尋の神隠し · あの夏へ(千与千寻 · 那个夏天)",
+      "artist": "久石让(Joe Hisaishi)· 宫崎骏《千与千寻》",
+      "year": 2001,
+      "style": "影视 · 宫崎骏动画原声 / 现代古典",
+      "key": "D major(主旋律段)+ 短暂离调到 Bm",
+      "scale": "自然大调 + 五声音阶(56123)日式风情 + 钢琴 + 弦乐",
+      "time_signature": "4/4(缓慢摇曳 4 拍)",
+      "bpm": 72,
+      "duration_sec": 210,
+      "form": "A 段(主旋律 8 小节)-A' 段(变奏 + 弦乐铺底)-B 段(中段转 Bm 对比)-A'' 段(回归主调 + 竖琴琶音)-尾声",
+      "chord_progression": [
+        {"section": "A 段(あの夏へ)", "roman": "D-A-Bm-F#m-G-D-A-D", "degree": "I-V-vi-ii-IV-I-V-I 5 度圈 + 6 4"},
+        {"section": "A' 段(变奏)", "roman": "D-A-Bm-F#m-G-D-F#m-Bm", "degree": "I-V-vi-ii-IV-I-ii-vi 弦乐铺底 + 变奏"},
+        {"section": "B 段(转 Bm 对比)", "roman": "Bm-F#m-G-A-Bm", "degree": "i-vi-IV-V-i 短暂小调对比"},
+        {"section": "A'' 段(回归)", "roman": "D-A-Bm-F#m-G-D-A-D", "degree": "I-V-vi-ii-IV-I-V-I 主调回归 + 竖琴琶音"},
+        {"section": "尾声", "roman": "D-A-D", "degree": "I-V-I 终止式渐弱"}
+      ],
+      "chord_progression_detail": [
+        {"bar": 1, "beat": 1, "chord_name": "Dmaj7(add9)", "roman": "I", "duration_beats": 4, "function": "T", "note": "竖琴琶音起手 5 度音 + 9 音,日式风情"},
+        {"bar": 1, "beat": 3, "chord_name": "Dmaj7/A", "roman": "I6", "duration_beats": 2, "function": "T", "note": "低 5 度过门"},
+        {"bar": 2, "beat": 1, "chord_name": "A(add9)", "roman": "V", "duration_beats": 4, "function": "D", "note": "属 9 和弦,主旋律上拍起"},
+        {"bar": 2, "beat": 3, "chord_name": "A(add9)/E", "roman": "V6", "duration_beats": 2, "function": "D", "note": "低 5 度过门到 Bm"},
+        {"bar": 3, "beat": 1, "chord_name": "Bm7", "roman": "vi", "duration_beats": 4, "function": "S", "note": "B 小 7,带柔和下行"},
+        {"bar": 3, "beat": 3, "chord_name": "Bm7/F#", "roman": "vi6", "duration_beats": 2, "function": "S", "note": "低 6 度过门到 F#m"},
+        {"bar": 4, "beat": 1, "chord_name": "F#m7", "roman": "ii", "duration_beats": 4, "function": "PreD", "note": "ii 级预备属和弦"},
+        {"bar": 4, "beat": 3, "chord_name": "F#m7/C#", "roman": "ii6", "duration_beats": 2, "function": "PreD", "note": "低 6 度过门到 G"},
+        {"bar": 5, "beat": 1, "chord_name": "G(add9)", "roman": "IV", "duration_beats": 4, "function": "S", "note": "下属 9 音,日式五声音阶色彩"},
+        {"bar": 5, "beat": 3, "chord_name": "G(add9)/D", "roman": "IV6", "duration_beats": 2, "function": "S", "note": "低 5 度过门到 D"},
+        {"bar": 6, "beat": 1, "chord_name": "Dmaj7", "roman": "I", "duration_beats": 4, "function": "T", "note": "主调回归,弦乐起"},
+        {"bar": 6, "beat": 3, "chord_name": "Dmaj7/A", "roman": "I6", "duration_beats": 2, "function": "T", "note": "低 5 度过门"},
+        {"bar": 7, "beat": 1, "chord_name": "A(add9)", "roman": "V", "duration_beats": 4, "function": "D", "note": "属 9 再起"},
+        {"bar": 7, "beat": 3, "chord_name": "A(add9)/E", "roman": "V6", "duration_beats": 2, "function": "D", "note": "过门"},
+        {"bar": 8, "beat": 1, "chord_name": "Dmaj7", "roman": "I", "duration_beats": 4, "function": "T", "note": "终止式回归,8 小节循环结束"}
+      ],
+      "chord_count_est": 5,
+      "tags": ["影视", "宫崎骏", "千与千寻", "久石让", "D 大调", "5 度圈", "竖琴琶音", "日式 5 声音阶"]
+    },
+    {
+      "id": "S-055",
+      "title": "Star Wars · Main Theme(星球大战 · 主旋律)",
+      "artist": "John Williams · 伦敦交响乐团",
+      "year": 1977,
+      "style": "影视 · 史诗电影原声 / 管弦",
+      "key": "B♭ major(铜管 5 度圈起手 + 半音下行的星战招牌主题)",
+      "scale": "自然大调 + 利底亚变体 + 半音下行主题动机",
+      "time_signature": "4/4(铜管齐奏 + 定音鼓 + 弦乐 16 分铺底)",
+      "bpm": 108,
+      "duration_sec": 135,
+      "form": "A 段(主旋律 8 小节)-A' 段(变奏 + 铜管对位)-B 段(转 F 大调对比)-A'' 段(回归主调 + 高潮)-尾声",
+      "chord_progression": [
+        {"section": "A 段(主旋律)", "roman": "Bb-F-Gm-Bb-Eb-Bb-F-Bb", "degree": "I-V-vi-I-IV-I-V-I 5 度圈起手"},
+        {"section": "A' 段(变奏)", "roman": "Bb-F-Gm-Bb-Cm-F-Bb", "degree": "I-V-vi-I-vi-V-I 铜管对位"},
+        {"section": "B 段(转 F 大调)", "roman": "F-C-Dm-Gm-C-F-C-F", "degree": "I-V-ii-vi-V-I-V-I 上 5 度对比"},
+        {"section": "A'' 段(回归高潮)", "roman": "Bb-F-Eb-Bb-F-Bb", "degree": "I-V-IV-I-V-I 主调回归 + 全奏"},
+        {"section": "尾声", "roman": "Bb-F-Bb", "degree": "I-V-I 终止式渐弱"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["影视", "Star Wars", "John Williams", "史诗", "铜管", "B♭ 大调", "5 度圈", "奥斯卡金像奖"]
+    },
+    {
+      "id": "S-056",
+      "title": "Super Mario Bros. · Main Theme(超级马里奥 · 主旋律)",
+      "artist": "近藤浩治(Koji Kondo)· 任天堂",
+      "year": 1985,
+      "style": "游戏 · FC 红白机 8-bit 芯片音乐 / 平台跳跃",
+      "key": "C major(FC 招牌大调,简单明快)",
+      "scale": "自然大调 + 8-bit 方波 + 三波(三角波/方波/噪声)",
+      "time_signature": "4/4(马里奥跑步节奏 + 16 分跳跃旋律)",
+      "bpm": 168,
+      "duration_sec": 95,
+      "form": "A 段(主旋律 8 小节)-B 段(地下关 BGM 短暂变奏)-A 段回归-尾声(短)",
+      "chord_progression": [
+        {"section": "A 段(主旋律)", "roman": "C-G-F-C-G-F-C-G-C", "degree": "I-V-IV-I-V-IV-I-V-I 简单 3 和弦进行"},
+        {"section": "B 段(地下关短暂变奏)", "roman": "Am-Dm-G-C-Am-Dm-G-C", "degree": "i-iv-V-I-i-iv-V-I 小调对比"},
+        {"section": "A 段回归", "roman": "C-G-F-C-G-C", "degree": "I-V-IV-I-V-I 主调回归"},
+        {"section": "尾声", "roman": "C-G-C", "degree": "I-V-I 终止式"}
+      ],
+      "chord_count_est": 3,
+      "tags": ["游戏", "FC 红白机", "Super Mario", "近藤浩治", "8-bit 芯片", "C 大调", "平台跳跃", "任天堂"]
+    },
+    {
+      "id": "S-057",
+      "title": "Jai Ho(贫民窟的百万富翁 · 你赢了 / A.R. Rahman)",
+      "artist": "A.R. Rahman / 苏雷什·沃伊 / 丹妮丝(贫民窟的百万富翁 原声)",
+      "year": 2008,
+      "style": "印度 · Bollywood / 宝莱坞现代流行 + 印度古典",
+      "key": "D major(主段)+ 副段短暂离调到 Em",
+      "scale": "自然大调 + 印度 Raga 短暂引用(夜曲调式 Bhairavi 元素)+ 塔布拉鼓 + 西塔琴",
+      "time_signature": "4/4 + 7/8 复合(印度 Tintaal 12 拍 + Keherwa 8 拍)",
+      "bpm": 140,
+      "duration_sec": 325,
+      "form": "Intro(塔布拉鼓 + 西塔琴)-A 段(主旋律 + 合唱)-A' 段(变奏 + 电子)-B 段(对比转 Em)-A'' 段(回归 + 全合唱)-Outro(渐强收束)",
+      "chord_progression": [
+        {"section": "A 段(主旋律)", "roman": "D-A-Bm-G-D-A-G-D", "degree": "I-V-vi-IV-I-V-IV-I 5 度圈 + 6 4"},
+        {"section": "A' 段(变奏)", "roman": "D-A-Bm-G-D-F#m-Bm-G", "degree": "I-V-vi-IV-I-ii-vi-IV 加入 ii 色彩"},
+        {"section": "B 段(转 Em 对比)", "roman": "Em-C-G-D-Em-C-G-D", "degree": "i-bVI-bIII-bVII-i-bVI-bIII-bVII 短暂小调对比"},
+        {"section": "A'' 段(回归高潮)", "roman": "D-A-Bm-G-D-A-Bm-G-D", "degree": "I-V-vi-IV-I-V-vi-IV-I 全合唱 + 鼓点"},
+        {"section": "Outro", "roman": "D-A-D-G-A-D", "degree": "I-V-I-IV-V-I 终止式拉宽"}
+      ],
+      "chord_count_est": 5,
+      "tags": ["印度", "Bollywood", "A.R. Rahman", "贫民窟的百万富翁", "奥斯卡最佳原创", "D 大调", "塔布拉鼓", "西塔琴"]
+    },
+    {
+      "id": "S-058",
+      "title": "Water No Get Enemy(没有敌人像水一样)",
+      "artist": "Fela Kuti & Afrika '70",
+      "year": 1975,
+      "style": "非洲 · Afrobeat / 尼日利亚",
+      "key": "F minor(主段)+ 短暂大调对比",
+      "scale": "Dorian F(自然大调 G 调的 2 度平行小调)+ 持续 16 分 funk 律动 + 非洲多声鼓",
+      "time_signature": "4/4(Afrobeat 招牌 16 分 + 切分)",
+      "bpm": 112,
+      "duration_sec": 805,
+      "form": "Intro(非洲鼓 + 萨克斯)-A 段(主旋律 + 鼓循环)-B 段(对比转 F 大调)-A 段(回归 + 萨克斯独奏延伸)-Outro(渐弱)",
+      "chord_progression": [
+        {"section": "A 段(主旋律)", "roman": "Fm-Cm-Db-Fm-Gm-Cm-Fm-Cm", "degree": "i-vi-bII-i-ii-vi-i-vi 半音下行 + Dorian 招牌"},
+        {"section": "B 段(转 F 大调对比)", "roman": "F-C-Dm-Gm-C-F-C-F", "degree": "I-V-iv-ii-V-I-V-I 借大调释放"},
+        {"section": "A 段回归", "roman": "Fm-Cm-Db-Fm-Gm-Cm-Fm", "degree": "i-vi-bII-i-ii-vi-i 同 A 段"},
+        {"section": "Outro", "roman": "Fm-Cm-Fm", "degree": "i-vi-i 终止式"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["非洲", "Afrobeat", "Fela Kuti", "尼日利亚", "Fm 招牌", "萨克斯 + 非洲鼓", "16 分 funk 律动"]
+    },
+    {
+      "id": "S-059",
+      "title": "Garota de Ipanema(伊帕内玛的女孩 · The Girl from Ipanema)",
+      "artist": "Antônio Carlos Jobim(作曲)/ Stan Getz & João Gilberto 1964 录音",
+      "year": 1964,
+      "style": "拉美 · Bossa Nova / 巴西",
+      "key": "F major(原作 D♭ 大调,1964 录音版借 F 大调适配人声)",
+      "scale": "自然大调 + 9/13 和弦密集 + 4/4 bossa 招牌切分",
+      "time_signature": "4/4(经典 bossa 切分:吉他 16 分 1-2-3-4-1-2-3-4 模式 + 人声弱起)",
+      "bpm": 130,
+      "duration_sec": 320,
+      "form": "A 段(主旋律 8 小节 葡萄牙语)-A' 段(英语翻唱)-B 段(萨克斯独奏)-A'' 段(回归 + 渐弱)",
+      "chord_progression": [
+        {"section": "A 段(主旋律)", "roman": "Fmaj7-G#7(b13)-C#7(b9)-Fmaj7-Gm7-F#7(b9)-Bm7-Bbm7-Am7-D7-Gm7-C7", "degree": "I7-#Idim7-#IVdim7-I7-ii7-#Idim7-iii7-bIII7-ii7-V7-iii7-VI7 招牌下行 9/13 和弦链"},
+        {"section": "A' 段(英语版)", "roman": "Fmaj7-Gm7-F#7(b9)-Bm7-Bbm7-Am7-D7-Gm7-C7", "degree": "I7-ii7-#Idim7-iii7-bIII7-ii7-V7-iii7-VI7 简化"},
+        {"section": "B 段(萨克斯独奏)", "roman": "Fmaj7-Gm7-F#7-Bm7-Bbm7-Am7-D7-Gm7-C7", "degree": "同 A' 段变奏"},
+        {"section": "A'' 段(回归)", "roman": "Fmaj7-G#7(b13)-C#7(b9)-Fmaj7", "degree": "I7-#Idim7-#IVdim7-I7 终止式"}
+      ],
+      "chord_count_est": 9,
+      "tags": ["拉美", "Bossa Nova", "Jobim", "巴西", "F 大调", "9/13 和弦链", "萨克斯", "奥斯卡金像奖"]
+    },
+    {
+      "id": "S-060",
+      "title": "彝族舞曲(琵琶古曲 · 王惠然 1962 改编)",
+      "artist": "王惠然 1962 改编自彝族民间舞曲 / 琵琶独奏",
+      "year": 1962,
+      "style": "民乐 · 琵琶 / 中国西南少数民族",
+      "key": "D major(主段)+ 中段短暂转 A 羽调式(Am)",
+      "scale": "五声音阶(12356)+ 琵琶轮指 + 推拉吟揉 + 4/4 舞蹈节奏",
+      "time_signature": "4/4(慢-中-快-急 板式变化,彝族「三跺脚」节奏型)",
+      "bpm": 96,
+      "duration_sec": 360,
+      "form": "慢板(引子 + 散板)-A 段(主题 8 小节)-B 段(对比转 Am)-A' 段(变奏 + 轮指)-急板(快速 + 扫弦)-尾声(渐慢)",
+      "chord_progression": [
+        {"section": "慢板(引子 + 散板)", "roman": "D-A-Bm-F#m-G-D", "degree": "I-V-vi-ii-IV-I 5 度圈 + 散板"},
+        {"section": "A 段(主题)", "roman": "D-A-Bm-F#m-G-D-A-D", "degree": "I-V-vi-ii-IV-I-V-I 琵琶轮指主题"},
+        {"section": "B 段(对比转 Am)", "roman": "Am-Dm-E-Am-Dm-E-Am", "degree": "i-iv-V-i-iv-V-i 短暂小调对比"},
+        {"section": "A' 段(变奏 + 轮指)", "roman": "D-A-Bm-F#m-G-D-Bm-G", "degree": "I-V-vi-ii-IV-I-vi-IV 变奏 + 移位"},
+        {"section": "急板(快速 + 扫弦)", "roman": "D-A-D-G-D-A-D", "degree": "I-V-I-IV-I-V-I 急板扫弦 + 三跺脚"},
+        {"section": "尾声(渐慢)", "roman": "D-A-D", "degree": "I-V-I 终止式渐弱"}
+      ],
+      "chord_count_est": 6,
+      "tags": ["民乐", "琵琶", "王惠然", "彝族", "1962", "D 大调", "轮指", "三跺脚", "西南少数民族"]
+    }
+  ]
+}

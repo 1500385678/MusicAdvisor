@@ -1,6 +1,9 @@
 .DS_Store
 *.log
 !.Log/
+# .plan/ 每日临时计划文件不入 commit(完成后删),保留 README.md 说明
+.plan/*.md
+!.plan/README.md
 node_modules/
 .venv/
 __pycache__/

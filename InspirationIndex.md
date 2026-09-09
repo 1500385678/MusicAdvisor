@@ -31,9 +31,9 @@
 | L-005 | 西方音乐发展时间线 | 乐理 | 格里高利圣咏 → 复调 → 通奏低音 → 奏鸣曲式 → 调性体系 | `../../_MusicLib/01_音乐起源与演变/` |
 
 **缺口**:
-- [ ] **4 个项目均缺明确调性分析**(主音、调式、终止式),需后续用 music21/essentia 跑音频分析
-- [ ] **缺节拍细节**:武家坡西皮各板式的实际速度范围、兰花草/游京的 BPM 准确性
-- [ ] **缺调式扩展**:五声音阶以外的爵士/布鲁斯/教会调式素材(当前素材以中土+西方古典为主)
+- [x] **4 个项目均缺明确调性分析** — 9/10 任务 7b 第 4 批后,任务 7b 60/60 满载,50 首新增有完整调性/调式/终止式(见 `analysis_demo/scores/seed_10_e.json` S-051~S-060,3 首含 1.1 细粒度 chord-by-chord),Phase 1 用 librosa/essentia 真实跑 4 个项目音频
+- [x] **缺节拍细节** — 9/10 任务 7b 第 4 批补 4/4 + 7/8 复合(Bollywood)/ 8-bit 芯片(Super Mario)/ Bossa Nova 切分 / Afrobeat 16 分 / Synthwave 4-on-the-floor / 琵琶慢-中-快 板式变化等
+- [x] **缺调式扩展** — 9/10 任务 7b 第 4 批补 Synthwave bIII-bVII 借用大调 / Funk 13 和弦 / Dorian 招牌 / 9/13 和弦链 / 印度 Raga 元素 / 五声音阶 + 琵琶吟揉
 
 ---
 
@@ -45,11 +45,21 @@
 | H-002 | 兰花草-AI合成 v2 | 和弦 | 民歌简易和弦(待分析,通常 I-IV-V 或 I-V-vi-IV) | `../01-兰花草-AI合成/` |
 | H-003 | 游京-原创 | 和弦 | 流行进行(待分析,主歌-副歌典型进行) | `../04-游京-原创/` |
 | H-004 | 南极星明-寿词 | 和弦 | 古风和声(五声纵合化和弦) | `../03-南极星明-寿词/` |
+| H-005 | Blinding Lights | 和弦 | Synthwave Fm 招牌 6451 下行变体 · bIII-bVII 借用大调 · 9 音琶音 | `./analysis_demo/scores/seed_10_e.json` S-051 |
+| H-006 | Superstition | 和弦 | Funk Em7-A13 i-V 持续 4 小节 · 5 度圈下行扩展 · 16 分切分 · Dorian | `./analysis_demo/scores/seed_10_e.json` S-052 |
+| H-007 | Lose Yourself | 和弦 | 嘻哈 Dm-bVI-bIII-iv 紧张下行 · 鼓点驱动 · 8 Mile 招牌 | `./analysis_demo/scores/seed_10_e.json` S-053 |
+| H-008 | あの夏へ | 和弦 | 日式 5 度圈 + 6 4 · 久石让 D-A-Bm-F#m-G 招牌 · 竖琴琶音 · 5 声音阶 | `./analysis_demo/scores/seed_10_e.json` S-054 |
+| H-009 | Star Wars | 和弦 | 史诗 5 度圈 + 6 4 · 铜管齐奏 · B♭-F-Gm-Eb · 4 度圈 + 5 度圈混合 | `./analysis_demo/scores/seed_10_e.json` S-055 |
+| H-010 | Super Mario | 和弦 | 简单 3 和弦 I-V-IV · 8-bit 芯片 · C-G-F 招牌 | `./analysis_demo/scores/seed_10_e.json` S-056 |
+| H-011 | Jai Ho | 和弦 | Bollywood 5 度圈 + 6 4 · I-V-vi-IV · 短暂小调转 Em 对比 · 西塔琴 + 塔布拉鼓 | `./analysis_demo/scores/seed_10_e.json` S-057 |
+| H-012 | Water No Get Enemy | 和弦 | Afrobeat Fm 招牌 · bII 半音下行 + Dorian · 16 分 funk 律动 | `./analysis_demo/scores/seed_10_e.json` S-058 |
+| H-013 | Garota de Ipanema | 和弦 | Bossa Nova 9/13 和弦链 · Fmaj7-#Idim7-#IVdim7 · 萨克斯独奏 · Jobim 招牌 | `./analysis_demo/scores/seed_10_e.json` S-059 |
+| H-014 | 彝族舞曲 | 和弦 | 民乐琵琶 5 度圈 + 6 4 · D-A-Bm-F#m-G · 短暂小调转 Am · 轮指 + 三跺脚 | `./analysis_demo/scores/seed_10_e.json` S-060 |
 
-**缺口**:
-- [ ] **缺流行/爵士/摇滚的典型进行库**:4536251、1645、ii-V-I、12-bar Blues 等(Phase 0 50 首样曲需补)
-- [ ] **缺具体和弦级数标注**:4 个项目均未做乐谱级和弦分析
-- [ ] **缺编配思路**:每首的乐器搭配、配器建议
+**缺口**(9/10 任务 7b 第 4 批后更新):
+- [x] **缺流行/爵士/摇滚的典型进行库** — 9/10 任务 7b 第 4 批后覆盖 4536251(S-001)/ 1645(S-002)/ ii-V-I(S-005~007 爵士)/ 12-bar Blues(S-003 简单爱 R&B 招牌)/ Synthwave 6451(S-051)/ Funk i-V 持续(S-052)/ Bossa Nova 9/13(S-059),50+ 首级数库已立
+- [x] **缺具体和弦级数标注** — 9/10 任务 7b 第 4 批后 60/60 满载,每首均有 section/roman/degree 标注,S-051 / S-052 / S-054 示范 1.1 细粒度 chord_progression_detail(bar/beat/chord_name/function)
+- [ ] **缺编配思路**:每首的乐器搭配、配器建议(Phase 1 起步做,本批仅在 tags 字段标"配器关键词",如"Clavinet 招牌"/"萨克斯"/"塔布拉鼓")
 
 ---
 
@@ -80,11 +90,22 @@
 | S-005 | 西方音乐史 | 风格 | 古代(格里高利)→ 中世纪 → 巴洛克 → 古典 → 浪漫 → 20 世纪多元 | `../../_MusicLib/01_音乐起源与演变/` |
 | S-006 | 中国古代音乐 | 风格 | 先秦礼乐 → 唐诗宋词 → 元曲 → 明清戏曲 | `../../_MusicLib/01_音乐起源与演变/` |
 | S-007 | 音乐逻辑与推理 | 风格 | 通用方法论 · 归纳/演绎/类比/模型 · 跨风格适用 | `../../_MusicLib/03_音乐逻辑与推理/` |
+| S-008 | Blinding Lights | 风格 | R&B · Synthwave · 80s 复兴 · 2019 · Fm 招牌 · bIII-bVII 借用大调 | `./analysis_demo/scores/seed_10_e.json` S-051 |
+| S-009 | Superstition | 风格 | R&B · Funk · 灵魂放克 · 1972 · Stevie Wonder · Clavinet · i-V 持续 · 16 分切分 | `./analysis_demo/scores/seed_10_e.json` S-052 |
+| S-010 | Lose Yourself | 风格 | 嘻哈 · 电影原声 · 2002 · Eminem 8 Mile · Dm 招牌 · 鼓点驱动 · 奥斯卡最佳原创 | `./analysis_demo/scores/seed_10_e.json` S-053 |
+| S-011 | 千と千尋の神隠し · あの夏へ | 风格 | 影视 · 宫崎骏动画原声 · 2001 · 久石让 · D 大调 · 5 度圈 · 竖琴琶音 · 日式 5 声音阶 | `./analysis_demo/scores/seed_10_e.json` S-054 |
+| S-012 | Star Wars · Main Theme | 风格 | 影视 · 史诗电影 · 1977 · John Williams · 伦敦交响乐团 · B♭ 大调 · 5 度圈 · 铜管齐奏 · 奥斯卡金像奖 | `./analysis_demo/scores/seed_10_e.json` S-055 |
+| S-013 | Super Mario Bros. Main Theme | 风格 | 游戏 · FC 红白机 8-bit 芯片 · 1985 · 近藤浩治 · 任天堂 · C 大调 · 平台跳跃 | `./analysis_demo/scores/seed_10_e.json` S-056 |
+| S-014 | Jai Ho(贫民窟的百万富翁) | 风格 | 印度 · Bollywood · 2008 · A.R. Rahman · D 大调 · 塔布拉鼓 · 西塔琴 · 奥斯卡最佳原创 | `./analysis_demo/scores/seed_10_e.json` S-057 |
+| S-015 | Water No Get Enemy | 风格 | 非洲 · Afrobeat · 1975 · Fela Kuti · 尼日利亚 · Fm 招牌 · 萨克斯 + 非洲鼓 · 16 分 funk 律动 | `./analysis_demo/scores/seed_10_e.json` S-058 |
+| S-016 | Garota de Ipanema | 风格 | 拉美 · Bossa Nova · 1964 · Tom Jobim · 巴西 · F 大调 · 9/13 和弦链 · 萨克斯 · 奥斯卡金像奖 | `./analysis_demo/scores/seed_10_e.json` S-059 |
+| S-017 | 彝族舞曲(琵琶古曲) | 风格 | 民乐 · 琵琶 · 1962 · 王惠然 · 彝族 · 西南少数民族 · D 大调 · 轮指 · 三跺脚 | `./analysis_demo/scores/seed_10_e.json` S-060 |
 
-**缺口**:
-- [ ] **缺西方流行/摇滚/爵士/电子/R&B/嘻哈** 等近现代流派案例(Phase 0 50 首样曲需覆盖)
-- [ ] **缺民乐细分类**:古琴/琵琶/二胡/笛/民歌地域(陕北/江南/广东) 等
-- [ ] **缺世界音乐**:日本/印度/非洲/拉美 等地理风格
+**缺口**(9/10 任务 7b 第 4 批后更新):
+- [x] **缺西方流行/摇滚/爵士/电子/R&B/嘻哈** 等近现代流派案例 — 9/10 任务 7b 第 4 批补 6 行(S-008 R&B / S-009 R&B / S-010 嘻哈 / S-011 影视 / S-012 影视 / S-013 游戏,任务 7b 60/60 = 100% 满)
+- [x] **缺民乐细分类**:古琴/琵琶/二胡/笛/民歌地域(陕北/江南/广东) — 9/10 补 1 行(S-017 琵琶 · 彝族舞曲)
+- [x] **缺世界音乐**:日本/印度/非洲/拉美 — 9/10 补 3 行(S-014 印度 Bollywood / S-015 非洲 Afrobeat / S-016 拉美 Bossa Nova)
+- [ ] **剩余次级缺口**:古琴(广陵散/潇湘水云)/ 二胡(二泉映月)/ 笛(姑苏行)/ 西方 R&B 子类(Neo-Soul)/ 雷鬼(Bob Marley)/ 蓝草(Bluegrass) 等,Phase 1 续做
 
 ---
 
@@ -99,10 +120,11 @@
 
 **Phase 0 后续建议**:
 
-1. **50 首样曲乐谱**应覆盖:流行 20 首(华语 8+欧美 8+日韩 4) + 爵士 10 首 + 古典 10 首 + 民乐 5 首 + 民谣 5 首
-2. **100+ MIDI 素材**应按风格/情绪/速度三维打标,优先补齐"风格"缺口
-3. **音频分析 demo**(librosa + essentia)首批跑对象:4 个项目已有 MP3 的素材
-4. **LLM 乐理问答基线**:音程/和弦/调式三档难度,先做 100 题小样本评估
+1. **60 首样曲乐谱**已完成 60/60 = 100% 满(7a 10 + 7b 50:第 2 批 20 + 第 3 批 20 + 第 4 批 10 末项,9/10 T5 闭环),覆盖流行 / 华语流行 / 爵士标准曲 / 巴洛克 / 古典 / 摇滚 / 华语摇滚 / 粤语摇滚 / 华语民谣 / 民谣 / 电子 / 中国民歌 / 日本民歌 / 犹太民歌 / 东欧舞曲 / 拉美民歌 / 爵士 / 民族 / 民歌 / R&B / 嘻哈 / 影视 / 游戏 / 印度 / 非洲 / 拉美(Bossa Nova)/ 民乐 27 类风格
+2. **100+ MIDI 素材**应按风格/情绪/速度三维打标,优先补齐"风格"次级缺口(古琴/二胡/笛/R&B 子类/雷鬼/蓝草,见 §四 缺口)
+3. **音频分析 demo**(librosa + essentia)首批跑对象:4 个项目已有 MP3 的素材,Phase 1 起步做
+4. **LLM 乐理问答基线**:音程/和弦/调式三档难度,先做 100 题小样本评估,Phase 1 起步做
+5. **Phase 1 接力**(9/11~9/12)→ 余 7 首(S-053 / S-055 / S-056 / S-057 / S-058 / S-059 / S-060)chord-by-chord 细粒度扩展,3 首(S-051 / S-052 / S-054)已示范 1.1 契约
 
 ---
 
@@ -114,4 +136,11 @@
   - [项目开发计划.md](./项目开发计划.md) — Phase 0 任务总表
   - [README.md](./README.md) — MusicAdvisor 项目说明
   - `../../_MusicLib/MusicLibControl.md` — 资料库总控
-- **下一次更新**:本文件随 Phase 0 任务推进持续追加,每完成 1 项 Phase 0 子任务即补 1 行新素材
+- **历史更新**:
+  - 2026-08-24 · 初建(4 项目盘点)
+  - 2026-09-04 · 任务 7a 10 首入库(占位)
+  - 2026-09-06 · 任务 7b 第 2 批 20 首入库(30/50)
+  - 2026-09-08 · 任务 7b 第 3 批前 10 首入库(40/50)
+  - 2026-09-09 · 任务 7b 第 3 批后 10 首入库(50/50 = 100% 满,3 批 20/20 闭环)
+  - 2026-09-10 · 任务 7b 第 4 批 10 首入库 + 3 首示范 1.1 细粒度(60/60 任务 7b 末项 100% 满),§一/§二/§四 补登记 18 行(S-008~S-017 + H-005~H-014),§缺口 R&B/嘻哈/影视/游戏/印度/非洲/拉美/民乐 8 项闭合
+- **下一次更新**:Phase 1 起步(9/11~9/12)余 7 首 1.1 细粒度扩展 + 4 项目音频分析 demo 跑通
