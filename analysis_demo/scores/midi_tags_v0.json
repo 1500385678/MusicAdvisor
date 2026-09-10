@@ -1,0 +1,385 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "schema_intro": "MusicAdvisor · Phase 0 任务 8 起步: MIDI 素材标签体系骨架 v0(风格 / 情绪 / 节奏 BPM / 调性 四维 + 5 示例),1.0 契约,Phase 1 续做 100+ 条目按此 schema 入库;沿用 seed_10_e.json _meta 风格,字段最小可入库、不绑死真实 MIDI 文件(版权风险,见 项目开发计划.md §8)",
+    "created_at": "2026-09-11",
+    "created_by": "19-音乐-Music 顾问(T5 03:00 启动 Phase 0 任务 8,9/11 02:00 巡检 P0 #1 启动项承接,T4 第 16 个工作日 0 输出 T5 自救,9/11 ~ 9/13 收官期 2 天窗口 30 分钟闭环)",
+    "source": "项目开发计划.md §5 任务 8 · .Log/巡检-音乐-20260911.md P0 #1 启动项 · .plan/20260911.md T5 自建 · InspirationIndex.md §四 风格维度 · analysis_demo/scores/seed_10_e.json 1.0/1.1 契约 · README.md 双计划关系",
+    "scope": "1) 4 维标签字典(风格 16 一级 / 情绪 8 类 / BPM 5 档 / 调性 24 项)2) 5 个示例条目(M-001 ~ M-005,流行抒情 / 爵士摇摆 / 电子合成 / 古典奏鸣 / 民乐琵琶,覆盖 5 类风格作 schema 锚点)3) Phase 1 续做 95+ 条目按此契约入库到 midi_batch_10a/10b/... 批次文件",
+    "usage": "score_seed.py --batch midi_tags_v0 加载 + 校验 5 示例 / Phase 1 MIDI 素材库 1 万条最小版(任务 Phase 1)按此 schema 入库 / 和弦建议器 / 风格拆解 demo 跨示例查询 / InspirationIndex.md §四 补登记 1 行 MIDI 标签字典",
+    "phase": "Phase 0 末批 + Phase 1 起步(标签体系骨架,100+ MIDI 真实入库 Phase 1 续做)",
+    "design_principles": {
+      "原则_1_版权优先": "骨架不绑死真实 MIDI 文件,只固定 schema 锚点;真实 MIDI 用 CC 协议 / 用户自有(见 项目开发计划.md §8 风险)",
+      "原则_2_可扩展": "四级标签字典(风格一级 + 二级),新增风格仅在 _addendum 字段加 patch,不破坏 v0 schema",
+      "原则_3_跨示例一致": "5 个示例覆盖 5 类风格 + 5 档 BPM + 8 种情绪中 5 种 + 24 调性中 5 种,让 Phase 1 入库时 schema 边界可验证",
+      "原则_4_查得动": "标签字典每个值有 chinese_name + english_name + description 三字段,Phase 1 Web 端 UI 中文显示、API 层英文 code"
+    },
+    "batch_relationship": "M-001 ~ M-005,本批次仅 5 条 schema 锚点,Phase 1 续做 M-006 ~ M-105 = 100 条(批次划分 10×10 = 10 批,沿用任务 7 seed_10 命名)",
+    "split_strategy": {
+      "day_1": "2026-09-11 T5(本份):标签字典 4 维 + 5 示例 schema 锚点 → midi_tags_v0.json",
+      "day_2_to_30": "2026-09-12 ~ 2026-10-10(Phase 1 起步)续做 M-006 ~ M-105,按 10×10 批次入库"
+    },
+    "not_include": [
+      "真实 MIDI 文件(.mid 二进制,版权风险,见 项目开发计划.md §8)",
+      "音频回放 URL(Phase 1 用 Tone.js 加载本地 .mid)",
+      "BPM 微浮动 / swing 比例(Phase 1 真实分析续做)",
+      "MIDI 0/1/2 格式区分(Phase 1 续做,本骨架仅 Type-1 标准)"
+    ]
+  },
+
+  "tag_dimensions": {
+
+    "style": {
+      "schema": "一级 16 类(8 大类 + 8 细分) + 二级 30+ 标签,Phase 1 续做可扩三级",
+      "scope_note": "覆盖任务 7b 60 首已落风格(见 analysis_demo/scores/seed_10_e.json _meta.scope) + 任务 8 100+ MIDI 续做空间",
+      "taxonomy": [
+        {
+          "id": "ST-01",
+          "name_zh": "流行",
+          "name_en": "Pop",
+          "description": "主歌-副歌 ABABCB 典型曲式 · 4/4 拍 · BPM 100-130 · 1645 / 4536251 经典进行",
+          "subtags": ["抒情流行", "舞曲流行", "独立流行", "成人当代"]
+        },
+        {
+          "id": "ST-02",
+          "name_zh": "摇滚",
+          "name_en": "Rock",
+          "description": "电吉他/鼓/贝斯三大件 · 4/4 拍 · BPM 110-150 · I-IV-V 强力和弦 / 12-bar Blues 衍生",
+          "subtags": ["经典摇滚", "另类摇滚", "朋克", "金属", "后摇"]
+        },
+        {
+          "id": "ST-03",
+          "name_zh": "爵士",
+          "name_en": "Jazz",
+          "description": "ii-V-I 进行 / 7 和弦链 / 复杂拍号(swing 8 分)· BPM 80-180 · 即兴段落",
+          "subtags": ["Swing", "Bebop", "Cool Jazz", "Fusion", "Bossa Nova"]
+        },
+        {
+          "id": "ST-04",
+          "name_zh": "电子",
+          "name_en": "Electronic",
+          "description": "合成器主导 · 4-on-the-floor 底鼓 · BPM 120-140 · 6451 Synthwave / 9 和弦琶音",
+          "subtags": ["Synthwave", "House", "Techno", "Ambient", "Drum & Bass", "Chiptune(8-bit)"]
+        },
+        {
+          "id": "ST-05",
+          "name_zh": "R&B / 灵魂",
+          "name_en": "R&B / Soul",
+          "description": "9/11/13 和弦链 · 16 分律动 · BPM 60-100 · Dorian / Mixolydian 调式",
+          "subtags": ["Neo-Soul", "Funk", "Gospel", "Contemporary R&B"]
+        },
+        {
+          "id": "ST-06",
+          "name_zh": "嘻哈",
+          "name_en": "Hip-hop",
+          "description": "鼓点驱动 · bVI-bIII 下行 · BPM 80-100 · 采样循环 + 念白",
+          "subtags": ["东岸", "西岸", "Trap", "Boom Bap", "Lofi Hip-hop"]
+        },
+        {
+          "id": "ST-07",
+          "name_zh": "古典(浪漫 / 印象)",
+          "name_en": "Classical(Romantic / Impressionist)",
+          "description": "奏鸣曲式 / 变奏曲式 / 交响诗 · 拍号变化 · 4-12 分钟长篇",
+          "subtags": ["奏鸣曲", "交响乐", "协奏曲", "练习曲", "前奏曲"]
+        },
+        {
+          "id": "ST-08",
+          "name_zh": "巴洛克",
+          "name_en": "Baroque",
+          "description": "通奏低音 · 对位法 · 4/4 拍 · 赋格 / 卡农 / 帕萨卡利亚",
+          "subtags": ["赋格", "卡农", "托卡塔", "帕萨卡利亚"]
+        },
+        {
+          "id": "ST-09",
+          "name_zh": "民族 / 民间",
+          "name_en": "Folk / Ethnic",
+          "description": "五声音阶 / 自然小调 / 板式变化 · 中西并存 · BPM 60-130",
+          "subtags": ["中国民乐(古风)", "欧美民谣", "凯尔特", "日本民谣", "民族唱腔"]
+        },
+        {
+          "id": "ST-10",
+          "name_zh": "影视配乐",
+          "name_en": "Film Score",
+          "description": "交响 + 主题动机 · 5 度圈 + 6 4 · 铜管齐奏 · 情绪驱动型",
+          "subtags": ["史诗", "悬疑", "治愈", "儿童", "战争"]
+        },
+        {
+          "id": "ST-11",
+          "name_zh": "游戏音乐",
+          "name_en": "Game Music",
+          "description": "循环结构 · 8-bit / 管弦 / 电子混搭 · BPM 100-180 · 战斗 / 探索 / 剧情",
+          "subtags": ["RPG", "ACT 战斗", "AVG 剧情", "像素 8-bit", "Boss 战"]
+        },
+        {
+          "id": "ST-12",
+          "name_zh": "印度",
+          "name_en": "Indian / Bollywood",
+          "description": "Raga 调式 + 7/8 复合拍 · 西塔琴 + 塔布拉鼓 · 5 度圈 + 6 4 变体",
+          "subtags": ["Hindustani 古典", "Carnatic", "Bollywood 流行", "Bhangra"]
+        },
+        {
+          "id": "ST-13",
+          "name_zh": "非洲",
+          "name_en": "African",
+          "description": "Polyrhythm 多声部节奏 · 4/4 + 12/8 叠加 · bII 半音下行 + Dorian",
+          "subtags": ["Afrobeat", "Highlife", "Mbalax", "传统鼓乐"]
+        },
+        {
+          "id": "ST-14",
+          "name_zh": "拉美",
+          "name_en": "Latin American",
+          "description": "Bossa Nova / 探戈 / 伦巴 · 9/13 和弦链 · BPM 80-180 · 切分节奏",
+          "subtags": ["Bossa Nova", "Tango", "Salsa", "Samba", "Son"]
+        },
+        {
+          "id": "ST-15",
+          "name_zh": "民乐(中国)",
+          "name_en": "Chinese Traditional",
+          "description": "五声音阶 + 琵琶/古筝/二胡 · 板式变化(散-慢-中-快)· 调式多变",
+          "subtags": ["琵琶", "古筝", "二胡", "笛箫", "戏曲(京剧/昆曲)"]
+        },
+        {
+          "id": "ST-16",
+          "name_zh": "新世纪 / 冥想",
+          "name_en": "New Age / Ambient",
+          "description": "电子 + 古典 + 自然采样 · BPM 60-90 · pad 持续音 + 慢演变",
+          "subtags": ["Ambient", "Meditation", "Solo Piano", "Nature Soundscape"]
+        }
+      ]
+    },
+
+    "mood": {
+      "schema": "8 大类情绪,Phase 1 续做可加 intensity 副字段(弱 / 中 / 强)",
+      "scope_note": "从任务 7b 60 首 tags 字段提取的 8 个高频情绪维度(快乐 / 忧郁 / 紧张 / 放松 / 史诗 / 亲密 / 神秘 / 激励)",
+      "taxonomy": [
+        {
+          "id": "MO-01",
+          "name_zh": "快乐",
+          "name_en": "Joyful",
+          "description": "明亮大调 + 快速律动 + 切分节奏;典型场景:舞曲流行 / 儿童游戏",
+          "use_cases": ["舞曲", "卡通配乐", "节日庆典"]
+        },
+        {
+          "id": "MO-02",
+          "name_zh": "忧郁",
+          "name_en": "Melancholic",
+          "description": "小调 + 慢板 + 持续 pad;典型场景:抒情流行 / 独白钢琴",
+          "use_cases": ["分手歌", "怀旧", "雨夜场景"]
+        },
+        {
+          "id": "MO-03",
+          "name_zh": "紧张",
+          "name_en": "Tense",
+          "description": "不协和音 + 半音下行 + 增四度;典型场景:悬疑影视 / Boss 战",
+          "use_cases": ["悬疑", "恐怖", "追逐"]
+        },
+        {
+          "id": "MO-04",
+          "name_zh": "放松",
+          "name_en": "Relaxed",
+          "description": "自然大调 + 中速 + 简单和弦;典型场景:Lofi / 咖啡馆 / Spa",
+          "use_cases": ["咖啡 BGM", "瑜伽", "睡前"]
+        },
+        {
+          "id": "MO-05",
+          "name_zh": "史诗",
+          "name_en": "Epic",
+          "description": "铜管齐奏 + 5 度圈 + 鼓点 + 合唱;典型场景:影视高潮 / 战争",
+          "use_cases": ["影视配乐", "广告", "游戏 BOSS 战"]
+        },
+        {
+          "id": "MO-06",
+          "name_zh": "亲密",
+          "name_en": "Intimate",
+          "description": "小编制 + 弱力度 + 慢板;典型场景:情歌 / 室内乐",
+          "use_cases": ["情歌", "咖啡对话", "婚礼"]
+        },
+        {
+          "id": "MO-07",
+          "name_zh": "神秘",
+          "name_en": "Mysterious",
+          "description": "调式模糊 + 五声音阶 + pad 飘移;典型场景:东方 RPG / 史诗前奏",
+          "use_cases": ["游戏探索", "异世界", "宗教氛围"]
+        },
+        {
+          "id": "MO-08",
+          "name_zh": "激励",
+          "name_en": "Energetic",
+          "description": "快板 + 强力和弦 + 鼓点密集;典型场景:运动 / 演讲 / 摇滚",
+          "use_cases": ["运动 BGM", "演讲", "广告燃点"]
+        }
+      ]
+    },
+
+    "tempo": {
+      "schema": "5 档 BPM 区间,按古典 / 流行 / 电子 三场景差异化(沿用 InspirationIndex.md §一 速度分类)",
+      "scope_note": "覆盖任务 7b 60 首全部 BPM 范围(50 ~ 200),Phase 1 续做 100+ MIDI 同分布",
+      "taxonomy": [
+        {
+          "id": "TP-01",
+          "name_zh": "慢板",
+          "name_en": "Slow",
+          "bpm_range": "< 70",
+          "use_cases": ["抒情", "挽歌", "催眠", "民谣"],
+          "示例": "Adagio for Strings(Samuel Barber, ~60 BPM)"
+        },
+        {
+          "id": "TP-02",
+          "name_zh": "中速",
+          "name_en": "Moderate",
+          "bpm_range": "70-100",
+          "use_cases": ["民谣", "R&B", "Bossa Nova", "部分流行"],
+          "示例": "Wonderwall(Oasis, ~87 BPM)"
+        },
+        {
+          "id": "TP-03",
+          "name_zh": "流行速度",
+          "name_en": "Pop",
+          "bpm_range": "100-130",
+          "use_cases": ["主流流行", "House", "K-pop", "R&B 多数"],
+          "示例": "Shape of You(Ed Sheeran, ~96 BPM, 卡 TP-02 ~ TP-03 边界)"
+        },
+        {
+          "id": "TP-04",
+          "name_zh": "快板",
+          "name_en": "Fast",
+          "bpm_range": "130-170",
+          "use_cases": ["摇滚", "朋克", "Bebop", "游戏 BOSS 战"],
+          "示例": "Superstition(Stevie Wonder, ~100 BPM 边界,Blinding Lights ~171 BPM 招牌)"
+        },
+        {
+          "id": "TP-05",
+          "name_zh": "极快",
+          "name_en": "Prestissimo",
+          "bpm_range": ">= 170",
+          "use_cases": ["Drum & Bass", "Speedcore", "古典急板"],
+          "示例": "Flight of the Bumblebee(Rimsky-Korsakov, ~180+ BPM)"
+        }
+      ]
+    },
+
+    "key": {
+      "schema": "24 个调性(12 大调 + 12 小调),按音名升降号排序",
+      "scope_note": "覆盖任务 7b 60 首全部调性(任务 7b 验证 = 24/24 全覆盖),Phase 1 续做 100+ MIDI 同分布",
+      "taxonomy": [
+        { "id": "KY-01", "name_zh": "C 大调", "name_en": "C major", "signature": "无升降", "relative_minor": "a minor" },
+        { "id": "KY-02", "name_zh": "a 小调", "name_en": "A minor", "signature": "无升降", "relative_major": "C major" },
+        { "id": "KY-03", "name_zh": "G 大调", "name_en": "G major", "signature": "1 升(F#)", "relative_minor": "e minor" },
+        { "id": "KY-04", "name_zh": "e 小调", "name_en": "E minor", "signature": "1 升(F#)", "relative_major": "G major" },
+        { "id": "KY-05", "name_zh": "D 大调", "name_en": "D major", "signature": "2 升(F#C#)", "relative_minor": "b minor" },
+        { "id": "KY-06", "name_zh": "b 小调", "name_en": "B minor", "signature": "2 升(F#C#)", "relative_major": "D major" },
+        { "id": "KY-07", "name_zh": "A 大调", "name_en": "A major", "signature": "3 升(F#C#G#)", "relative_minor": "f# minor" },
+        { "id": "KY-08", "name_zh": "f# 小调", "name_en": "F# minor", "signature": "3 升(F#C#G#)", "relative_major": "A major" },
+        { "id": "KY-09", "name_zh": "E 大调", "name_en": "E major", "signature": "4 升(F#C#G#D#)", "relative_minor": "c# minor" },
+        { "id": "KY-10", "name_zh": "c# 小调", "name_en": "C# minor", "signature": "4 升(F#C#G#D#)", "relative_major": "E major" },
+        { "id": "KY-11", "name_zh": "B 大调", "name_en": "B major", "signature": "5 升(F#C#G#D#A#)", "relative_minor": "g# minor" },
+        { "id": "KY-12", "name_zh": "g# 小调", "name_en": "G# minor", "signature": "5 升(F#C#G#D#A#)", "relative_major": "B major" },
+        { "id": "KY-13", "name_zh": "F 大调", "name_en": "F major", "signature": "1 降(Bb)", "relative_minor": "d minor" },
+        { "id": "KY-14", "name_zh": "d 小调", "name_en": "D minor", "signature": "1 降(Bb)", "relative_major": "F major" },
+        { "id": "KY-15", "name_zh": "Bb 大调", "name_en": "Bb major", "signature": "2 降(BbEb)", "relative_minor": "g minor" },
+        { "id": "KY-16", "name_zh": "g 小调", "name_en": "G minor", "signature": "2 降(BbEb)", "relative_major": "Bb major" },
+        { "id": "KY-17", "name_zh": "Eb 大调", "name_en": "Eb major", "signature": "3 降(BbEbAb)", "relative_minor": "c minor" },
+        { "id": "KY-18", "name_zh": "c 小调", "name_en": "C minor", "signature": "3 降(BbEbAb)", "relative_major": "Eb major" },
+        { "id": "KY-19", "name_zh": "Ab 大调", "name_en": "Ab major", "signature": "4 降(BbEbAbDb)", "relative_minor": "f minor" },
+        { "id": "KY-20", "name_zh": "f 小调", "name_en": "F minor", "signature": "4 降(BbEbAbDb)", "relative_major": "Ab major" },
+        { "id": "KY-21", "name_zh": "Db 大调", "name_en": "Db major", "signature": "5 降(BbEbAbDbGb)", "relative_minor": "bb minor" },
+        { "id": "KY-22", "name_zh": "bb 小调", "name_en": "Bb minor", "signature": "5 降(BbEbAbDbGb)", "relative_major": "Db major" },
+        { "id": "KY-23", "name_zh": "Gb 大调", "name_en": "Gb major", "signature": "6 降(BbEbAbDbGbCb)", "relative_minor": "eb minor" },
+        { "id": "KY-24", "name_zh": "eb 小调", "name_en": "Eb minor", "signature": "6 降(BbEbAbDbGbCb)", "relative_major": "Gb major" }
+      ]
+    }
+  },
+
+  "examples": [
+    {
+      "id": "M-001",
+      "title": "Pop Ballad Sketch",
+      "style_primary": "ST-01 流行",
+      "style_subtag": "抒情流行",
+      "mood": ["MO-02 忧郁", "MO-06 亲密"],
+      "tempo": "TP-02 中速",
+      "bpm": 72,
+      "key": "KY-14 d minor",
+      "scale": "自然小调 + Dorian 借",
+      "time_signature": "4/4",
+      "duration_sec": 240,
+      "tag_count_total": 4,
+      "tags": ["抒情", "钢琴 + 弦乐", "慢板", "情歌"],
+      "use_case_demo": "和声建议器输入:d minor + 亲密 → 候选 5-8 套;本 MIDI 作 query 基准"
+    },
+    {
+      "id": "M-002",
+      "title": "Jazz Swing Head",
+      "style_primary": "ST-03 爵士",
+      "style_subtag": "Swing",
+      "mood": ["MO-04 放松", "MO-08 激励"],
+      "tempo": "TP-04 快板",
+      "bpm": 145,
+      "key": "KY-15 Bb major",
+      "scale": "Bb Mixolydian + 蓝调音",
+      "time_signature": "4/4(swing 8 分)",
+      "duration_sec": 200,
+      "tag_count_total": 4,
+      "tags": ["ii-V-I 招牌", "7 和弦链", "swing 律动", "Blues 衍生"],
+      "use_case_demo": "风格拆解 demo:上传 → 自动识别 ii-V-I + swing 律动 → 生成'Bb 调 swing 头'乐谱"
+    },
+    {
+      "id": "M-003",
+      "title": "Synthwave Arp",
+      "style_primary": "ST-04 电子",
+      "style_subtag": "Synthwave",
+      "mood": ["MO-07 神秘", "MO-08 激励"],
+      "tempo": "TP-04 快板",
+      "bpm": 118,
+      "key": "KY-20 f minor",
+      "scale": "自然小调 + bIII-bVII 借用大调",
+      "time_signature": "4/4(4-on-the-floor)",
+      "duration_sec": 200,
+      "tag_count_total": 4,
+      "tags": ["Synthwave 招牌", "6451 下行", "合成器琶音", "80s 复兴"],
+      "use_case_demo": "和弦建议器:f minor + 神秘 → 返回 8 套含 bIII-bVII 借用大调"
+    },
+    {
+      "id": "M-004",
+      "title": "Classical Sonata Exposition",
+      "style_primary": "ST-07 古典(浪漫 / 印象)",
+      "style_subtag": "奏鸣曲",
+      "mood": ["MO-05 史诗", "MO-03 紧张"],
+      "tempo": "TP-03 流行速度",
+      "bpm": 112,
+      "key": "KY-13 F major",
+      "scale": "F 大调 + 属调 C 大调对比",
+      "time_signature": "4/4(部分 3/4 拍变化)",
+      "duration_sec": 360,
+      "tag_count_total": 4,
+      "tags": ["奏鸣曲式", "呈示部", "主部主题 + 副部主题", "F → C 转调"],
+      "use_case_demo": "曲式拆解 demo:识别呈示部 / 发展部 / 再现部三段,标主题动机"
+    },
+    {
+      "id": "M-005",
+      "title": "民乐琵琶慢板",
+      "style_primary": "ST-15 民乐(中国)",
+      "style_subtag": "琵琶",
+      "mood": ["MO-06 亲密", "MO-07 神秘"],
+      "tempo": "TP-01 慢板",
+      "bpm": 60,
+      "key": "KY-06 b minor(D 宫调式 / 1=D-do)",
+      "scale": "五声音阶 + 吟揉",
+      "time_signature": "4/4(板式变化:散-慢-中-快)",
+      "duration_sec": 300,
+      "tag_count_total": 4,
+      "tags": ["五声音阶", "吟揉", "轮指", "板式变化"],
+      "use_case_demo": "风格拆解 demo:识别 D 宫调式 + 五声音阶 + 板式变化(1=D-do 与西方 b minor 同音异名)"
+    }
+  ],
+
+  "_addendum": {
+    "v0_patches": [],
+    "schema_evolution_note": "Phase 1 续做如需新增维度(如 'instrumentation' 配器 / 'era' 年代),在 _addendum.v0_patches 加 patch,不动 v0 schema;示例新增时 examples 数组 append M-006/...,id 全局唯一",
+    "phase_1_targets": {
+      "M_006_to_M_105": "100 条 MIDI 真实入库,按 10×10 批次命名 midi_batch_10a/10b/.../10j,每批 10 条,沿用任务 7 seed_10/seed_10_d/seed_10_e 命名规则",
+      "tag_query_demo": "Web 端用户选 '流行 + 放松 + 70-100 BPM + C 大调' → 5-10 条 MIDI 推荐",
+      "compatibility": "与 score_seed.py seed_60_summary.json 跨查(seed 60 首按 tags 字段粗查,midi_tags_v0 100+ 按 4 维精查)"
+    }
+  }
+}
