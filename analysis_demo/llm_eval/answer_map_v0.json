@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "created": "2026-09-12",
+    "author": "19-音乐-Music 行业顾问(本 agent = MiniMax M3 root session)",
+    "mode": "v0 起步,9 题在 cron T5 03:00 对话上下文直接作答,避免 cron 中递归调 LLM",
+    "phase1_note": "Phase 1 续做:Claude / Qwen-Music 通过 eval_runner.py 直接调 API,无需 answer_map"
+  },
+  "Q-01": "完全五度(Perfect 5th, P5)。C-D-E-F-G 是 5 个字母名,5 度;C 到 G 包含 7 个半音,完全五度 = 7 半音 + 5 度。",
+  "Q-02": "完全五度(P5)。E-F-G-A-B 是 5 个字母名,5 度;E♭ 到 B♭ 包含 7 个半音(等同 C-G),所以是完全五度。",
+  "Q-03": "小六度(m6)。F-G-A-B-C-D 是 6 个字母,6 度;F 到 D 是大六度(9 半音),F 升到 F# 后窄了 1 半音 → 8 半音,6 度 + 8 半音 = 小六度。",
+  "Q-04": "Dm - G7 - Cmaj7。C 大调的 II-V-I = 二级小三(Dm) + 五级属七(G7) + 一级大七(Cmaj7)。",
+  "Q-05": "C、E、G、B。Cmaj7 = 根音 C + 大三度 E + 纯五度 G + 大七度 B。",
+  "Q-06": "C 大调。F=IV、G=V、Am=vi、Dm=ii,这是 C 大调的 IV-V-vi-ii 进行,主音是 C。",
+  "Q-07": "D E F G A B C D。D Dorian = C 大调从 D 开始的模式,音阶结构全-半-全-全-全-半-全。",
+  "Q-08": "F# 自然小调(F# minor / F# Aeolian)。F#-G#-A-B-C#-D#-E-F#,自然小调结构全-半-全-全-半-全-全。",
+  "Q-09": "C 大调五声(C major pentatonic / 宫调式)。C-D(大二度)-E(大二度)-G(小三度)-A(大二度),没有 F 和 B。"
+}

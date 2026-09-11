@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "name": "MusicAdvisor LLM 乐理问答基线",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "question_count": 9,
+    "questions_file": "questions.json",
+    "created": "2026-09-12 03:02:57"
+  },
+  "results": [
+    {
+      "id": "Q-01",
+      "difficulty": "L1_音程",
+      "topic": "音程识别",
+      "question": "C4 到 G4 是什么音程?",
+      "answer": "完全五度(Perfect 5th, P5)。C-D-E-F-G 是 5 个字母名,5 度;C 到 G 包含 7 个半音,完全五度 = 7 半音 + 5 度。",
+      "expected": "完全五度",
+      "expected_aliases": [
+        "纯五度",
+        "Perfect 5th",
+        "P5"
+      ],
+      "scoring_type": "exact_match",
+      "latency_ms": 0,
+      "error": null,
+      "correct": 1
+    },
+    {
+      "id": "Q-02",
+      "difficulty": "L1_音程",
+      "topic": "变化音音程",
+      "question": "E♭ 到 B♭ 是什么音程?(注意 E 和 B 都是降号)",
+      "answer": "完全五度(P5)。E-F-G-A-B 是 5 个字母名,5 度;E♭ 到 B♭ 包含 7 个半音(等同 C-G),所以是完全五度。",
+      "expected": "完全五度",
+      "expected_aliases": [
+        "纯五度",
+        "Perfect 5th",
+        "P5"
+      ],
+      "scoring_type": "exact_match",
+      "latency_ms": 0,
+      "error": null,
+      "correct": 1
+    },
+    {
+      "id": "Q-03",
+      "difficulty": "L1_音程",
+      "topic": "变化音音程(陷阱题)",
+      "question": "F# 到 D 是什么音程?(注意 F 升了,D 没升)",
+      "answer": "小六度(m6)。F-G-A-B-C-D 是 6 个字母,6 度;F 到 D 是大六度(9 半音),F 升到 F# 后窄了 1 半音 → 8 半音,6 度 + 8 半音 = 小六度。",
+      "expected": "小六度",
+      "expected_aliases": [
+        "Minor 6th",
+        "m6",
+        "小 6 度"
+      ],
+      "scoring_type": "exact_match",
+      "latency_ms": 0,
+      "error": null,
+      "correct": 1
+    },
+    {
+      "id": "Q-04",
+      "difficulty": "L2_和弦",
+      "topic": "II-V-I 进行",
+      "question": "在 C 大调中,II-V-I 是哪三个和弦?请用罗马级数对应的和弦名回答(如 Dm-G7-Cmaj7)。",
+      "answer": "Dm - G7 - Cmaj7。C 大调的 II-V-I = 二级小三(Dm) + 五级属七(G7) + 一级大七(Cmaj7)。",
+      "expected": "Dm-G7-Cmaj7",
+      "expected_aliases": [
+        "Dm G7 Cmaj7",
+        "Dm-G7-C",
+        "ii-V-I in C major",
+        "二级-五级-一级"
+      ],
+      "scoring_type": "sequence_match",
+      "latency_ms": 0,
+      "error": null,
+      "correct": 1
+    },
+    {
+      "id": "Q-05",
+      "difficulty": "L2_和弦",
+      "topic": "和弦音构成",
+      "question": "Cmaj7(C 大七和弦)由哪些音组成?",
+      "answer": "C、E、G、B。Cmaj7 = 根音 C + 大三度 E + 纯五度 G + 大七度 B。",
+      "expected": [
+        "C",
+        "E",
+        "G",
+        "B"
+      ],
+      "expected_aliases": [
+        "1 3 5 7",
+        "根音-三音-五音-七音"
+      ],
+      "scoring_type": "set_match",
+      "latency_ms": 0,
+      "error": null,
+      "correct": 1
+    },
+    {
+      "id": "Q-06",
+      "difficulty": "L2_和弦",
+      "topic": "和弦进行判断调性",
+      "question": "一首流行歌用 F-G-Am-Dm 这 4 个和弦循环,请问它最可能在什么调?",
+      "answer": "C 大调。F=IV、G=V、Am=vi、Dm=ii,这是 C 大调的 IV-V-vi-ii 进行,主音是 C。",
+      "expected": "C 大调",
+      "expected_aliases": [
+        "C major",
+        "Key of C",
+        "C 调"
+      ],
+      "scoring_type": "exact_match",
+      "latency_ms": 0,
+      "error": null,
+      "correct": 1
+    },
+    {
+      "id": "Q-07",
+      "difficulty": "L3_调式",
+      "topic": "Dorian 调式",
+      "question": "D Dorian 调式音阶是什么?请从 D 开始依次写出 8 个音。",
+      "answer": "D E F G A B C D。D Dorian = C 大调从 D 开始的模式,音阶结构全-半-全-全-全-半-全。",
+      "expected": [
+        "D",
+        "E",
+        "F",
+        "G",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "expected_aliases": [
+        "D E F G A B C D",
+        "Re Mi Fa Sol La Ti Do Re"
+      ],
+      "scoring_type": "sequence_match",
+      "latency_ms": 0,
+      "error": null,
+      "correct": 1
+    },
+    {
+      "id": "Q-08",
+      "difficulty": "L3_调式",
+      "topic": "自然小调识别",
+      "question": "一段旋律用了 F# G# A B C# D# E F# 这 8 个音,请问这是什么调式?",
+      "answer": "F# 自然小调(F# minor / F# Aeolian)。F#-G#-A-B-C#-D#-E-F#,自然小调结构全-半-全-全-半-全-全。",
+      "expected": "F# 自然小调",
+      "expected_aliases": [
+        "F# minor",
+        "F#自然小音阶",
+        "F# Aeolian",
+        "F# minor natural",
+        "升 F 小调"
+      ],
+      "scoring_type": "exact_match",
+      "latency_ms": 0,
+      "error": null,
+      "correct": 1
+    },
+    {
+      "id": "Q-09",
+      "difficulty": "L3_调式",
+      "topic": "五声音阶",
+      "question": "C D E G A 这 5 个音构成什么调式?",
+      "answer": "C 大调五声(C major pentatonic / 宫调式)。C-D(大二度)-E(大二度)-G(小三度)-A(大二度),没有 F 和 B。",
+      "expected": "C 大调五声",
+      "expected_aliases": [
+        "C major pentatonic",
+        "C 大调五声音阶",
+        "C pentatonic",
+        "宫调式"
+      ],
+      "scoring_type": "exact_match",
+      "latency_ms": 0,
+      "error": null,
+      "correct": 1
+    }
+  ],
+  "summary": {
+    "total": 9,
+    "correct": 9,
+    "accuracy": 1.0,
+    "by_difficulty": {
+      "L1_音程": {
+        "total": 3,
+        "correct": 3,
+        "acc": 1.0
+      },
+      "L2_和弦": {
+        "total": 3,
+        "correct": 3,
+        "acc": 1.0
+      },
+      "L3_调式": {
+        "total": 3,
+        "correct": 3,
+        "acc": 1.0
+      }
+    }
+  }
+}
