@@ -1,0 +1,8 @@
+# 飞书乐理问答机器人依赖(Phase 1 §6 第 1 项 · 9/14 v0 骨架)
+# 真接入飞书 + LLM 时同步锁版本
+fastapi>=0.110
+uvicorn[standard]>=0.27
+lark-oapi>=1.2
+httpx>=0.27
+pydantic>=2.6
+python-dotenv>=1.0
