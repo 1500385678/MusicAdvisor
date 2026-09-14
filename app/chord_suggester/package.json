@@ -1,0 +1,43 @@
+{
+  "name": "musicadvisor-chord-suggester",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MusicAdvisor · Phase 1 §6 第 2 项 · 和弦进行建议器 Web 版(Next.js 14 + Tone.js)",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "check:deps": "node -e \"const p=require('./package.json');for(const k of ['next','react','react-dom','tone']){if(!p.dependencies[k]){console.error('missing dep:',k);process.exit(1);}}console.log('deps ok:',Object.keys(p.dependencies).join(', '));\""
+  },
+  "dependencies": {
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tone": "^14.7.77"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.10",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.6.2"
+  },
+  "keywords": [
+    "musicadvisor",
+    "chord-suggester",
+    "next.js",
+    "tone.js",
+    "phase-1",
+    "19-音乐",
+    "music-theory"
+  ],
+  "license": "UNLICENSED",
+  "comments": {
+    "phase": "Phase 1 v0 骨架(2026-09-15 T5 落地)· Phase 1 v1 (9/16~9/20) 用 npx create-next-app@14 真跑",
+    "usage": "1. npx create-next-app@14 chord-suggester 2. cd chord-suggester 3. npm install tone@14.7.77 4. 覆盖 src/app/page.tsx 和 src/app/api/suggest/route.ts",
+    "dependency_lock_reason": "锁 next 14 / react 18 / tone 14.7.77,Phase 1 §6 第 2 项依赖与 §6 第 1 项 feishu_bot 同 Tone.js 大版本,确保音色与跨端一致性"
+  }
+}
