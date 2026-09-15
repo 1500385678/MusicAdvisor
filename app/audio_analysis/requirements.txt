@@ -1,0 +1,20 @@
+# Audio analysis MVP · 锁版本依赖
+# 与 analysis_demo/requirements.txt 同步,Phase 1 真实链路激活时 `pip install -r` 一键跑通
+#
+# 安装顺序:librosa → numpy → soundfile → essentia(可选,加速 BPM 检测)
+#
+# 验证:`python -c "import librosa, numpy, soundfile; print(librosa.__version__, numpy.__version__)"`
+#
+# 注:v0 目录骨架使用 mock 实现,核心模块零外部依赖;
+#   Phase 1 真实模式激活时需 pip install 以下全部
+
+# 核心
+numpy>=1.24.0,<2.0.0
+librosa>=0.10.1,<0.11.0
+soundfile>=0.12.1
+
+# 可选加速(essentia C++ 绑定,Mac 上 brew install essentia 后 pip)
+# essentia>=2.1b6.dev609
+
+# 可视化(Phase 1 真实渲染时启用)
+# matplotlib>=3.7.0
