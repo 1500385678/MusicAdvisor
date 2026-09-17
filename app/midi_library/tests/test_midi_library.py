@@ -319,3 +319,167 @@ class TestIntegration:
             progs = result.progressions[first_id]
             # 第一条 progression 应有 reason 含命中信息
             assert progs[0]["reason"] != ""
+
+
+# ============================================================================
+# batch_loader 测试(2026-09-18 续做 · 12 用例)
+# ============================================================================
+
+VALID_NEW_ENTRY = {
+    "id": "M-999",
+    "title": "Test Bed",
+    "style_primary": "ST-09 民谣",
+    "style_subtag": "Acoustic",
+    "mood": ["MO-02 忧郁", "MO-06 亲密"],
+    "tempo": "TP-02 中速",
+    "bpm": 90,
+    "key": "KY-13 F major",
+    "scale": "F 大调",
+    "time_signature": "4/4",
+    "duration_sec": 200,
+    "tag_count_total": 4,
+    "tags": ["原声吉他", "抒情", "慢板", "情歌"],
+    "use_case_demo": "test entry for batch_loader",
+}
+
+
+@pytest.fixture
+def fresh_index(tmp_path):
+    """临时空白 index_meta.json(不污染真 index)。"""
+    return tmp_path / "index_meta.json"
+
+
+class TestBatchValidateEntry:
+    """单条 schema 校验 · 8 用例。"""
+
+    def test_valid_entry_no_errors(self):
+        """合法 entry 返回 0 错误。"""
+        from app.midi_library.batch_loader import validate_entry
+        errs = validate_entry(VALID_NEW_ENTRY, existing_ids=[])
+        assert errs == []
+
+    def test_missing_id(self):
+        from app.midi_library.batch_loader import validate_entry
+        bad = dict(VALID_NEW_ENTRY)
+        bad["id"] = ""
+        errs = validate_entry(bad, existing_ids=[])
+        assert any(e.field == "id" and "不能为空" in e.reason for e in errs)
+
+    def test_bad_id_format(self):
+        from app.midi_library.batch_loader import validate_entry
+        bad = dict(VALID_NEW_ENTRY)
+        bad["id"] = "X-999"
+        errs = validate_entry(bad, existing_ids=[])
+        assert any(e.field == "id" and "格式不合法" in e.reason for e in errs)
+
+    def test_duplicate_id_against_existing(self):
+        from app.midi_library.batch_loader import validate_entry
+        errs = validate_entry(VALID_NEW_ENTRY, existing_ids=["M-999", "M-998"])
+        assert any(e.field == "id" and "已存在" in e.reason for e in errs)
+
+    def test_bad_style_code(self):
+        from app.midi_library.batch_loader import validate_entry
+        bad = dict(VALID_NEW_ENTRY)
+        bad["style_primary"] = "ST-99 未来风"
+        errs = validate_entry(bad, existing_ids=[])
+        assert any(e.field == "style_primary" and "ST-01 ~ ST-16" in e.reason for e in errs)
+
+    def test_bad_mood_item(self):
+        from app.midi_library.batch_loader import validate_entry
+        bad = dict(VALID_NEW_ENTRY)
+        bad["mood"] = ["MO-02 忧郁", "MO-99 想象"]
+        errs = validate_entry(bad, existing_ids=[])
+        assert any(e.field == "mood[1]" for e in errs)
+
+    def test_bpm_out_of_range(self):
+        from app.midi_library.batch_loader import validate_entry
+        bad = dict(VALID_NEW_ENTRY)
+        bad["bpm"] = 500
+        errs = validate_entry(bad, existing_ids=[])
+        assert any(e.field == "bpm" and "超出" in e.reason for e in errs)
+
+    def test_tag_count_mismatch(self):
+        from app.midi_library.batch_loader import validate_entry
+        bad = dict(VALID_NEW_ENTRY)
+        bad["tag_count_total"] = 5   # tags len=4
+        errs = validate_entry(bad, existing_ids=[])
+        assert any(e.field == "tag_count_total" and "不一致" in e.reason for e in errs)
+
+
+class TestBatchValidateBatch:
+    """批校验聚合 · 2 用例。"""
+
+    def test_batch_with_mixed_errors(self):
+        from app.midi_library.batch_loader import validate_batch
+        good = dict(VALID_NEW_ENTRY)
+        good["id"] = "M-998"
+        bad = dict(VALID_NEW_ENTRY)
+        bad["id"] = "M-997"
+        bad["bpm"] = 999  # 非法
+        report = validate_batch([good, bad], existing_ids=[])
+        assert report.total == 2
+        assert report.passed == 1
+        assert report.failed == 1
+        assert any(e.line_no == 2 for e in report.errors)
+
+    def test_batch_inner_duplicate_id(self):
+        """batch 内重复 a 是合法的,b 被视为与前者重复而失败,共 passed=1 failed=1。"""
+        from app.midi_library.batch_loader import validate_batch
+        a = dict(VALID_NEW_ENTRY)
+        b = dict(VALID_NEW_ENTRY)
+        a["id"] = "M-997"
+        b["id"] = "M-997"   # batch 内重复
+        report = validate_batch([a, b], existing_ids=[])
+        assert report.total == 2
+        assert report.passed == 1
+        assert report.failed == 1
+        assert any(e.field == "id" and "batch 内重复" in e.reason for e in report.errors)
+
+
+class TestNextIdAndAppend:
+    """next_id 自动生成 + append_batch 写入 · 3 用例。"""
+
+    def test_next_id_after_existing(self):
+        from app.midi_library.batch_loader import next_id
+        assert next_id("M-", ["M-001", "M-005", "M-010"]) == "M-011"
+        assert next_id("M-", []) == "M-001"
+
+    def test_append_batch_dry_run_does_not_write(self, fresh_index):
+        """dry_run=True 不写文件,只校验(非法 entry → 校验失败,不写)。"""
+        from app.midi_library.batch_loader import append_batch
+        entry = dict(VALID_NEW_ENTRY)
+        entry["id"] = "INVALID"   # 触发 schema 失败
+        report = append_batch([entry], fresh_index, dry_run=True)
+        assert not report.is_all_pass()
+        assert not fresh_index.exists()  # 没写
+
+    def test_append_batch_commit_writes_and_updates_meta(self, fresh_index):
+        """commit=True 真写 + _meta 增量统计更新。"""
+        from app.midi_library.batch_loader import append_batch, load_batch_json
+        entries = [
+            dict(VALID_NEW_ENTRY, id="M-011", style_primary="ST-09 民谣"),
+            dict(VALID_NEW_ENTRY, id="M-012", style_primary="ST-12 雷鬼", mood=["MO-04 放松"]),
+        ]
+        report = append_batch(entries, fresh_index, dry_run=False, batch_id="test-batch-01")
+        assert report.is_all_pass()
+        assert fresh_index.exists()
+        data = json.loads(fresh_index.read_text(encoding="utf-8"))
+        assert data["_meta"]["last_batch_id"] == "test-batch-01"
+        assert data["_meta"]["last_batch_size"] == 2
+        assert data["_meta"]["total_entries"] == 2
+        assert data["_meta"]["last_batch_coverage"]["style_count"] >= 2
+        assert data["_meta"]["last_batch_coverage"]["tempo_count"] >= 1
+        assert {e["id"] for e in data["entries"]} == {"M-011", "M-012"}
+
+
+class TestLoadBatchJson:
+    """load_batch_json 顶层数组 + dict 两种格式 · 1 用例。"""
+
+    def test_load_array_and_dict_form(self, tmp_path):
+        from app.midi_library.batch_loader import load_batch_json
+        a = tmp_path / "a.json"
+        a.write_text("""[{"id": "M-001", "title": "x"}]""", encoding="utf-8")
+        b = tmp_path / "b.json"
+        b.write_text("""{"entries": [{"id": "M-002", "title": "y"}]}""", encoding="utf-8")
+        assert load_batch_json(a)[0]["id"] == "M-001"
+        assert load_batch_json(b)[0]["id"] == "M-002"

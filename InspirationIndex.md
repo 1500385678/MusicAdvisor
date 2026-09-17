@@ -102,6 +102,7 @@
 | S-017 | 彝族舞曲(琵琶古曲) | 风格 | 民乐 · 琵琶 · 1962 · 王惠然 · 彝族 · 西南少数民族 · D 大调 · 轮指 · 三跺脚 | `./analysis_demo/scores/seed_10_e.json` S-060 |
 | S-018 | MIDI 标签体系骨架 v0 | 风格/工具 | 4 维标签字典(16 一级风格 + 8 类情绪 + 5 档 BPM + 24 调性)+ 5 示例 M-001~M-005 覆盖流行/爵士/电子/古典/民乐 5 类 · Phase 1 100+ MIDI 续做按此契约入库 | `./analysis_demo/scores/midi_tags_v0.json` |
 | S-019 | MIDI 素材库最小版目录骨架 v0 | 工具 | Phase 1 §6 第 4 项 v0 目录骨架:`app/midi_library/` 11 文件 ~970 行(README + __init__ + midi_loader + tag_filter + progression_builder + search_engine + pipeline + index_meta.json M-001~M-010 + api_search.template.ts + requirements.txt + 31 测试用例 100%),沿用 midi_tags_v0 4 维契约扩 5 条新示例(摇滚/嘻哈/R&B/Ambient/世界音乐)覆盖 8 风格 + 6 情绪 + 3 BPM 档 + 8 调性,Phase 1 续做 mido 真链路 + M-011~M-110 100 条批次入库 | `./app/midi_library/` |
+| S-020 | MIDI 批量入库脚手架 v0 | 工具 | Phase 1 §5 第 88 项脚手架部分(2026-09-18 T5):`app/midi_library/batch_loader.py` 270 行 + 7 主体导出(BatchValidationError/Report + validate_entry/batch + next_id + append_batch + load_batch_json + CLI)+ 10 项 schema 校验规则(ST-XX/MO-XX/TP-XX/KY-XX 4 维 + 字段完整性)+ `--commit`/`--dry-run` 双模式 + 14 测试用例 100% 通过(总 45/45),Phase 1 续做 100 → 1000 → 1 万 MIDI 真入库时用 `--commit` 一键写 + `--dry-run` 先校验 | `./app/midi_library/batch_loader.py` |
 
 **缺口**(9/10 任务 7b 第 4 批后更新,9/11 任务 8 起步续补,9/17 §6 第 4 项起补):
 - [x] **缺西方流行/摇滚/爵士/电子/R&B/嘻哈** 等近现代流派案例 — 9/10 任务 7b 第 4 批补 6 行(S-008 R&B / S-009 R&B / S-010 嘻哈 / S-011 影视 / S-012 影视 / S-013 游戏,任务 7b 60/60 = 100% 满)

@@ -22,9 +22,18 @@ from app.midi_library.progression_builder import (
 )
 from app.midi_library.search_engine import MidiSearchEngine, search_midi
 from app.midi_library.pipeline import MidiLibraryPipeline, query_midi_library
+from app.midi_library.batch_loader import (
+    BatchValidationError,
+    BatchValidationReport,
+    append_batch,
+    load_batch_json,
+    next_id,
+    validate_batch,
+    validate_entry,
+)
 
 __version__ = "0.1.0"
-__phase__ = "Phase 1 §6 第 4 项 v0 目录骨架"
+__phase__ = "Phase 1 §6 第 4 项 v0 + 续做批量入库脚手架 v0"
 __schema_source__ = "analysis_demo/scores/midi_tags_v0.json v0 4 维标签字典"
 
 __all__ = [
@@ -45,4 +54,12 @@ __all__ = [
     # 端到端流水线
     "MidiLibraryPipeline",
     "query_midi_library",
+    # 批量入库脚手架(9/18 续做)
+    "BatchValidationError",
+    "BatchValidationReport",
+    "validate_entry",
+    "validate_batch",
+    "append_batch",
+    "load_batch_json",
+    "next_id",
 ]
