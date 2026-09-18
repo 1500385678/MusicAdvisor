@@ -45,7 +45,7 @@ from app.midi_library.search_engine import MidiSearchHit  # noqa: E402
 
 @pytest.fixture(scope="module")
 def midi_list():
-    """v0 索引列表(M-001 ~ M-010 = 10 条)。"""
+    """索引列表(M-001 ~ 当前批次,Phase 1 续做累计入库)。"""
     return load_metadata()
 
 
@@ -60,9 +60,9 @@ def loader():
 
 
 class TestMidiLoader:
-    def test_load_returns_10_entries(self, midi_list):
-        """加载 index_meta.json 应返回 10 条元数据。"""
-        assert len(midi_list) == 10
+    def test_load_returns_at_least_10_entries(self, midi_list):
+        """加载 index_meta.json 应返回 ≥ 10 条元数据(Phase 1 续做累计入库,M-001~M-010 = 起步锚点 + M-011~ 续做批)。"""
+        assert len(midi_list) >= 10
 
     def test_first_entry_is_pop_ballad(self, midi_list):
         """M-001 标题必须是 'Pop Ballad Sketch' 流行抒情。"""
@@ -82,8 +82,10 @@ class TestMidiLoader:
         assert loader.get_by_id("M-999") is None
 
     def test_count(self, loader):
-        """count() 与 len(load()) 一致。"""
-        assert loader.count() == 10
+        """count() 与 len(load()) 一致,且 ≥ 10(Phase 1 续做累计入库)。"""
+        loaded = loader.load()
+        assert loader.count() == len(loaded)
+        assert loader.count() >= 10
 
     def test_metadata_to_dict_json_serializable(self, midi_list):
         """MidiMetadata.to_dict() 应可 JSON 序列化。"""
@@ -306,9 +308,9 @@ class TestIntegration:
         assert len(filt) >= len(hits)
 
     def test_pipeline_uses_loader_index_meta(self):
-        """pipeline 通过 loader 索引找到至少 10 条 schema 锚点(继承自 midi_tags_v0 5 + 新 5)。"""
+        """pipeline 通过 loader 索引找到 ≥ 10 条 schema 锚点(Phase 1 累计入库,9/19 首批续做 M-011~M-020 补齐 16 风格/8 情绪/5 速度全维度)。"""
         pipe = MidiLibraryPipeline()
-        assert pipe.loader.count() == 10
+        assert pipe.loader.count() >= 10
 
     def test_results_have_progression_reason_for_jazz(self):
         """Jazz 查询 → progressions 中得分最高项含 '风格' 命中理由。"""
@@ -483,3 +485,42 @@ class TestLoadBatchJson:
         b.write_text("""{"entries": [{"id": "M-002", "title": "y"}]}""", encoding="utf-8")
         assert load_batch_json(a)[0]["id"] == "M-001"
         assert load_batch_json(b)[0]["id"] == "M-002"
+
+
+class TestBatchCoverage4Dim:
+    """批量入库后 4 维标签字典覆盖度断言 · 1 用例。
+
+    验证 9/19 首批续做 M-011~M-020 后,ST-01~ST-16 / MO-01~MO-08 / TP-01~TP-05 全维度首次满。
+    """
+
+    def test_batch_after_commit_covers_all_styles_moods_tempos(self):
+        import json
+        from pathlib import Path
+
+        index_path = (
+            Path(__file__).resolve().parent.parent / "index_meta.json"
+        )
+        data = json.loads(index_path.read_text(encoding="utf-8"))
+        entries = data["entries"]
+        assert len(entries) >= 20, f"应 ≥ 20 条,实际 {len(entries)}"
+
+        styles = set()
+        moods = set()
+        tempos = set()
+        for e in entries:
+            styles.add(e["style_primary"].split(" ")[0])
+            for m in e["mood"]:
+                moods.add(m.split(" ")[0])
+            tempos.add(e["tempo"].split(" ")[0])
+
+        # ST-01 ~ ST-16 全部 16 风格首次满
+        assert styles == {f"ST-{i:02d}" for i in range(1, 17)}, styles
+        # MO-01 ~ MO-08 全部 8 情绪首次满
+        assert moods == {f"MO-{i:02d}" for i in range(1, 9)}, moods
+        # TP-01 ~ TP-05 全部 5 档速度首次满
+        assert tempos == {f"TP-{i:02d}" for i in range(1, 6)}, tempos
+        # meta 覆盖度字段同步更新
+        cov = data["_meta"]["last_batch_coverage"]
+        assert cov["style_count"] == 16
+        assert cov["mood_count"] == 8
+        assert cov["tempo_count"] == 5

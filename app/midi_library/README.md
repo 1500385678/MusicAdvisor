@@ -181,6 +181,7 @@ python -m app.midi_library.batch_loader --input batch_100.json --commit \
 
 ## 历史
 
+- **2026-09-19** · 首批续做 M-011~M-020 入库(T5 03:00):`batch_loader.py --commit` 真链路接通,巴洛克/民族/影视/游戏/印度/非洲/拉美/电子 DnB/流行 K-pop/新世纪 Solo Piano = 10 条覆盖 ST-08~ST-14 + MO-01 + TP-05 此前缺失维度,4 维标签字典 16/8/5 全维度首次满,见 `.plan/.tmp-batch/midi_batch_20260919_10.json`,`项目开发计划.md` §5 第 88 项续做子项 checkbox `[x]` 闭环,3 测试硬编码改自适应(20/100 = 20%)+ 新 TestBatchCoverage4Dim 1 用例,46/46 测试 100% 通过,§5 第 88 项续做留 M-021~M-110
 - **2026-09-18** · 批量入库脚手架 v0 落地(T5 03:00,本份):`batch_loader.py` 270 行 + 7 主体导出 + CLI 入口 + 14 测试用例 100% 通过,`项目开发计划.md` §5 第 88 项脚手架部分 checkbox `[x]` 闭环,§6 第 4 项留 M-011~M-110 真入库 + mido 真链路为续做
 - **2026-09-17** · v0 目录骨架落地(T5 03:00):12 文件 ~520 行 Python + 90 行 TS + 330 行测试,31 用例 100% 通过,Phase 1 §6 第 4 项 checkbox `[x]` 闭环
 - **2026-09-11** · 上游契约:`midi_tags_v0.json` T5 9/11 落库 4 维标签字典 + 5 示例 schema 锚点

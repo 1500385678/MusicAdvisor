@@ -18,7 +18,17 @@
       "BPM 微浮动 / swing 比例(Phase 1 真实分析续做)",
       "MIDI 0/1/2 格式区分(Phase 1 续做,本骨架 Type-1 标准)",
       "音频回放 URL(Phase 1 用 Tone.js 加载本地)"
-    ]
+    ],
+    "last_batch_id": "2026-09-19-batch-01",
+    "last_batch_at": "2026-09-19 03:00:49",
+    "last_batch_size": 10,
+    "total_entries": 20,
+    "last_batch_coverage": {
+      "style_count": 16,
+      "mood_count": 8,
+      "tempo_count": 5,
+      "key_count": 18
+    }
   },
   "entries": [
     {
@@ -26,7 +36,10 @@
       "title": "Pop Ballad Sketch",
       "style_primary": "ST-01 流行",
       "style_subtag": "抒情流行",
-      "mood": ["MO-02 忧郁", "MO-06 亲密"],
+      "mood": [
+        "MO-02 忧郁",
+        "MO-06 亲密"
+      ],
       "tempo": "TP-02 中速",
       "bpm": 72,
       "key": "KY-14 d minor",
@@ -34,7 +47,12 @@
       "time_signature": "4/4",
       "duration_sec": 240,
       "tag_count_total": 4,
-      "tags": ["抒情", "钢琴 + 弦乐", "慢板", "情歌"],
+      "tags": [
+        "抒情",
+        "钢琴 + 弦乐",
+        "慢板",
+        "情歌"
+      ],
       "use_case_demo": "和声建议器输入:d minor + 亲密 → 候选 5-8 套;本 MIDI 作 query 基准"
     },
     {
@@ -42,7 +60,10 @@
       "title": "Jazz Swing Head",
       "style_primary": "ST-03 爵士",
       "style_subtag": "Swing",
-      "mood": ["MO-04 放松", "MO-08 激励"],
+      "mood": [
+        "MO-04 放松",
+        "MO-08 激励"
+      ],
       "tempo": "TP-04 快板",
       "bpm": 145,
       "key": "KY-15 Bb major",
@@ -50,7 +71,12 @@
       "time_signature": "4/4(swing 8 分)",
       "duration_sec": 200,
       "tag_count_total": 4,
-      "tags": ["ii-V-I 招牌", "7 和弦链", "swing 律动", "Blues 衍生"],
+      "tags": [
+        "ii-V-I 招牌",
+        "7 和弦链",
+        "swing 律动",
+        "Blues 衍生"
+      ],
       "use_case_demo": "风格拆解 demo:上传 → 自动识别 ii-V-I + swing 律动 → 生成 'Bb 调 swing 头' 乐谱"
     },
     {
@@ -58,7 +84,10 @@
       "title": "Synthwave Arp",
       "style_primary": "ST-04 电子",
       "style_subtag": "Synthwave",
-      "mood": ["MO-07 神秘", "MO-08 激励"],
+      "mood": [
+        "MO-07 神秘",
+        "MO-08 激励"
+      ],
       "tempo": "TP-04 快板",
       "bpm": 118,
       "key": "KY-20 f minor",
@@ -66,7 +95,12 @@
       "time_signature": "4/4(4-on-the-floor)",
       "duration_sec": 200,
       "tag_count_total": 4,
-      "tags": ["Synthwave 招牌", "6451 下行", "合成器琶音", "80s 复兴"],
+      "tags": [
+        "Synthwave 招牌",
+        "6451 下行",
+        "合成器琶音",
+        "80s 复兴"
+      ],
       "use_case_demo": "和弦建议器:f minor + 神秘 → 返回 8 套含 bIII-bVII 借用大调"
     },
     {
@@ -74,7 +108,10 @@
       "title": "Classical Sonata Exposition",
       "style_primary": "ST-07 古典(浪漫 / 印象)",
       "style_subtag": "奏鸣曲",
-      "mood": ["MO-05 史诗", "MO-03 紧张"],
+      "mood": [
+        "MO-05 史诗",
+        "MO-03 紧张"
+      ],
       "tempo": "TP-03 流行速度",
       "bpm": 112,
       "key": "KY-13 F major",
@@ -82,7 +119,12 @@
       "time_signature": "4/4(部分 3/4 拍变化)",
       "duration_sec": 360,
       "tag_count_total": 4,
-      "tags": ["奏鸣曲式", "呈示部", "主部主题 + 副部主题", "F → C 转调"],
+      "tags": [
+        "奏鸣曲式",
+        "呈示部",
+        "主部主题 + 副部主题",
+        "F → C 转调"
+      ],
       "use_case_demo": "曲式拆解 demo:识别呈示部 / 发展部 / 再现部三段,标主题动机"
     },
     {
@@ -90,7 +132,10 @@
       "title": "民乐琵琶慢板",
       "style_primary": "ST-15 民乐(中国)",
       "style_subtag": "琵琶",
-      "mood": ["MO-06 亲密", "MO-07 神秘"],
+      "mood": [
+        "MO-06 亲密",
+        "MO-07 神秘"
+      ],
       "tempo": "TP-01 慢板",
       "bpm": 60,
       "key": "KY-06 b minor(D 宫调式 / 1=D-do)",
@@ -98,7 +143,12 @@
       "time_signature": "4/4(板式变化:散-慢-中-快)",
       "duration_sec": 300,
       "tag_count_total": 4,
-      "tags": ["五声音阶", "吟揉", "轮指", "板式变化"],
+      "tags": [
+        "五声音阶",
+        "吟揉",
+        "轮指",
+        "板式变化"
+      ],
       "use_case_demo": "风格拆解 demo:识别 D 宫调式 + 五声音阶 + 板式变化(1=D-do 与西方 b minor 同音异名)"
     },
     {
@@ -106,7 +156,10 @@
       "title": "Rock Anthem Riff",
       "style_primary": "ST-02 摇滚",
       "style_subtag": "经典摇滚",
-      "mood": ["MO-05 史诗", "MO-08 激励"],
+      "mood": [
+        "MO-05 史诗",
+        "MO-08 激励"
+      ],
       "tempo": "TP-04 快板",
       "bpm": 132,
       "key": "KY-09 E major",
@@ -114,7 +167,12 @@
       "time_signature": "4/4",
       "duration_sec": 210,
       "tag_count_total": 4,
-      "tags": ["Power chord", "12-bar Blues 衍生", "riff 主奏", "副歌释放"],
+      "tags": [
+        "Power chord",
+        "12-bar Blues 衍生",
+        "riff 主奏",
+        "副歌释放"
+      ],
       "use_case_demo": "摇滚 demo:查 ST-02 + MO-08 激励 → 命中本条 + M-007(说唱)/M-008(R&B)"
     },
     {
@@ -122,7 +180,10 @@
       "title": "Hip-hop Boom Bap Groove",
       "style_primary": "ST-06 嘻哈",
       "style_subtag": "Boom Bap",
-      "mood": ["MO-07 神秘", "MO-04 放松"],
+      "mood": [
+        "MO-07 神秘",
+        "MO-04 放松"
+      ],
       "tempo": "TP-02 中速",
       "bpm": 92,
       "key": "KY-19 Ab major",
@@ -130,7 +191,12 @@
       "time_signature": "4/4(16 分律动)",
       "duration_sec": 180,
       "tag_count_total": 4,
-      "tags": ["鼓点驱动", "采样循环", "bVI-bIII 下行", "念白 groove"],
+      "tags": [
+        "鼓点驱动",
+        "采样循环",
+        "bVI-bIII 下行",
+        "念白 groove"
+      ],
       "use_case_demo": "说唱 demo:查 ST-06 + 808 风格 → 命中本条"
     },
     {
@@ -138,7 +204,10 @@
       "title": "Neo-Soul Keys Loop",
       "style_primary": "ST-05 R&B / 灵魂",
       "style_subtag": "Neo-Soul",
-      "mood": ["MO-06 亲密", "MO-04 放松"],
+      "mood": [
+        "MO-06 亲密",
+        "MO-04 放松"
+      ],
       "tempo": "TP-02 中速",
       "bpm": 88,
       "key": "KY-21 Db major",
@@ -146,7 +215,12 @@
       "time_signature": "4/4(16 分律动)",
       "duration_sec": 220,
       "tag_count_total": 4,
-      "tags": ["9 和弦", "11 延伸", "16 分律动", "Rhodes 电钢"],
+      "tags": [
+        "9 和弦",
+        "11 延伸",
+        "16 分律动",
+        "Rhodes 电钢"
+      ],
       "use_case_demo": "R&B demo:查 ST-05 + 慢板 → 命中本条"
     },
     {
@@ -154,7 +228,10 @@
       "title": "Ambient Pad Texture",
       "style_primary": "ST-04 电子",
       "style_subtag": "Ambient",
-      "mood": ["MO-07 神秘", "MO-06 亲密"],
+      "mood": [
+        "MO-07 神秘",
+        "MO-06 亲密"
+      ],
       "tempo": "TP-01 慢板",
       "bpm": 68,
       "key": "KY-23 Gb major",
@@ -162,7 +239,12 @@
       "time_signature": "free tempo",
       "duration_sec": 360,
       "tag_count_total": 4,
-      "tags": ["环境音", "和声垫", "缓慢演化", "5 度循环"],
+      "tags": [
+        "环境音",
+        "和声垫",
+        "缓慢演化",
+        "5 度循环"
+      ],
       "use_case_demo": "环境音 demo:查 ST-04 + MO-07 神秘 + 慢板 → 命中本条"
     },
     {
@@ -170,7 +252,10 @@
       "title": "World Music Polyrhythm",
       "style_primary": "ST-16 世界音乐",
       "style_subtag": "West African",
-      "mood": ["MO-05 史诗", "MO-08 激励"],
+      "mood": [
+        "MO-05 史诗",
+        "MO-08 激励"
+      ],
       "tempo": "TP-04 快板",
       "bpm": 138,
       "key": "KY-24 eb minor",
@@ -178,8 +263,253 @@
       "time_signature": "12/8(3+3+3+3)",
       "duration_sec": 240,
       "tag_count_total": 4,
-      "tags": ["复合拍号", "Hand drum", "12/8", "polyrhythm"],
+      "tags": [
+        "复合拍号",
+        "Hand drum",
+        "12/8",
+        "polyrhythm"
+      ],
       "use_case_demo": "世界音乐 demo:查 ST-16 + 快板 → 命中本条;ST-15 命 M-005 区分中国民族"
+    },
+    {
+      "id": "M-011",
+      "title": "Baroque Fugue Subject",
+      "style_primary": "ST-08 巴洛克",
+      "style_subtag": "赋格",
+      "mood": [
+        "MO-05 史诗",
+        "MO-03 紧张"
+      ],
+      "tempo": "TP-03 流行速度",
+      "bpm": 112,
+      "key": "KY-05 D major",
+      "scale": "D Dorian + 通奏低音",
+      "time_signature": "4/4",
+      "duration_sec": 220,
+      "tag_count_total": 4,
+      "tags": [
+        "赋格对位",
+        "通奏低音",
+        "巴赫范式",
+        "主题模仿"
+      ],
+      "use_case_demo": "风格拆解:上传 → 识别通奏低音 + 主题模仿 → 生成 D Dorian 复调乐谱"
+    },
+    {
+      "id": "M-012",
+      "title": "Celtic Folk Jig",
+      "style_primary": "ST-09 民族 / 民间",
+      "style_subtag": "凯尔特",
+      "mood": [
+        "MO-04 放松",
+        "MO-01 快乐"
+      ],
+      "tempo": "TP-04 快板",
+      "bpm": 132,
+      "key": "KY-11 B major",
+      "scale": "Mixolydian + Dorian 混合",
+      "time_signature": "6/8",
+      "duration_sec": 180,
+      "tag_count_total": 4,
+      "tags": [
+        "凯尔特 jig",
+        "小提琴 + 风笛",
+        "6/8 复合拍",
+        "舞曲"
+      ],
+      "use_case_demo": "风格拆解 demo:6/8 jig 律动 → 生成 B Mixolydian 主题"
+    },
+    {
+      "id": "M-013",
+      "title": "Epic Film Score Trailer",
+      "style_primary": "ST-10 影视配乐",
+      "style_subtag": "史诗",
+      "mood": [
+        "MO-05 史诗",
+        "MO-08 激励"
+      ],
+      "tempo": "TP-02 中速",
+      "bpm": 84,
+      "key": "KY-12 g# minor",
+      "scale": "自然小调 + 半音下行",
+      "time_signature": "4/4",
+      "duration_sec": 200,
+      "tag_count_total": 4,
+      "tags": [
+        "铜管齐奏",
+        "5 度圈",
+        "鼓点 + 合唱",
+        "预告片"
+      ],
+      "use_case_demo": "影视模板:g# minor + 史诗 → 返回 5 度圈 + 铜管齐奏方案"
+    },
+    {
+      "id": "M-014",
+      "title": "8-bit RPG Overworld",
+      "style_primary": "ST-11 游戏音乐",
+      "style_subtag": "像素 8-bit",
+      "mood": [
+        "MO-04 放松",
+        "MO-01 快乐"
+      ],
+      "tempo": "TP-03 流行速度",
+      "bpm": 110,
+      "key": "KY-01 C major",
+      "scale": "C Ionian + 2-5-1 复古",
+      "time_signature": "4/4",
+      "duration_sec": 90,
+      "tag_count_total": 4,
+      "tags": [
+        "8-bit chip",
+        "循环结构",
+        "短动机",
+        "RPG 探索"
+      ],
+      "use_case_demo": "游戏 BGM:C major + 放松 → 返回 90s 循环方案"
+    },
+    {
+      "id": "M-015",
+      "title": "Bollywood Dance Beat",
+      "style_primary": "ST-12 印度",
+      "style_subtag": "Bollywood 流行",
+      "mood": [
+        "MO-01 快乐",
+        "MO-08 激励"
+      ],
+      "tempo": "TP-04 快板",
+      "bpm": 140,
+      "key": "KY-10 c# minor",
+      "scale": "Raga Kirwani + 西方小调",
+      "time_signature": "7/8",
+      "duration_sec": 210,
+      "tag_count_total": 4,
+      "tags": [
+        "Bollywood 舞曲",
+        "塔布拉鼓",
+        "7/8 复合拍",
+        "西塔琴"
+      ],
+      "use_case_demo": "风格拆解:7/8 + Kirwani Raga → 拆出 Bollywood 招牌"
+    },
+    {
+      "id": "M-016",
+      "title": "Afrobeat Horn Section",
+      "style_primary": "ST-13 非洲",
+      "style_subtag": "Afrobeat",
+      "mood": [
+        "MO-08 激励",
+        "MO-01 快乐"
+      ],
+      "tempo": "TP-04 快板",
+      "bpm": 124,
+      "key": "KY-16 g minor",
+      "scale": "自然小调 + bII 半音下行",
+      "time_signature": "4/4(12/8 叠加)",
+      "duration_sec": 260,
+      "tag_count_total": 4,
+      "tags": [
+        "多声部节奏",
+        "铜管 section",
+        "Fela 范式",
+        "Polyrhythm"
+      ],
+      "use_case_demo": "风格拆解 demo:识别 Afrobeat 多声部 + bII 半音下行"
+    },
+    {
+      "id": "M-017",
+      "title": "Bossa Nova Classic",
+      "style_primary": "ST-14 拉美",
+      "style_subtag": "Bossa Nova",
+      "mood": [
+        "MO-06 亲密",
+        "MO-04 放松"
+      ],
+      "tempo": "TP-02 中速",
+      "bpm": 88,
+      "key": "KY-13 F major",
+      "scale": "F major + 9 和弦",
+      "time_signature": "4/4(2-bar clave)",
+      "duration_sec": 200,
+      "tag_count_total": 4,
+      "tags": [
+        "Bossa 招牌",
+        "尼龙吉他",
+        "切分节奏",
+        "Jobim 范式"
+      ],
+      "use_case_demo": "和弦建议器:F major + 亲密 → 返回含 9 和弦 bossa 方案"
+    },
+    {
+      "id": "M-018",
+      "title": "Drum & Bass Amen Break",
+      "style_primary": "ST-04 电子",
+      "style_subtag": "Drum & Bass",
+      "mood": [
+        "MO-08 激励",
+        "MO-03 紧张"
+      ],
+      "tempo": "TP-05 极快",
+      "bpm": 174,
+      "key": "KY-09 E major",
+      "scale": "E Phrygian Dominant",
+      "time_signature": "4/4",
+      "duration_sec": 240,
+      "tag_count_total": 4,
+      "tags": [
+        "DnB 招牌",
+        "Amen break",
+        "采样切片",
+        "急板"
+      ],
+      "use_case_demo": "电子风格拆解:174 BPM DnB → 拆出 Amen break + Phrygian Dominant"
+    },
+    {
+      "id": "M-019",
+      "title": "K-pop Dance Hit",
+      "style_primary": "ST-01 流行",
+      "style_subtag": "舞曲流行",
+      "mood": [
+        "MO-01 快乐",
+        "MO-08 激励"
+      ],
+      "tempo": "TP-03 流行速度",
+      "bpm": 120,
+      "key": "KY-07 A major",
+      "scale": "A Lydian + b7",
+      "time_signature": "4/4",
+      "duration_sec": 195,
+      "tag_count_total": 4,
+      "tags": [
+        "K-pop 舞曲",
+        "明亮大调",
+        "鼓点密集",
+        "副歌 hook"
+      ],
+      "use_case_demo": "和弦建议器:A major + 快乐 → 返回含 bVII + IV 舞曲模板"
+    },
+    {
+      "id": "M-020",
+      "title": "New Age Solo Piano",
+      "style_primary": "ST-16 新世纪 / 冥想",
+      "style_subtag": "Solo Piano",
+      "mood": [
+        "MO-04 放松",
+        "MO-06 亲密"
+      ],
+      "tempo": "TP-01 慢板",
+      "bpm": 56,
+      "key": "KY-02 a minor",
+      "scale": "a 自然小调 + 4-7 持续音",
+      "time_signature": "4/4",
+      "duration_sec": 300,
+      "tag_count_total": 4,
+      "tags": [
+        "Solo Piano",
+        "新世纪",
+        "慢演变",
+        "睡前"
+      ],
+      "use_case_demo": "风格拆解:a minor + 放松 → Solo Piano 慢演变乐谱"
     }
   ]
 }
